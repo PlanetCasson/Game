@@ -242,12 +242,25 @@ namespace Model
 		public HashSet<Edge> edges;
 	}
 
+	//the graph representation
 	public class Cell
 	{
-		Vertex[] verticies;
-		uint[] vid;
-		Face[] faces;
-		uint[] fid;
+		List<Vertex> verticies;
+		List<Edge> edges;
+		List<Face> faces;
+
+		private Cell()
+		{
+			verticies = new List<Vertex>();
+			edges = new List<Edge>();
+			faces = new List<Face>();
+		}
+
+		//TODO: hardcode or parse from some file a base graph for different surfaces
+		public static Cell MakePrimitiveCell()
+		{
+
+		}
 
 		//splits a vertex and create a new edge in between
 		//preserves euler characteristics
@@ -297,6 +310,8 @@ namespace Model
 			}
 			Edge newE = Edge.NewEdge();
 			newE.ConnectEdge(v, newV, left, right);
+			verticies.Add(newV);
+			edges.Add(newE);
 			return newE;
 		}
 
@@ -322,7 +337,7 @@ namespace Model
 
 		    rebindV = disposedEdge.Orig;
 
-			//disconnect the edge (get ready for garbage collection)
+			//disconnect the edge
 			disposedEdge.DisconnectEdge();
 
 			//rebind edges on v to the vertex at disposedEdge.Orig
@@ -330,6 +345,9 @@ namespace Model
 			{
 				e.Dest = rebindV;
 			}
+
+			edges.Remove(disposedEdge);
+			verticies.Remove(v);
 		}
 
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
