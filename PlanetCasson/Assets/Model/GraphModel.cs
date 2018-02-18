@@ -240,6 +240,16 @@ namespace Model
 	public class Face
 	{
 		public HashSet<Edge> edges;
+
+		private Face()
+		{
+			edges = new HashSet<Edge>();
+		}
+
+		public static Face NewFace()
+		{
+			return new Face();
+		}
 	}
 
 	//the graph representation
@@ -281,15 +291,15 @@ namespace Model
 
 			//tests to see if leftEdges[0] is the bottom edge
 			if (leftEdges[0].Dnext() == leftEdges[1])
-				topEdges.Add(leftEdges[1]);
-			else
 				topEdges.Add(leftEdges[0]);
+			else
+				topEdges.Add(leftEdges[1]);
 
 			//test to see if rightEdges[0] is the bottom edge
 			if (rightEdges[0].Dprev() == rightEdges[1])
-				topEdges.Add(rightEdges[1]);
-			else
 				topEdges.Add(rightEdges[0]);
+			else
+				topEdges.Add(rightEdges[1]);
 
 			//fills top edges
 			while (true)
@@ -318,6 +328,7 @@ namespace Model
 		//"unsplits" a vertex
 		//preserves euler characteristics
 		//use this to change graph
+		//can create digons(use carefully)
 		public void killVertexEdge(Vertex v, Face left, Face right)
 		{
 			Edge disposedEdge = null;
@@ -350,9 +361,58 @@ namespace Model
 			verticies.Remove(v);
 		}
 
+		//subdivide a face
+		//preserves euler characteristics
+		//use this to change graph
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
-			
+			//find an edge pointing away from the starting point and on f
+			List<Edge> fEdges = (List<Edge>)orig.origEdges.Intersect(f.edges);
+			//check that there should be 2
+			if (fEdges.Count != 2)
+				return null;
+			//remove edge pointing left
+			if (fEdges[0].Oprev() == fEdges[1])
+				fEdges.Remove(fEdges[0]);
+			else
+				fEdges.Remove(fEdges[1]);
+
+			//check to see if already hit dest
+			if (fEdges.Last().Dest != dest)
+			{
+				//accumulate traversed edges until hit dest
+				do
+				{
+					fEdges.Add(fEdges.Last().Lnext());
+				} while (fEdges.Last().Dest != dest);
+			}
+			//fEdges should now contains all edges(pointing in ccw dir) for new face except new edge
+
+			Face newF = Face.NewFace();
+			for (int i = 0; i < fEdges.Count; i++)
+			{
+				fEdges[i].Left = newF;
+			}
+			Edge newE = Edge.NewEdge();
+			newE.ConnectEdge(orig, dest, f, newF);
+			faces.Add(newF);
+			edges.Add(newE);
+			return newE;
+		}
+
+		//undos makeFaceEdge
+		public void killFaceEdge(Edge e)
+		{
+
+			Face rf = e.Right;
+			Face lf = e.Left;
+			e.DisconnectEdge();
+			foreach (Edge e1 in rf.edges)
+			{
+				e1.Left = lf;
+			}
+			edges.Remove(e);
+			faces.Remove(rf);
 		}
 	}
 }
