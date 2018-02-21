@@ -283,11 +283,11 @@ namespace Model
 			Edge[] leftEdges = (Edge[])v.destEdges.Intersect(left.edges);
 			Edge[] rightEdges = (Edge[])v.destEdges.Intersect(right.edges);
 
-			List<Edge> topEdges = new List<Edge>();
-
 			//checks if there are 2 leftEdges and 2 rightEdges (as there should be)
 			if (leftEdges.Length != 2 && rightEdges.Length != 2)
 				return null;
+
+			List<Edge> topEdges = new List<Edge>();
 
 			//tests to see if leftEdges[0] is the bottom edge
 			if (leftEdges[0].Dnext() == leftEdges[1])
