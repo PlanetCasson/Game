@@ -285,7 +285,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Assets\NewBehaviourScript.cs" />
+=======
+    <Compile Include="Assets\Model\GraphModel.cs" />
+>>>>>>> QuadEdgeImplementationBranch
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
