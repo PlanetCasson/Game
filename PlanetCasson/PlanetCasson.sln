@@ -1,24 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
-<<<<<<< HEAD
-=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlanetCasson", "PlanetCasson.csproj", "{477AE54A-313A-BAC9-069C-0001E4DD1582}"
 EndProject
->>>>>>> QuadEdgeImplementationBranch
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-<<<<<<< HEAD
-=======
 		{477AE54A-313A-BAC9-069C-0001E4DD1582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{477AE54A-313A-BAC9-069C-0001E4DD1582}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{477AE54A-313A-BAC9-069C-0001E4DD1582}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{477AE54A-313A-BAC9-069C-0001E4DD1582}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> QuadEdgeImplementationBranch
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

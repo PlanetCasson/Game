@@ -45,7 +45,7 @@ namespace Model
 
 	public class Vertex
 	{
-		Vector3 pos;
+		public Vector3 pos;
 		public List<Edge> origEdges; //edges with orig at this vertex
 		public List<Edge> destEdges; //edges with dest at this vertex
 
@@ -269,8 +269,37 @@ namespace Model
 		//TODO: hardcode or parse from some file a base graph for different surfaces
 		public static Cell MakePrimitiveCell()
 		{
+            Vertex vx = Vertex.NewVertex(); //Center Vertex
+            Vertex vab = Vertex.NewVertex();
+            Vertex vac = Vertex.NewVertex();
+            Vertex vcb = Vertex.NewVertex();
 
-		}
+            Edge ea = Edge.NewEdge();
+            Edge eb = Edge.NewEdge();
+            Edge ec = Edge.NewEdge();
+            Edge eacx = Edge.NewEdge();
+            Edge ecbx = Edge.NewEdge();
+            Edge eabx = Edge.NewEdge();
+
+            Face fa = Face.NewFace();
+            Face fb = Face.NewFace();
+            Face fc = Face.NewFace();
+            Face fx = Face.NewFace();
+
+            ea.ConnectEdge(vac, vab, fx, fa);
+            eb.ConnectEdge(vab, vcb, fx, fb);
+            ec.ConnectEdge(vcb, vac, fx, fc);
+            eacx.ConnectEdge(vac, vx, fa, fc);
+            ecbx.ConnectEdge(vcb, vx, fc, fb);
+            eabx.ConnectEdge(vab, vx, fb, fa);
+
+            Cell sphereCell = new Cell();
+            sphereCell.verticies.AddRange(new List<Vertex>() { vx, vab, vac, vcb });
+            sphereCell.faces.AddRange(new List<Face>() { fa, fb, fc, fx });
+            sphereCell.edges.AddRange(new List<Edge>() { ea, eb, ec, eacx, ecbx, eabx });
+
+            return sphereCell;
+        }
 
 		//splits a vertex and create a new edge in between
 		//preserves euler characteristics
