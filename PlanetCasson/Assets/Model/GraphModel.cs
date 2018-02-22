@@ -266,7 +266,6 @@ namespace Model
 			faces = new List<Face>();
 		}
 
-		//TODO: hardcode or parse from some file a base graph for different surfaces
 		public static Cell MakePrimitiveCell()
 		{
             Vertex vx = Vertex.NewVertex(); //Center Vertex
@@ -299,6 +298,32 @@ namespace Model
             sphereCell.edges.AddRange(new List<Edge>() { ea, eb, ec, eacx, ecbx, eabx });
 
             return sphereCell;
+        }
+
+        public GraphModel getGraphModel()
+        {
+            
+            List<Vector3> vertexPositions = new List<Vector3>();
+            List<Vector2Int> edgeConnections = new List<Vector2Int>();
+
+            for(int i = 0; i < verticies.Count; i++)
+            {
+                vertexPositions.Add(new Vector3(i%2, i%3, i%5)); //This is a really dumb way to visualize graphs and we need to figure out something better
+                Vertex v = verticies[i];
+            }
+
+            for(int i = 0; i < edges.Count; i += 2)
+            {
+                int dIndex = verticies.IndexOf(edges[i].Dest);
+                int oIndex = verticies.IndexOf(edges[i].Orig);
+                edgeConnections.Add(new Vector2Int(oIndex, dIndex));
+            }
+
+            GraphModel model = new GraphModel();
+            model.verticies = vertexPositions.ToArray();
+            model.edges = edgeConnections.ToArray();
+
+            return model;
         }
 
 		//splits a vertex and create a new edge in between

@@ -12,7 +12,7 @@ public class SphereKernel : MonoBehaviour
 	void Start ()
 	{
         SphereKernelCell = Cell.MakePrimitiveCell();
-        SphereKernelModel = 
+        
 	}
 	
 	// Update is called once per frame
