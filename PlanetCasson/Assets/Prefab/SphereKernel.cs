@@ -8,7 +8,7 @@ public class SphereKernel : MonoBehaviour
     public GameObject vertexObj;
     public GameObject edgeObj;
 
-    Model.Cell SphereKernelCell;
+    Cell SphereKernelCell;
 
     // Use this for initialization
     void Start()

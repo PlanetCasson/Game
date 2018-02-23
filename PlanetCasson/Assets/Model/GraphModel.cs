@@ -329,7 +329,7 @@ namespace Model
                 eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, obj.gameObject.transform);
                 LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
                 lr.positionCount = 2;
-                lr.SetPosition(0, verticies[edges[i].connected.x].pos);
+                lr.SetPosition(0, verticies[edges[i].connected.x].pos); //This is unnecessary
                 lr.SetPosition(1, verticies[edges[i].connected.y].pos);
             }
         }
