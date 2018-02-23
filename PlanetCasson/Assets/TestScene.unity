@@ -232,6 +232,8 @@ MonoBehaviour:
   - {x: 2, y: 0}
   vertexObj: {fileID: 1389932504333770, guid: e951472685c16264fb81bdc921db59f6, type: 2}
   edgeObj: {fileID: 1151535536574396, guid: 030ce79d407182a4383129bbbada1c12, type: 2}
+  vObjs: []
+  eObjs: []
 --- !u!4 &511600234
 Transform:
   m_ObjectHideFlags: 0
