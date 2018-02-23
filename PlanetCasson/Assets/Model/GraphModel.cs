@@ -17,8 +17,8 @@ namespace Model
 		private GameObject[] vObjs;
 		private GameObject[] eObjs;
 
-		// Use this for initialization
-		void Start()
+		
+		public void Construct()
 		{
 			vObjs = new GameObject[verticies.Length];
 			eObjs = new GameObject[edges.Length];
@@ -65,6 +65,7 @@ namespace Model
 
 	public class Edge
 	{
+        public Vector2Int connected;
 		private Vertex _orig;
 		private Vertex _dest;
 		private Face _left;
@@ -300,30 +301,37 @@ namespace Model
             return sphereCell;
         }
 
-        public GraphModel getGraphModel()
+        public void calculatePositions()
         {
-            
-            List<Vector3> vertexPositions = new List<Vector3>();
-            List<Vector2Int> edgeConnections = new List<Vector2Int>();
-
             for(int i = 0; i < verticies.Count; i++)
             {
-                vertexPositions.Add(new Vector3(i%2, i%3, i%5)); //This is a really dumb way to visualize graphs and we need to figure out something better
-                Vertex v = verticies[i];
+                verticies[i].pos = new Vector3(i%2, i%3, i%5); //This is a really dumb way to visualize graphs and we need to figure out something better
             }
 
-            for(int i = 0; i < edges.Count; i += 2)
+            for(int i = 0; i < edges.Count; i ++)
             {
                 int dIndex = verticies.IndexOf(edges[i].Dest);
                 int oIndex = verticies.IndexOf(edges[i].Orig);
-                edgeConnections.Add(new Vector2Int(oIndex, dIndex));
+                edges[i].connected = new Vector2Int(oIndex, dIndex);
             }
+        }
 
-            GraphModel model = new GraphModel();
-            model.verticies = vertexPositions.ToArray();
-            model.edges = edgeConnections.ToArray();
-
-            return model;
+        public void instantiateGraph(MonoBehaviour obj, GameObject vertexObj, GameObject edgeObj)
+        {
+            GameObject[] vObjs = new GameObject[verticies.Count];
+            GameObject[] eObjs = new GameObject[edges.Count];
+            for (int i = 0; i < verticies.Count; i++)
+            {
+                vObjs[i] = Object.Instantiate(vertexObj, verticies[i].pos, Quaternion.identity, obj.gameObject.transform);
+            }
+            for (int i = 0; i < edges.Count; i++)
+            {
+                eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, obj.gameObject.transform);
+                LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
+                lr.positionCount = 2;
+                lr.SetPosition(0, verticies[edges[i].connected.x].pos);
+                lr.SetPosition(1, verticies[edges[i].connected.y].pos);
+            }
         }
 
 		//splits a vertex and create a new edge in between

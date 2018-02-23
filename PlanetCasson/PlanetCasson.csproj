@@ -304,7 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Model\GraphModel.cs" />
-    <Compile Include="Assets\Prefab\SphereKernelModel.cs" />
+    <Compile Include="Assets\Prefab\SphereKernel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Placeholder.txt" />
