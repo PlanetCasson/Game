@@ -8,16 +8,15 @@ namespace Model
 	/// <summary>
 	/// Face representation in the modified Quad-Edge data structure.
 	/// </summary>
-	public class Face
+	public class Face : FaceVertex
 	{
 		/// <summary>
-		/// <para>The collection of directed edges(see <see cref="Edge"/>) that surrounds the face.</para>
+		/// <para>The first Edge facing the CCW direction and borders the face.</para>
 		/// </summary>
-		public HashSet<Edge> edges;
-
-		private Face()
+		public Edge EdgeListHead
 		{
-			edges = new HashSet<Edge>();
+			get { return EdgeListHead.Rot; }
+			set { EdgeListHead = value.InvRot; }
 		}
 
 		/// <summary>

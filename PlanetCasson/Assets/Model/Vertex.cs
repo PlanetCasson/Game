@@ -7,26 +7,20 @@ namespace Model
 	/// <summary>
 	/// Vertex representation in the modified Quad-Edge data structure.
 	/// </summary>
-	public class Vertex
+	public class Vertex : FaceVertex
 	{
+		/// <summary>
+		/// <para>The first Edge pointing out of this vertex.</para>
+		/// </summary>
+		public Edge EdgeListHead
+		{
+			get { return EdgeListHead; }
+			set { EdgeListHead = value; }
+		}
 		/// <summary>
 		/// <para>The vertex's position in space.</para>
 		/// </summary>
 		public Vector3 pos;
-		/// <summary>
-		/// <para>A collection of all directed edges(see <see cref="Edge"/>) whose destination is at this vertex</para>
-		/// </summary>
-		public List<Edge> origEdges;
-		/// <summary>
-		/// <para>A collection of all directed edges(see <see cref="Edge"/>) whose origin is at this vertex</para>
-		/// </summary>
-		public List<Edge> destEdges;
-
-		private Vertex()
-		{
-			origEdges = new List<Edge>();
-			destEdges = new List<Edge>();
-		}
 
 		/// <summary>
 		/// <para>Factory for creating new verticies. 

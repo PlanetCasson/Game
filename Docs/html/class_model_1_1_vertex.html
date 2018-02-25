@@ -68,14 +68,24 @@ $(function() {
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#properties">Properties</a> &#124;
 <a href="class_model_1_1_vertex-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Model.Vertex Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the Quad-Edge data structure. ">Vertex</a> representation in the Quad-Edge data structure.  
+<p><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a> representation in the modified Quad-Edge data structure.  
  <a href="class_model_1_1_vertex.html#details">More...</a></p>
+<div class="dynheader">
+Inheritance diagram for Model.Vertex:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_model_1_1_vertex.png" usemap="#Model.Vertex_map" alt=""/>
+  <map id="Model.Vertex_map" name="Model.Vertex_map">
+<area href="interface_model_1_1_face_vertex.html" title="Interface for Face and Vertex class. " alt="Model.FaceVertex" shape="rect" coords="0,0,117,24"/>
+</map>
+ </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -86,13 +96,18 @@ Static Public Member Functions</h2></td></tr>
 Public Attributes</h2></td></tr>
 <tr class="memitem:adb523d6ca3e860ac400c05a9a654e155"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_vertex.html#adb523d6ca3e860ac400c05a9a654e155">pos</a></td></tr>
 <tr class="separator:adb523d6ca3e860ac400c05a9a654e155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ca4d619a6a7c4a197254f11002a0223"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">origEdges</a></td></tr>
-<tr class="separator:a2ca4d619a6a7c4a197254f11002a0223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a6374d5019eb4eac1e0ea350da992e5"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">destEdges</a></td></tr>
-<tr class="separator:a5a6374d5019eb4eac1e0ea350da992e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:a13c6074f7cf9f81e31c2b33329c6fb1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_vertex.html#a13c6074f7cf9f81e31c2b33329c6fb1e">EdgeListHead</a><code> [get, set]</code></td></tr>
+<tr class="separator:a13c6074f7cf9f81e31c2b33329c6fb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header properties_interface_model_1_1_face_vertex"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_model_1_1_face_vertex')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_model_1_1_face_vertex.html">Model.FaceVertex</a></td></tr>
+<tr class="memitem:a07f0503402fd409cccba3032a58d180f inherit properties_interface_model_1_1_face_vertex"><td class="memItemLeft" align="right" valign="top"><a id="a07f0503402fd409cccba3032a58d180f"></a>
+<a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><b>EdgeListHead</b><code> [get, set]</code></td></tr>
+<tr class="separator:a07f0503402fd409cccba3032a58d180f inherit properties_interface_model_1_1_face_vertex"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the Quad-Edge data structure. ">Vertex</a> representation in the Quad-Edge data structure. </p>
+<div class="textblock"><p><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a> representation in the modified Quad-Edge data structure. </p>
 
 <p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00010">10</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -120,53 +135,15 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p></p>
-<p>Factory for creating new verticies. The newly Generated <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the Quad-Edge data structure. ">Vertex</a>'s position is null and it is not connected to any edges.</p>
+<p>Factory for creating new verticies. The newly Generated <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a>'s position is null and it is not connected to any edges.</p>
 <p>Example:</p>
-<pre><code><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the Quad-Edge data structure. ">Vertex</a> v = <a class="el" href="class_model_1_1_vertex.html#a756e520b444aa5ea39f73f193564cf96">Vertex.NewVertex()</a>;</code></pre> <dl class="section return"><dt>Returns</dt><dd>The newly created vertex</dd></dl>
+<pre><code><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a> v = <a class="el" href="class_model_1_1_vertex.html#a756e520b444aa5ea39f73f193564cf96">Vertex.NewVertex()</a>;</code></pre> <dl class="section return"><dt>Returns</dt><dd>The newly created vertex</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00038">38</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00032">32</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5a6374d5019eb4eac1e0ea350da992e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a6374d5019eb4eac1e0ea350da992e5">&#9670;&nbsp;</a></span>destEdges</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt;<a class="el" href="class_model_1_1_edge.html">Edge</a>&gt; Model.Vertex.destEdges</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p></p>
-<p>A collection of all directed edges(see <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a>) whose origin is at this vertex</p>
-
-<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00023">23</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
-
-</div>
-</div>
-<a id="a2ca4d619a6a7c4a197254f11002a0223"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2ca4d619a6a7c4a197254f11002a0223">&#9670;&nbsp;</a></span>origEdges</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">List&lt;<a class="el" href="class_model_1_1_edge.html">Edge</a>&gt; Model.Vertex.origEdges</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p></p>
-<p>A collection of all directed edges(see <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a>) whose destination is at this vertex</p>
-
-<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00019">19</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
-
-</div>
-</div>
 <a id="adb523d6ca3e860ac400c05a9a654e155"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb523d6ca3e860ac400c05a9a654e155">&#9670;&nbsp;</a></span>pos</h2>
 
@@ -182,7 +159,35 @@ Public Attributes</h2></td></tr>
 <p></p>
 <p>The vertex's position in space.</p>
 
-<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00015">15</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00023">23</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a13c6074f7cf9f81e31c2b33329c6fb1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13c6074f7cf9f81e31c2b33329c6fb1e">&#9670;&nbsp;</a></span>EdgeListHead</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_model_1_1_edge.html">Edge</a> Model.Vertex.EdgeListHead</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<p>The first <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> pointing out of this vertex.</p>
+
+<p class="definition">Definition at line <a class="el" href="_vertex_8cs_source.html#l00016">16</a> of file <a class="el" href="_vertex_8cs_source.html">Vertex.cs</a>.</p>
 
 </div>
 </div>

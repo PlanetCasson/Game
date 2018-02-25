@@ -20,47 +20,26 @@ namespace Model
 		List<Edge> edges;
 		List<Face> faces;
 
-		//private constructor to initilize a cell
-		private Cell()
-		{
-			verticies = new List<Vertex>();
-			edges = new List<Edge>();
-			faces = new List<Face>();
-		}
-
 		//make a tetrahedron quad edge graph
 		public static Cell MakePrimitiveCell()
 		{
-			Vertex vx = Vertex.NewVertex(); //Center Vertex
-			Vertex vab = Vertex.NewVertex();
-			Vertex vac = Vertex.NewVertex();
-			Vertex vcb = Vertex.NewVertex();
+			Cell c = new Cell();
+			c.verticies = new List<Vertex>();
+			c.verticies.Add(Vertex.NewVertex());
+			c.verticies.Add(Vertex.NewVertex());
+			c.verticies.Add(Vertex.NewVertex());
+			c.verticies.Add(Vertex.NewVertex());
+			c.verticies.Add(Vertex.NewVertex());
 
-			Edge ea = Edge.NewEdge();
-			Edge eb = Edge.NewEdge();
-			Edge ec = Edge.NewEdge();
-			Edge eacx = Edge.NewEdge();
-			Edge ecbx = Edge.NewEdge();
-			Edge eabx = Edge.NewEdge();
+			c.faces = new List<Face>();
+			c.faces.Add(Face.NewFace());
+			c.faces.Add(Face.NewFace());
+			c.faces.Add(Face.NewFace());
+			c.faces.Add(Face.NewFace());
 
-			Face fa = Face.NewFace();
-			Face fb = Face.NewFace();
-			Face fc = Face.NewFace();
-			Face fx = Face.NewFace();
-
-			ea.ConnectEdge(vac, vab, fx, fa);
-			eb.ConnectEdge(vab, vcb, fx, fb);
-			ec.ConnectEdge(vcb, vac, fx, fc);
-			eacx.ConnectEdge(vac, vx, fa, fc);
-			ecbx.ConnectEdge(vcb, vx, fc, fb);
-			eabx.ConnectEdge(vab, vx, fb, fa);
-
-			Cell sphereCell = new Cell();
-			sphereCell.verticies.AddRange(new List<Vertex>() { vx, vab, vac, vcb });
-			sphereCell.faces.AddRange(new List<Face>() { fa, fb, fc, fx });
-			sphereCell.edges.AddRange(new List<Edge>() { ea, eb, ec, eacx, ecbx, eabx });
-
-			return sphereCell;
+			c.edges = Edge.ConnectTetraCell(c.verticies, c.faces);
+			if (c.edges == null) return null;
+			return c;
 		}
 
 		public void calculatePositions()
@@ -84,8 +63,10 @@ namespace Model
 				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, obj.gameObject.transform);
 				LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
 				lr.positionCount = 2;
-				lr.SetPosition(0, edges[i].Orig.pos);
-				lr.SetPosition(1, edges[i].Dest.pos);
+				Vertex orig = (edges[i].Orig) as Vertex;
+				Vertex dest = (edges[i].Dest) as Vertex;
+				lr.SetPosition(0, orig.pos);
+				lr.SetPosition(1, dest.pos);
 			}
 		}
 
@@ -94,52 +75,16 @@ namespace Model
 		//use this to change graph
 		public Edge makeVertexEdge(Vertex v, Face left, Face right)
 		{
-			//all edges are edges that points towards v
+			//finds all edges that needs to be moved
+			List<Edge> moveE = findMoveEdges(v.EdgeListHead, left, right);
 
-			//find edges that points towards v and boarders left and right
-			Edge[] leftEdges = (Edge[])v.destEdges.Intersect(left.edges);
-			Edge[] rightEdges = (Edge[])v.destEdges.Intersect(right.edges);
+			if (moveE == null) return null;
 
-			//checks if there are 2 leftEdges and 2 rightEdges (as there should be)
-			if (leftEdges.Length != 2 && rightEdges.Length != 2)
-				return null;
-
-			List<Edge> topEdges = new List<Edge>();
-
-			//tests to see if leftEdges[0] is the bottom edge
-			if (leftEdges[0].Dnext() == leftEdges[1])
-				topEdges.Add(leftEdges[0]);
-			else
-				topEdges.Add(leftEdges[1]);
-
-			//test to see if rightEdges[0] is the bottom edge
-			if (rightEdges[0].Dprev() == rightEdges[1])
-				topEdges.Add(rightEdges[0]);
-			else
-				topEdges.Add(rightEdges[1]);
-
-			//fills top edges
-			while (true)
-			{
-				int i = topEdges.Count - 2;
-				Edge temp = topEdges[i].Dprev();
-				if (temp == topEdges.Last())
-				{
-					break;
-				}
-				topEdges.Insert(i + 1, temp);
-			}
-
-			Vertex newV = Vertex.NewVertex();
-			for (int i = 0; i < topEdges.Count; i++)
-			{
-				topEdges[i].Dest = newV;
-			}
-			Edge newE = Edge.NewEdge();
-			newE.ConnectEdge(v, newV, left, right);
-			verticies.Add(newV);
-			edges.Add(newE);
-			return newE;
+			Vertex newv = Vertex.NewVertex();
+			Edge newe = Edge.SplitFaceVertex(v, newv, left, right, moveE);
+			verticies.Add(newv);
+			edges.Add(newe);
+			return newe;
 		}
 
 		//"unsplits" a vertex
@@ -148,33 +93,14 @@ namespace Model
 		//can create digons(use carefully)
 		public void killVertexEdge(Vertex v, Face left, Face right)
 		{
-			Edge disposedEdge = null;
-			Vertex rebindV;
+			List<Edge> moveE = findMoveEdges(v.EdgeListHead, left, right);
 
-			foreach (Edge e in left.edges.Intersect(right.edges))
-			{
-				if (e.Dest == v)
-				{
-					disposedEdge = e;
-					break;
-				}
-			}
+			if (moveE == null) return;
 
-			//check to see if valid deletion
-			if (disposedEdge == null) return;
+			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, v, left, right, moveE);
 
-			rebindV = disposedEdge.Orig;
-
-			//disconnect the edge
-			disposedEdge.DisconnectEdge();
-
-			//rebind edges on v to the vertex at disposedEdge.Orig
-			foreach (Edge e in v.destEdges)
-			{
-				e.Dest = rebindV;
-			}
-
-			edges.Remove(disposedEdge);
+			if (!edges.Remove(moveE.Last().Onext().Sym))
+				edges.Remove(moveE.Last().Onext());
 			verticies.Remove(v);
 		}
 
@@ -183,53 +109,60 @@ namespace Model
 		//use this to change graph
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
-			//find an edge pointing away from the starting point and on f
-			List<Edge> fEdges = (List<Edge>)orig.origEdges.Intersect(f.edges);
-			//check that there should be 2
-			if (fEdges.Count != 2)
-				return null;
-			//remove edge pointing left
-			if (fEdges[0].Oprev() == fEdges[1])
-				fEdges.Remove(fEdges[0]);
-			else
-				fEdges.Remove(fEdges[1]);
+			//finds all edges that needs to be moved
+			List<Edge> moveE = findMoveEdges(f.EdgeListHead.InvRot, dest, orig);
 
-			//check to see if already hit dest
-			if (fEdges.Last().Dest != dest)
-			{
-				//accumulate traversed edges until hit dest
-				do
-				{
-					fEdges.Add(fEdges.Last().Lnext());
-				} while (fEdges.Last().Dest != dest);
-			}
-			//fEdges should now contains all edges(pointing in ccw dir) for new face except new edge
-
-			Face newF = Face.NewFace();
-			for (int i = 0; i < fEdges.Count; i++)
-			{
-				fEdges[i].Left = newF;
-			}
-			Edge newE = Edge.NewEdge();
-			newE.ConnectEdge(orig, dest, f, newF);
-			faces.Add(newF);
-			edges.Add(newE);
-			return newE;
+			Face newf = Face.NewFace();
+			Edge newe = Edge.SplitFaceVertex(f, newf, dest, orig, moveE);
+			faces.Add(newf);
+			edges.Add(newe);
+			return newe;
 		}
 
 		//undos makeFaceEdge
-		public void killFaceEdge(Edge e)
+		public void killFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 
-			Face rf = e.Right;
-			Face lf = e.Left;
-			e.DisconnectEdge();
-			foreach (Edge e1 in rf.edges)
+			List<Edge> moveE = findMoveEdges(f.EdgeListHead.InvRot, dest, orig);
+
+			if (moveE == null) return;
+
+			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, f, dest, orig, moveE);
+
+			if (!edges.Remove(moveE.Last().Onext().Sym))
+				edges.Remove(moveE.Last().Onext());
+			faces.Remove(f);
+		}
+
+		//find all edges pointing away from orig of start
+		//that is also between left and right
+		//that is also on "top"
+		private List<Edge> findMoveEdges(Edge start, FaceVertex left, FaceVertex right)
+		{
+			Edge temp = start;
+			while (temp.Right != (FaceVertex)right)
 			{
-				e1.Left = lf;
+				temp = temp.Onext();
+				if (temp == start) //made a loop
+				{
+					return null;
+				}
 			}
-			edges.Remove(e);
-			faces.Remove(rf);
+			List<Edge> moveE = new List<Edge>();
+			moveE.Add(temp);
+			while (temp.Left != (FaceVertex)left)
+			{
+				temp = temp.Onext();
+				moveE.Add(temp);
+				if (temp == moveE[0]) //made a loop
+				{
+					return null;
+				}
+			}
+			if (moveE.Last().Left != (FaceVertex)left)
+				moveE.RemoveAt(moveE.Count - 1);
+
+			return moveE;
 		}
 	}
 }

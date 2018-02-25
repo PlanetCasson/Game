@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['right',['Right',['../class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2',1,'Model::Edge']]]
+  ['left',['Left',['../class_model_1_1_edge.html#a9c11f4202348cca575de310670e1b8e3',1,'Model::Edge']]]
 ];

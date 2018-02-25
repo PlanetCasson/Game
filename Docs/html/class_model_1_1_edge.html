@@ -75,15 +75,11 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> representation in the Quad-Edge data structure.  
+<p><a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> representation in the modified Quad-Edge data structure.  
  <a href="class_model_1_1_edge.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaaf7f7fc35e2cd91ea9a0ec27935f5c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#aaaf7f7fc35e2cd91ea9a0ec27935f5c8">ConnectEdge</a> (<a class="el" href="class_model_1_1_vertex.html">Vertex</a> orig, <a class="el" href="class_model_1_1_vertex.html">Vertex</a> dest, <a class="el" href="class_model_1_1_face.html">Face</a> left, <a class="el" href="class_model_1_1_face.html">Face</a> right)</td></tr>
-<tr class="separator:aaaf7f7fc35e2cd91ea9a0ec27935f5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a81156c79d999619598dddcd3777380"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a5a81156c79d999619598dddcd3777380">DisconnectEdge</a> ()</td></tr>
-<tr class="separator:a5a81156c79d999619598dddcd3777380"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acebd4cad03a02386b9be44055de2b12a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#acebd4cad03a02386b9be44055de2b12a">Rnext</a> ()</td></tr>
 <tr class="separator:acebd4cad03a02386b9be44055de2b12a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f9dd306c2412ec019ea529156f207b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a0f9dd306c2412ec019ea529156f207b0">Lnext</a> ()</td></tr>
@@ -103,72 +99,74 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5d90df1900a033aa486df2040389760a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a5d90df1900a033aa486df2040389760a">NewEdge</a> ()</td></tr>
-<tr class="separator:a5d90df1900a033aa486df2040389760a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a474ad91ca5b3f0a120522c6970be0c34"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a474ad91ca5b3f0a120522c6970be0c34">SplitFaceVertex</a> (<a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> oldFV, <a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> newFV, <a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> leftFV, <a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> rightFV, List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt; movedEdges)</td></tr>
+<tr class="separator:a474ad91ca5b3f0a120522c6970be0c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fb37cdf4de846e847ab490bb1c22c64"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a5fb37cdf4de846e847ab490bb1c22c64">RejoinFaceVertex</a> (<a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> oldFV, <a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> delFV, <a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> leftFV, <a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> rightFV, List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt; movedEdges)</td></tr>
+<tr class="separator:a5fb37cdf4de846e847ab490bb1c22c64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80159a241c1c6a510c1cbd1522e59509"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a80159a241c1c6a510c1cbd1522e59509">ConnectTetraCell</a> (List&lt; <a class="el" href="class_model_1_1_vertex.html">Vertex</a> &gt; verticies, List&lt; <a class="el" href="class_model_1_1_face.html">Face</a> &gt; faces)</td></tr>
+<tr class="separator:a80159a241c1c6a510c1cbd1522e59509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a3a403b86ee003f653bab71d563b47d71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_vertex.html">Vertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a><code> [get, set]</code></td></tr>
-<tr class="separator:a3a403b86ee003f653bab71d563b47d71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58e256a721f6c2dc581de6d9c38ff88a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_vertex.html">Vertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a58e256a721f6c2dc581de6d9c38ff88a">Dest</a><code> [get, set]</code></td></tr>
-<tr class="separator:a58e256a721f6c2dc581de6d9c38ff88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2fef8a5da26261ef04858e9a601284"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_face.html">Face</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a4c2fef8a5da26261ef04858e9a601284">Left</a><code> [get, set]</code></td></tr>
-<tr class="separator:a4c2fef8a5da26261ef04858e9a601284"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69c57f0403cc3ad99a930337464fe1d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_face.html">Face</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2">Right</a><code> [get, set]</code></td></tr>
-<tr class="separator:a69c57f0403cc3ad99a930337464fe1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b00c9b63678c143f8b99bd9b8cb9f8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a6b00c9b63678c143f8b99bd9b8cb9f8b">Orig</a><code> [get]</code></td></tr>
+<tr class="separator:a6b00c9b63678c143f8b99bd9b8cb9f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8c3a6238e4459ba47c158c9a7d5b76b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#ab8c3a6238e4459ba47c158c9a7d5b76b">Dest</a><code> [get]</code></td></tr>
+<tr class="separator:ab8c3a6238e4459ba47c158c9a7d5b76b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c11f4202348cca575de310670e1b8e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a9c11f4202348cca575de310670e1b8e3">Left</a><code> [get]</code></td></tr>
+<tr class="separator:a9c11f4202348cca575de310670e1b8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9cedd74d3b26b60e66f302b77870b4a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#af9cedd74d3b26b60e66f302b77870b4a">Right</a><code> [get]</code></td></tr>
+<tr class="separator:af9cedd74d3b26b60e66f302b77870b4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1dcc4ca7b5bbfb94dfe38d4d8dbc680"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a><code> [get]</code></td></tr>
+<tr class="separator:aa1dcc4ca7b5bbfb94dfe38d4d8dbc680"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6370e7f7bc1684929cdea71baef36365"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a><code> [get]</code></td></tr>
 <tr class="separator:a6370e7f7bc1684929cdea71baef36365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aead08adf500d01939981d9a2923d9a2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a><code> [get]</code></td></tr>
+<tr class="separator:aead08adf500d01939981d9a2923d9a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> representation in the Quad-Edge data structure. </p>
-<p>Each <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> is a directed edge in the Quad-Edge, and also has a corresponding symmetric edge.</p>
-<p>The following diagram shows the relation between an edge and its symmetric edge:</p>
+<div class="textblock"><p><a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> representation in the modified Quad-Edge data structure. </p>
+<p>Each <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> is a directed edge in the Quad-Edge, and has a correspinding symmetric edge, dual edge, and symmetric dual edge.</p>
+<p>The following diagram shows the relation between an edge and its corresponding edges:</p>
 <div class="image">
-<img src="SymEdges.jpg" alt="SymEdges.jpg"/>
+<img src="SymEdges.JPG" alt="SymEdges.JPG"/>
 </div>
- <p>The edge and its symmetric edge come together to form an undirected edge. The properties and methods in the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> class modify both the edge and its symmetric edge. In essense, any modification to an instance of the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> class is modifying the undirected edge formed from the edge itself and its linked symmetric edge</p>
-<p>Each <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a>, in addition to its symmetric edge, also stores its nearby verticies and faces, which are defined below:</p>
+ <p>The edge and its symmetric edge come together to form an undirected edge. And the dual edge and the symmetric dual edge come together to form an undirected dual edge. The public Methods in the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> class modify both the undirected edge and the undirected dual edge, and therefore the dual graph simultaneously. In essense, any modification to an instance of the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> class is modifying all four linked edges.</p>
+<p>When an edge has its Orig and Dest being faces, or its Left and Right being Verticies, that means it is the edge on the dual graph. The relationship between dual edges, dual graphs and their normal graph counterparts is illustrated in the image below:</p>
+<div class="image">
+<img src="dual.jpeg" alt="dual.jpeg"/>
+</div>
+ <p>Each directed edge stores only its origin, and a link to its dual edge. When it and its 3 other corresponding edges are linked, the information in the image below can be obtained from each directed edge.</p>
 <div class="image">
 <img src="vertface.jpeg" alt="vertface.jpeg"/>
 </div>
- <p>Due to the linked nature of an edge and its symmetric edge, only the origin vertex, left face, and symmetric edge needs to be stored. An edge's destination vertex can be gotten from its symmetric edge's origin, and an edge's right face can be gotten from its symmetric edge's right face.</p>
-<p>This information is used to facilitate the fast edge traversal of the graph through the following functions defined in the image below:</p>
+ <p>In addition to storing the origin and dual edge of each edge, the next edge in the CCW direction whose origin is shared with this directed edge is also stored (see <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a>). This information is used to facilitate the fast edge traversal of the graph through the following functions defined in the image below:</p>
 <div class="image">
 <img src="edgetraversal.jpeg" alt="edgetraversal.jpeg"/>
 </div>
- <p>the last 2 images comes from <a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html">here</a>. All the credit is theirs</p>
+ <p>images comes from <a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html">here</a>. All the credit is theirs</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00026">26</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00029">29</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="aaaf7f7fc35e2cd91ea9a0ec27935f5c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaaf7f7fc35e2cd91ea9a0ec27935f5c8">&#9670;&nbsp;</a></span>ConnectEdge()</h2>
+<a id="a80159a241c1c6a510c1cbd1522e59509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80159a241c1c6a510c1cbd1522e59509">&#9670;&nbsp;</a></span>ConnectTetraCell()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Model.Edge.ConnectEdge </td>
+          <td class="memname">static List&lt;<a class="el" href="class_model_1_1_edge.html">Edge</a>&gt; Model.Edge.ConnectTetraCell </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_model_1_1_vertex.html">Vertex</a>&#160;</td>
-          <td class="paramname"><em>orig</em>, </td>
+          <td class="paramtype">List&lt; <a class="el" href="class_model_1_1_vertex.html">Vertex</a> &gt;&#160;</td>
+          <td class="paramname"><em>verticies</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="class_model_1_1_vertex.html">Vertex</a>&#160;</td>
-          <td class="paramname"><em>dest</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_model_1_1_face.html">Face</a>&#160;</td>
-          <td class="paramname"><em>left</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_model_1_1_face.html">Face</a>&#160;</td>
-          <td class="paramname"><em>right</em>&#160;</td>
+          <td class="paramtype">List&lt; <a class="el" href="class_model_1_1_face.html">Face</a> &gt;&#160;</td>
+          <td class="paramname"><em>faces</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -176,48 +174,25 @@ Properties</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p></p>
-<p>This method links the edge to a graph through its adjacent faces and its endpoints. It links both the edge and its symmetric edge to said graph.</p>
-<p>Example:</p>
-<pre><code>
-<a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> e = <a class="el" href="class_model_1_1_edge.html#a5d90df1900a033aa486df2040389760a">Edge.NewEdge()</a>;
-e.ConnectEdge(v1, v2, f1, f2);
-</code></pre> <dl class="params"><dt>Parameters</dt><dd>
+<p>Connects a list of verticies and faces to form the Quad-Edge graph of a tetrahedron. Sets up the initial connections and <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> relationship.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">orig</td><td>Orig of the new edge</td></tr>
-    <tr><td class="paramname">dest</td><td>Dest of the new edge</td></tr>
-    <tr><td class="paramname">left</td><td>Left of the new edge</td></tr>
-    <tr><td class="paramname">right</td><td>Right of the new edge</td></tr>
+    <tr><td class="paramname">verticies</td><td>List of verticies to be connected.</td></tr>
+    <tr><td class="paramname">faces</td><td>List of faces to be connected.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a list of Edges used to connect the verticies and faces into a tetrahedron. If encounters an error, will return null.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00206">206</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
-
-</div>
-</div>
-<a id="a5a81156c79d999619598dddcd3777380"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a81156c79d999619598dddcd3777380">&#9670;&nbsp;</a></span>DisconnectEdge()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Model.Edge.DisconnectEdge </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p></p>
-<p>This method unlinks the edge from the graph it's connected to. It unlinks both the edge and its symmetric edge from said graph. Note that this does not remove it from the edges collection in <a class="el" href="class_model_1_1_cell.html" title="Quad-Edge data structure representing the graph iteself ">Cell</a></p>
-<p>Cell.edges </p>
-
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00220">220</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00179">179</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -237,17 +212,17 @@ e.ConnectEdge(v1, v2, f1, f2);
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Dnext traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> pointing towards the destination in the CCW direction. from this edge.</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing to this edge's <a class="el" href="class_model_1_1_edge.html#a58e256a721f6c2dc581de6d9c38ff88a">Dest</a>(see <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a>) </li>
+Taking the dual edge (see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a>) </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2">Right</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding the <a class="el" href="class_model_1_1_edge.html#aca6f200525d96c60f2dd24efa62390c7">Oprev</a>) </li>
 <li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its dual edge </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Dnext traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Dnext traversal</dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00296">296</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
@@ -269,19 +244,19 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Dprev traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> pointing towards this edge's destination and in a CW direction.</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing to this edge's <a class="el" href="class_model_1_1_edge.html#a58e256a721f6c2dc581de6d9c38ff88a">Dest</a>(see <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a>) </li>
+Taking the symmetric dual edge (see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>). </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a4c2fef8a5da26261ef04858e9a601284">Left</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding its <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a>. </li>
 <li>
-Intersecting them and taking the edge that is not this edge's =<a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its symmetrical dual edge. </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Dprev traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Dprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00372">372</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00356">356</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -301,19 +276,19 @@ Intersecting them and taking the edge that is not this edge's =<a class="el" hre
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Lnext traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> on the face to the left of this edge in a CCW direction. This edge will point away from the destination of this edge</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing out of this edge's <a class="el" href="class_model_1_1_edge.html#a58e256a721f6c2dc581de6d9c38ff88a">Dest</a>(see <a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a>) </li>
+Taking the symmetric dual edge (see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>) </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a4c2fef8a5da26261ef04858e9a601284">Left</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> of it. </li>
 <li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its dual edge(see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a>). </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Lnext traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Lnext traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00258">258</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00268">268</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -333,51 +308,19 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Lprev traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> on the <a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> to the left of this edge in a CW direction. This edge will point towards the origin of this edge.</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing to this edge's <a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a>(see <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a>) </li>
+Taking the symmetric dual edge (see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>). </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a4c2fef8a5da26261ef04858e9a601284">Left</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding its <a class="el" href="class_model_1_1_edge.html#aca6f200525d96c60f2dd24efa62390c7">Oprev</a>. </li>
 <li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its dual edge (see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a>). </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Lprev traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Lprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00334">334</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
-
-</div>
-</div>
-<a id="a5d90df1900a033aa486df2040389760a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d90df1900a033aa486df2040389760a">&#9670;&nbsp;</a></span>NewEdge()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="class_model_1_1_edge.html">Edge</a> Model.Edge.NewEdge </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p></p>
-<p>Factory for creating new undirected edges. This method creates an edge, and its symmetric edge, and then links them together. The newly created pair of edges are not linked to anything except for each other.</p>
-<p>To create an undirected edge and then connect it to a graph, see <a class="el" href="class_model_1_1_edge.html#aaaf7f7fc35e2cd91ea9a0ec27935f5c8">ConnectEdge</a>.</p>
-<dl class="section return"><dt>Returns</dt><dd>The newly created <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a></dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00184">184</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00326">326</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -397,19 +340,13 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Onext traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> pointing out from the origin in the CCW direction. This value is stored in the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> class, and is initialized with <a class="el" href="class_model_1_1_edge.html#a80159a241c1c6a510c1cbd1522e59509">ConnectTetraCell</a> and properly maintained with <a class="el" href="class_model_1_1_edge.html#a474ad91ca5b3f0a120522c6970be0c34">SplitFaceVertex</a> and <a class="el" href="class_model_1_1_edge.html#a5fb37cdf4de846e847ab490bb1c22c64">RejoinFaceVertex</a>.</p>
 <p>It does this by:</p>
 <ul>
-<li>
-Taking all edges pointing out of this edge's <a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a>(see <a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a>) </li>
-<li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a4c2fef8a5da26261ef04858e9a601284">Left</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
-<li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Onext traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Onext traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00277">277</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00280">280</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -429,19 +366,89 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Oprev traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> pointing out of this edge's destination in the CW direction.</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing out of this edge's <a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a>(see <a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a>) </li>
+Taking the dual edge (see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">).</a> </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2">Right</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding its <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a>. </li>
 <li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its dual edge. </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Oprev traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Oprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00353">353</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00341">341</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5fb37cdf4de846e847ab490bb1c22c64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fb37cdf4de846e847ab490bb1c22c64">&#9670;&nbsp;</a></span>RejoinFaceVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Model.Edge.RejoinFaceVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>oldFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>delFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>leftFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>rightFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt;&#160;</td>
+          <td class="paramname"><em>movedEdges</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<p>The reverse of the process described in <a class="el" href="class_model_1_1_edge.html#a474ad91ca5b3f0a120522c6970be0c34">SplitFaceVertex</a>. This rejoins two verticies of a graph. It is also capable fo rejoining two faces of a graph by rejoining the corresponding verticies of the dual graph.</p>
+<p>This method moves the origin of all edges in movedEdges from delFV to oldFV. It then sets the FaceVertex.EdgeListHead of oldFV to the first element in movedEdges. Then, it restores proper <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> relationship without the delFV and the edge running from oldFV to delFV. This automatically delinks that edge and delFV, and they will be deleted by the garbage collector.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldFV</td><td>Old vertex in the graph for movedEdges to all move to after delFV is deleted</td></tr>
+    <tr><td class="paramname">delFV</td><td><a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a> to be deleted.</td></tr>
+    <tr><td class="paramname">leftFV</td><td><a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> to the left of the directed edge running from oldFV to delFV</td></tr>
+    <tr><td class="paramname">rightFV</td><td><a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> to the right of the above defined edge.</td></tr>
+    <tr><td class="paramname">movedEdges</td><td>List of all edges around delFV except for the one mentioned in leftFV. They required to be in the same order as they are defined in <a class="el" href="class_model_1_1_edge.html#a474ad91ca5b3f0a120522c6970be0c34">SplitFaceVertex</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00153">153</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -461,19 +468,19 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Rnext traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> on the <a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> to the right of this edge in a CCW direction. This edge will point towards the origin of this edge.</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing to this edge's <a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a>(see <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a>) </li>
+Taking the dual edge(see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a>). </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2">Right</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> of it. </li>
 <li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its symmetric dual edge(see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>). </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Rnext traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the next Rnext</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00239">239</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00253">253</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -493,25 +500,105 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
 </div><div class="memdoc">
 
 <p></p>
-<p>finds the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> gotten by one Rprev traversal step(defined in the image in this class's summary) from this edge.</p>
+<p>finds the next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> on the <a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> to the right of this edge in a CW direction. This edge will point out of the destination of this edge.</p>
 <p>It does this by:</p>
 <ul>
 <li>
-Taking all edges pointing out of this edge's <a class="el" href="class_model_1_1_edge.html#a58e256a721f6c2dc581de6d9c38ff88a">Dest</a>(see <a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a>) </li>
+Taking the dual edge (see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">).</a> </li>
 <li>
-Taking all edges boardering this edge's <a class="el" href="class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2">Right</a>(see <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a>) </li>
+Then finding its <a class="el" href="class_model_1_1_edge.html#aca6f200525d96c60f2dd24efa62390c7">Oprev</a>. </li>
 <li>
-Intersecting them and taking the edge that is not this edge's <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
+Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>).<a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </li>
 </ul>
-<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Rprev traversal</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a> in the Rprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00315">315</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00311">311</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+
+</div>
+</div>
+<a id="a474ad91ca5b3f0a120522c6970be0c34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a474ad91ca5b3f0a120522c6970be0c34">&#9670;&nbsp;</a></span>SplitFaceVertex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="class_model_1_1_edge.html">Edge</a> Model.Edge.SplitFaceVertex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>oldFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>newFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>leftFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a>&#160;</td>
+          <td class="paramname"><em>rightFV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">List&lt; <a class="el" href="class_model_1_1_edge.html">Edge</a> &gt;&#160;</td>
+          <td class="paramname"><em>movedEdges</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Method for inserting an edge while modifying the surrounding edges, verticies, and faces to preserve the topological properties of the graph.</p>
+<p>The only method for adding an edge that satisfies this criteria is with the subdivision of a face or splitting a vertex. A subdivision of a face in the graph is the same as the splitting of a vertex in the dual graph. The same also holds true in reverse. This means that although this method is used to split a vertex, it can also subdivide a face by splitting the corresponding vertex in the dual graph.</p>
+<div class="image">
+<img src="vertexsplit.JPG" alt="vertexsplit.JPG"/>
+</div>
+ <p>The above picture demonstrates the process of <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a> splitting with the edges in the dotted box representing those in the list movedEdges.</p>
+<div class="image">
+<img src="subdivide.JPG" alt="subdivide.JPG"/>
+</div>
+ <p>This shows that a subdivision problem(in black) can be solved by doing a vertex split on its dual graph(in gray).</p>
+<p>Using the inputs, this method moves the origin of all edges in movedEdges from oldFV to newFV. It then sets the FaceVertex.EdgeListHead for the oldFV to a new edge and newFV to the new edge's symmetric edge.(see <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a>). This step is to make 100% sure the EdgeListHead has a proper value after the vertex split. Following this, the algorithm then properly links that new edge, its dual, symmetric, and dual symmetric edges to the graph. Finally, it fixes the <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> relationship between the edges and returns this new edge.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">oldFV</td><td>Old vertex in the graph to be split.</td></tr>
+    <tr><td class="paramname">newFV</td><td>New unlinked vertex object in the graph to be inserted. This vertex must be between leftFV and rightFV faces.</td></tr>
+    <tr><td class="paramname">leftFV</td><td><a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> in the graph that lies to the left of a directed edge running from oldFV to newFV</td></tr>
+    <tr><td class="paramname">rightFV</td><td><a class="el" href="class_model_1_1_face.html" title="Face representation in the modified Quad-Edge data structure. ">Face</a> in the graph that lies to the right of said directed edge</td></tr>
+    <tr><td class="paramname">movedEdges</td><td>List of edges whose origins are centered at oldFV(either a Vertex of a face) that is to be moved to center at newFV. The list must contain only edges originally facing away from oldFV and are in CCW order. Furthermore, the last edge must be bordering leftFV and the first edge must be bordering rightFV.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An directed <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the modified Quad-Edge data structure. ">Edge</a>, linked with its 3 other companion edges, that runs from oldFV to newFV</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00105">105</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="a58e256a721f6c2dc581de6d9c38ff88a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58e256a721f6c2dc581de6d9c38ff88a">&#9670;&nbsp;</a></span>Dest</h2>
+<a id="ab8c3a6238e4459ba47c158c9a7d5b76b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8c3a6238e4459ba47c158c9a7d5b76b">&#9670;&nbsp;</a></span>Dest</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -520,37 +607,26 @@ Intersecting them and taking the edge that is not this edge's <a class="el" href
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_model_1_1_vertex.html">Vertex</a> Model.Edge.Dest</td>
+          <td class="memname"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> Model.Edge.Dest</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p></p>
-<p>The destination vertex of the edge, and the origin vertex of the corresponding symmetric edge, Sym. On modification of this property, the following actions are taken to maintain the correctness of the Quad-Edge structure.</p>
-<ul>
-<li>
-removes <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> from the <a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a> collection and remove itself from the <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a> collection in the <a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a> of Sym </li>
-<li>
-replaces the Orig of Sym with the new Dest </li>
-<li>
-adds Sym to the origEdges collection and adds itself to the destEdges collection in the new Orig of the Sym edge </li>
-</ul>
-<p>Note that due to Dest on this edge being just a reference to Orig in Sym, the above steps correctly updates Dest</p>
-<p>Note that this does not check for the topological or spacial correctness of the operation</p>
-<p>The remove and addition from/to collections are null checked. This means that it is valid to assign Dest as null</p>
-<p><a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a> <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a> <a class="el" href="class_model_1_1_edge.html#a3a403b86ee003f653bab71d563b47d71">Orig</a> <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </p>
+<p>Destination of the edge. </p>
+<p>Gets the origin of the symmetric edge(see <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a>).</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00085">85</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00043">43</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
-<a id="a4c2fef8a5da26261ef04858e9a601284"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4c2fef8a5da26261ef04858e9a601284">&#9670;&nbsp;</a></span>Left</h2>
+<a id="aead08adf500d01939981d9a2923d9a2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aead08adf500d01939981d9a2923d9a2c">&#9670;&nbsp;</a></span>InvRot</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -559,36 +635,26 @@ adds Sym to the origEdges collection and adds itself to the destEdges collection
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_model_1_1_face.html">Face</a> Model.Edge.Left</td>
+          <td class="memname"><a class="el" href="class_model_1_1_edge.html">Edge</a> Model.Edge.InvRot</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p></p>
-<p>The face on the left side of the edge. On modification of this property, the following actions are taken to maintain the correctness of the Quad-Edge structure.</p>
-<ul>
-<li>
-removes itself and <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> from the <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a> collection in Left </li>
-<li>
-replaces Left with a new <a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a> </li>
-<li>
-adds itself and Sym to the edges collection in the new Left </li>
-</ul>
-<p>Note that due to <a class="el" href="class_model_1_1_edge.html#a69c57f0403cc3ad99a930337464fe1d2">Right</a> in Sym being just a reference to Left in this edge, the above steps also correctly updates Right in Sym</p>
-<p>Note that this does not check for the topological or spacial correctness of the operation</p>
-<p>The remove and addition from/to collections are null checked. This means that it is valid to assign Left as null</p>
+<p>Gets the symmetric dual edge.</p>
+<p>The symmetric dual edge is gotten from taking the dual edge's dual edge's dual edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00116">116</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00067">67</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
-<a id="a3a403b86ee003f653bab71d563b47d71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a403b86ee003f653bab71d563b47d71">&#9670;&nbsp;</a></span>Orig</h2>
+<a id="a9c11f4202348cca575de310670e1b8e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c11f4202348cca575de310670e1b8e3">&#9670;&nbsp;</a></span>Left</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -597,36 +663,26 @@ adds itself and Sym to the edges collection in the new Left </li>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_model_1_1_vertex.html">Vertex</a> Model.Edge.Orig</td>
+          <td class="memname"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> Model.Edge.Left</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p></p>
-<p>The origin vertex of the edge, and the destination vertex of the corresponding symmetric edge, Sym. On modification of this property, the following actions are taken to maintain the correctness of the Quad-Edge structure.</p>
-<ul>
-<li>
-removes itself from the <a class="el" href="class_model_1_1_vertex.html#a2ca4d619a6a7c4a197254f11002a0223">Vertex.origEdges</a> collection and removes <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> from the <a class="el" href="class_model_1_1_vertex.html#a5a6374d5019eb4eac1e0ea350da992e5">Vertex.destEdges</a> collection in Orig </li>
-<li>
-replaces Orig with a new <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the Quad-Edge data structure. ">Vertex</a> </li>
-<li>
-adds itself to the origEdges collection and adds Sym to the destEdges collection in the new Orig </li>
-</ul>
-<p>Note that due to <a class="el" href="class_model_1_1_edge.html#a58e256a721f6c2dc581de6d9c38ff88a">Dest</a> in Sym being just a reference to Orig in this edge, the above steps also correctly updates the Dest in Sym</p>
-<p>Note that this does not check for the topological or spacial correctness of the operation</p>
-<p>The remove and addition from/to collections are null checked. This means that it is valid to assign Orig as null</p>
+<p>Element to the left of the edge.</p>
+<p>Gets the origin of the symmetric dual edge(see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>).</p>
 
 <p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00048">48</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
-<a id="a69c57f0403cc3ad99a930337464fe1d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69c57f0403cc3ad99a930337464fe1d2">&#9670;&nbsp;</a></span>Right</h2>
+<a id="a6b00c9b63678c143f8b99bd9b8cb9f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b00c9b63678c143f8b99bd9b8cb9f8b">&#9670;&nbsp;</a></span>Orig</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -635,32 +691,75 @@ adds itself to the origEdges collection and adds Sym to the destEdges collection
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_model_1_1_face.html">Face</a> Model.Edge.Right</td>
+          <td class="memname"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> Model.Edge.Orig</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 <p></p>
-<p>The face on the right side of the edge. On modification of this property, the following actions are taken to maintain the correctness of the Quad-Edge structure.</p>
-<ul>
-<li>
-removes itself and <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> from the <a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a> collection in Right </li>
-<li>
-replaces <a class="el" href="class_model_1_1_edge.html#a4c2fef8a5da26261ef04858e9a601284">Left</a> in Sym with a new <a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a> </li>
-<li>
-adds itself and Sym to the edges collection in the new Right </li>
-</ul>
-<p>Node that due to Right on this edge being just a reference to Left in Sym, the above steps correctly updates Right</p>
-<p>Note that this does not check for the topological or spacial correctness of the operation</p>
-<p>The remove and addition from/to collections are null checked. This means that it is valid to assign Right as null</p>
-<p><a class="el" href="class_model_1_1_face.html#a7b6cc2c2339c823880cdc896fbe0583b">Face.edges</a> <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a> </p>
+<p>The origin of the directed edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00149">149</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00038">38</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+
+</div>
+</div>
+<a id="af9cedd74d3b26b60e66f302b77870b4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9cedd74d3b26b60e66f302b77870b4a">&#9670;&nbsp;</a></span>Right</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_model_1_1_face_vertex.html">FaceVertex</a> Model.Edge.Right</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Element to the right of the edge.</p>
+<p>Gets the origin of the dual edge(see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a>).</p>
+
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00053">53</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa1dcc4ca7b5bbfb94dfe38d4d8dbc680"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">&#9670;&nbsp;</a></span>Rot</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_model_1_1_edge.html">Edge</a> Model.Edge.Rot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<p>Gets the dual edge.</p>
+
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00057">57</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -685,9 +784,10 @@ adds itself and Sym to the edges collection in the new Right </li>
 </div><div class="memdoc">
 
 <p></p>
-<p>The link to the Symmetric edge of this edge. This property is read-only</p>
+<p>Gets the symmetric edge.</p>
+<p>The symmetric edge gotten from taking the dual edge's dual edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00170">170</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00062">62</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
