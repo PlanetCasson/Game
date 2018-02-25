@@ -6,12 +6,12 @@ using UnityEngine;
 namespace Model
 {
 	/// <summary>
-	/// Face representation in the Quad-Edge data structure.
+	/// Face representation in the modified Quad-Edge data structure.
 	/// </summary>
 	public class Face
 	{
 		/// <summary>
-		/// <para>The collection of edges that surrounds the face</para>
+		/// <para>The collection of directed edges(see <see cref="Edge"/>) that surrounds the face.</para>
 		/// </summary>
 		public HashSet<Edge> edges;
 

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Model
 {
 	/// <summary>
-	/// Vertex representation in the Quad-Edge data structure.
+	/// Vertex representation in the modified Quad-Edge data structure.
 	/// </summary>
 	public class Vertex
 	{
@@ -14,11 +14,11 @@ namespace Model
 		/// </summary>
 		public Vector3 pos;
 		/// <summary>
-		/// <para>A collection of all directed edges whose destination is at this vertex</para>
+		/// <para>A collection of all directed edges(see <see cref="Edge"/>) whose destination is at this vertex</para>
 		/// </summary>
 		public List<Edge> origEdges;
 		/// <summary>
-		/// <para>A collection of all directed edges whose origin is at this vertex</para>
+		/// <para>A collection of all directed edges(see <see cref="Edge"/>) whose origin is at this vertex</para>
 		/// </summary>
 		public List<Edge> destEdges;
 

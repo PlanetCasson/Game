@@ -4,8 +4,16 @@ using System.Linq;
 using Model;
 using UnityEngine;
 
+/// <summary>
+/// Package defining the implementation of the modified Quad-Edge data structure
+/// </summary>
 namespace Model
 {
+	/// <summary>
+	/// Modified Quad-Edge data structure representing the graph iteself
+	/// <para></para>
+	/// \image html cellmodification.jpeg
+	/// </summary>
 	public class Cell
 	{
 		List<Vertex> verticies;
@@ -76,7 +84,7 @@ namespace Model
 				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, obj.gameObject.transform);
 				LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
 				lr.positionCount = 2;
-				lr.SetPosition(0, edges[i].Orig.pos); //This is unnecessary
+				lr.SetPosition(0, edges[i].Orig.pos);
 				lr.SetPosition(1, edges[i].Dest.pos);
 			}
 		}
