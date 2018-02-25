@@ -4,20 +4,37 @@ using UnityEngine;
 
 namespace Model
 {
+	/// <summary>
+	/// Vertex representation in the Quad-Edge data structure.
+	/// </summary>
 	public class Vertex
 	{
+		/// <summary>
+		/// <para>The vertex's position in space.</para>
+		/// </summary>
 		public Vector3 pos;
-		public List<Edge> origEdges; //edges with orig at this vertex
-		public List<Edge> destEdges; //edges with dest at this vertex
+		/// <summary>
+		/// <para>A collection of all directed edges whose destination is at this vertex</para>
+		/// </summary>
+		public List<Edge> origEdges;
+		/// <summary>
+		/// <para>A collection of all directed edges whose origin is at this vertex</para>
+		/// </summary>
+		public List<Edge> destEdges;
 
-		//private constructor, use NewVertex factory
 		private Vertex()
 		{
 			origEdges = new List<Edge>();
 			destEdges = new List<Edge>();
 		}
 
-		//factory for new verticies
+		/// <summary>
+		/// <para>Factory for creating new verticies. 
+		/// The newly Generated Vertex's position is null and it is not connected to any edges.</para>
+		/// <para>Example:</para>
+		/// <pre><code>Vertex v = Vertex.NewVertex();</code></pre>
+		/// </summary>
+		/// <returns>The newly created vertex</returns>
 		public static Vertex NewVertex()
 		{
 			return new Vertex();

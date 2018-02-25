@@ -5,8 +5,14 @@ using UnityEngine;
 
 namespace Model
 {
+	/// <summary>
+	/// Face representation in the Quad-Edge data structure.
+	/// </summary>
 	public class Face
 	{
+		/// <summary>
+		/// <para>The collection of edges that surrounds the face</para>
+		/// </summary>
 		public HashSet<Edge> edges;
 
 		private Face()
@@ -14,6 +20,13 @@ namespace Model
 			edges = new HashSet<Edge>();
 		}
 
+		/// <summary>
+		/// <para>Factory for creating new Faces. 
+		/// The newly Generated Face has no surrounding Edges.</para>
+		/// <para>Example:</para>
+		/// <pre><code>Face f = Face.NewFace();</code></pre>
+		/// </summary>
+		/// <returns>The newly created Face</returns>
 		public static Face NewFace()
 		{
 			return new Face();
