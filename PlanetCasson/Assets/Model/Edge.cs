@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Model;
-using UnityEngine;
 
 namespace Model
 {
 	/// <summary>
-	/// Edge representation in the modified Quad-Edge data structure.
+	/// Edge representation in the Quad-Edge data structure.
 	/// <para>Each Edge is a directed edge in the Quad-Edge, and has a correspinding symmetric edge, dual edge, and symmetric dual edge.</para>
 	/// The following diagram shows the relation between an edge and its corresponding edges:</para>
 	/// \image html SymEdges.JPG
@@ -105,15 +103,28 @@ namespace Model
 		public static Edge SplitFaceVertex(FaceVertex oldFV, FaceVertex newFV, FaceVertex leftFV, FaceVertex rightFV, List<Edge> movedEdges)
 		{
 			//calculating important edges;
+			//movedEdges.Last() should be topLeft
+			//movedEdges[0] should be topRight
 			Edge botLeft = movedEdges.Last().Onext();
 			Edge botRight = movedEdges[0].Oprev();
 			Edge e = NewEdge();
-			
+
+			//error checking to make sure we don't fuck up the Quad-Edge in Edge insertion
+			if (botLeft.Right != leftFV || botRight.Left != rightFV)
+				throw new System.ArgumentException("inputs presents impossible situation for Vertex Split/Face Subdivide");
+			for (int i = 0; i < movedEdges.Count; i++)
+			{
+				if (movedEdges[i]._orig != oldFV)
+					throw new System.ArgumentException("movedEdges contain invalid edges!");
+			}
+
 			//moving moveEdges from oldFV to newFV
 			for (int i = 0; i < movedEdges.Count; i++)
 			{
 				movedEdges[i]._orig = newFV;
 			}
+
+			//set EdgeListHead on affected Vertex/Face to eliminate cases where the EdgeListHead is moved from oldFV to newFV
 			oldFV.EdgeListHead = e;
 			newFV.EdgeListHead = e.Sym;
 
@@ -156,6 +167,15 @@ namespace Model
 			Edge botLeft = delE.Onext();
 			Edge botRight = delE.Oprev();
 
+			//error checking to make sure we don't fuck up the Quad-Edge in Edge deletion
+			if (botLeft.Right != leftFV || botRight.Left != rightFV)
+				throw new System.ArgumentException("inputs presents impossible situation for Vertex/Face Rejoin");
+			for (int i = 0; i < movedEdges.Count; i++)
+			{
+				if (movedEdges[i]._orig != delFV)
+					throw new System.ArgumentException("movedEdges contain invalid edges!");
+			}
+
 			for (int i = 0; i < movedEdges.Count; i++)
 			{
 				movedEdges[i]._orig = oldFV;
@@ -195,6 +215,16 @@ namespace Model
 			edges[3].ConnectEdge(verticies[1], verticies[2], faces[0], faces[2]);
 			edges[4].ConnectEdge(verticies[2], verticies[3], faces[0], faces[3]);
 			edges[5].ConnectEdge(verticies[3], verticies[1], faces[0], faces[1]);
+
+			verticies[0].EdgeListHead = edges[2];
+			verticies[1].EdgeListHead = edges[3];
+			verticies[2].EdgeListHead = edges[4];
+			verticies[0].EdgeListHead = edges[5];
+
+			faces[0].EdgeListHead = edges[3].InvRot;
+			faces[1].EdgeListHead = edges[0].InvRot;
+			faces[2].EdgeListHead = edges[1].InvRot;
+			faces[3].EdgeListHead = edges[2].InvRot;
 
 			edges[0]._onext = edges[2];
 			edges[2]._onext = edges[1];
@@ -302,7 +332,7 @@ namespace Model
 		/// <para>finds the next Edge on the Face to the right of this edge in a CW direction. This edge will point out of the destination of this edge.</para>
 		/// <para>It does this by:</para>
 		/// <list type="bullet">
-		/// <item><description>Taking the dual edge (see <see cref="Rot">).</description></item>
+		/// <item><description>Taking the dual edge (see <see cref="Rot"/>).</description></item>
 		/// <item><description>Then finding its <see cref="Oprev"/>.</description></item>
 		/// <item><description>Then taking its symmetrical dual edge (see <see cref="InvRot"/>).<see cref="Sym"/></description></item>
 		/// </list>

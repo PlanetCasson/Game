@@ -289,10 +289,8 @@
   <ItemGroup>
     <Compile Include="Assets\Model\Cell.cs" />
     <Compile Include="Assets\Model\Edge.cs" />
-    <Compile Include="Assets\Model\Face.cs" />
     <Compile Include="Assets\Model\FaceVertex.cs" />
     <Compile Include="Assets\Model\SphereKernel.cs" />
-    <Compile Include="Assets\Model\Vertex.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

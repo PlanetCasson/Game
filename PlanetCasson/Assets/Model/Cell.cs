@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Model;
 using UnityEngine;
 
 /// <summary>
@@ -10,7 +9,7 @@ using UnityEngine;
 namespace Model
 {
 	/// <summary>
-	/// Modified Quad-Edge data structure representing the graph iteself
+	/// Quad-Edge data structure representing the graph iteself
 	/// <para></para>
 	/// \image html cellmodification.jpeg
 	/// </summary>
@@ -95,8 +94,6 @@ namespace Model
 		{
 			List<Edge> moveE = findMoveEdges(v.EdgeListHead, left, right);
 
-			if (moveE == null) return;
-
 			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, v, left, right, moveE);
 
 			if (!edges.Remove(moveE.Last().Onext().Sym))
@@ -110,7 +107,7 @@ namespace Model
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 			//finds all edges that needs to be moved
-			List<Edge> moveE = findMoveEdges(f.EdgeListHead.InvRot, dest, orig);
+			List<Edge> moveE = findMoveEdges(f.EdgeListHead, dest, orig);
 
 			Face newf = Face.NewFace();
 			Edge newe = Edge.SplitFaceVertex(f, newf, dest, orig, moveE);
@@ -123,9 +120,7 @@ namespace Model
 		public void killFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 
-			List<Edge> moveE = findMoveEdges(f.EdgeListHead.InvRot, dest, orig);
-
-			if (moveE == null) return;
+			List<Edge> moveE = findMoveEdges(f.EdgeListHead, dest, orig);
 
 			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, f, dest, orig, moveE);
 
@@ -140,7 +135,7 @@ namespace Model
 		private List<Edge> findMoveEdges(Edge start, FaceVertex left, FaceVertex right)
 		{
 			Edge temp = start;
-			while (temp.Right != (FaceVertex)right)
+			while (temp.Right != right)
 			{
 				temp = temp.Onext();
 				if (temp == start) //made a loop
@@ -150,7 +145,7 @@ namespace Model
 			}
 			List<Edge> moveE = new List<Edge>();
 			moveE.Add(temp);
-			while (temp.Left != (FaceVertex)left)
+			while (temp.Left != left)
 			{
 				temp = temp.Onext();
 				moveE.Add(temp);
