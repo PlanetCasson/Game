@@ -11,12 +11,11 @@ namespace Model
 	/// <para>It is used to express the morphability between Faces and Verticies in a graph and its dual graph.</para>
 	/// 
 	/// <para>When the runtime class is Face:</para>
-	/// <para>The first dual Edge pointing from the center of the face towards an edge surrounding the face.
+	/// <para>Stores the first dual Edge pointing from the center of the face towards an edge surrounding the face.
 	/// The dual of this edge is an edge facing CCW direction bordering this face.</para>
-	/// <para>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</para>
-	/// 
 	/// <para>When the runtime class is Vertex:</para>
-	/// <para>The </para>
+	/// <para>Stores the first Edge pointing from the center of this vertex.</para>
+	/// <para>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</para>
 	/// </summary>
 	public abstract class FaceVertex
 	{
