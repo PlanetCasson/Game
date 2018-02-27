@@ -125,17 +125,13 @@ Properties</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> representation in the Quad-Edge data structure. </p>
-<p>Each <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> is a directed edge in the Quad-Edge, and has a correspinding symmetric edge, dual edge, and symmetric dual edge.</p>
+<p>Each <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> is a directed edge in the Quad-Edge, and has a correspinding symmetric edge, dual edge, and symmetric dual edge. We shall call them companion edges.</p>
 <p>The following diagram shows the relation between an edge and its corresponding edges:</p>
 <div class="image">
 <img src="SymEdges.JPG" alt="SymEdges.JPG"/>
 </div>
- <p>The edge and its symmetric edge come together to form an undirected edge. And the dual edge and the symmetric dual edge come together to form an undirected dual edge. The public Methods in the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> class modify both the undirected edge and the undirected dual edge, and therefore the dual graph simultaneously. In essense, any modification to an instance of the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> class is modifying all four linked edges.</p>
-<p>When an edge has its Orig and Dest being faces, or its Left and Right being Verticies, that means it is the edge on the dual graph. The relationship between dual edges, dual graphs and their normal graph counterparts is illustrated in the image below:</p>
-<div class="image">
-<img src="dual.jpeg" alt="dual.jpeg"/>
-</div>
- <p>Each directed edge stores only its origin, and a link to its dual edge. When it and its 3 other corresponding edges are linked, the information in the image below can be obtained from each directed edge.</p>
+ <p>The edge and its symmetric edge come together to form an undirected edge. And the dual edge and the symmetric dual edge come together to form an undirected dual edge. The public Methods in the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> class modify both the undirected edge and the undirected dual edge, and therefore graph and the dual graph simultaneously. In essense, any modification to an instance of the <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> class is modifying all four linked edges.</p>
+<p>Each directed edge stores only its origin, and a link to its dual edge. When it and its 3 other corresponding edges are linked, the information in the image below can be obtained from each directed edge. See <a class="el" href="class_model_1_1_edge.html#a6b00c9b63678c143f8b99bd9b8cb9f8b">Orig</a>, <a class="el" href="class_model_1_1_edge.html#ab8c3a6238e4459ba47c158c9a7d5b76b">Dest</a>, <a class="el" href="class_model_1_1_edge.html#a9c11f4202348cca575de310670e1b8e3">Left</a>, <a class="el" href="class_model_1_1_edge.html#af9cedd74d3b26b60e66f302b77870b4a">Right</a>.</p>
 <div class="image">
 <img src="vertface.jpeg" alt="vertface.jpeg"/>
 </div>
@@ -143,9 +139,14 @@ Properties</h2></td></tr>
 <div class="image">
 <img src="edgetraversal.jpeg" alt="edgetraversal.jpeg"/>
 </div>
- <p>images comes from <a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html">here</a>. All the credit is theirs</p>
+ <p>Normal Edges have <a class="el" href="class_model_1_1_edge.html#a6b00c9b63678c143f8b99bd9b8cb9f8b">Orig</a> and <a class="el" href="class_model_1_1_edge.html#ab8c3a6238e4459ba47c158c9a7d5b76b">Dest</a> as verticies and <a class="el" href="class_model_1_1_edge.html#a9c11f4202348cca575de310670e1b8e3">Left</a> and <a class="el" href="class_model_1_1_edge.html#af9cedd74d3b26b60e66f302b77870b4a">Right</a> as edges. When an edge has its Orig and Dest being faces, or its Left and Right being verticies, that means it is an edge on the dual graph. The relationship between dual edges, dual graphs and their normal graph counterparts is illustrated in the image below. The solid lines depict the normal graph, and the dotted lines depict the corresponding dual graph.</p>
+<div class="image">
+<img src="dual.jpeg" alt="dual.jpeg"/>
+</div>
+ <p>Due to the large amount of bookeeping to keep the edge relations valid, only a few functions are available(public) for addition and deletion of edges. <a class="el" href="class_model_1_1_edge.html#a474ad91ca5b3f0a120522c6970be0c34">SplitFaceVertex</a>, <a class="el" href="class_model_1_1_edge.html#a5fb37cdf4de846e847ab490bb1c22c64">RejoinFaceVertex</a>, <a class="el" href="class_model_1_1_edge.html#a80159a241c1c6a510c1cbd1522e59509">ConnectTetraCell</a>.</p>
+<p>images comes from <a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html">here</a>. All the credit is theirs</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00027">27</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00031">31</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a80159a241c1c6a510c1cbd1522e59509"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80159a241c1c6a510c1cbd1522e59509">&#9670;&nbsp;</a></span>ConnectTetraCell()</h2>
@@ -182,7 +183,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p></p>
-<p>Connects a list of verticies and faces to form the Quad-Edge graph of a tetrahedron. Sets up the initial connections and <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> relationship.</p>
+<p>Connects a list of verticies and faces to form the Quad-Edge graph of a tetrahedron. Sets up the initial connections and <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> relationship. This method takes in 4 verticies and 4 faces. If this is not satisfied, an ArgumentException will be thrown.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">verticies</td><td>List of verticies to be connected.</td></tr>
@@ -190,9 +191,9 @@ Properties</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Returns a list of Edges used to connect the verticies and faces into a tetrahedron. If encounters an error, will return null.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Returns a list of Edges used to connect the verticies and faces into a tetrahedron. If an edge appears in this list, it's companion edges will not.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00178">178</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00205">205</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -224,7 +225,7 @@ Then taking its dual edge </li>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Dnext traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00295">295</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00333">333</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -256,7 +257,7 @@ Then taking its symmetrical dual edge. </li>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Dprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00355">355</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00393">393</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -288,7 +289,7 @@ Then taking its dual edge(see <a class="el" href="class_model_1_1_edge.html#aa1d
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Lnext traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00267">267</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00305">305</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -320,7 +321,7 @@ Then taking its dual edge (see <a class="el" href="class_model_1_1_edge.html#aa1
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Lprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00325">325</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00363">363</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -346,7 +347,7 @@ Then taking its dual edge (see <a class="el" href="class_model_1_1_edge.html#aa1
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Onext traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00279">279</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00317">317</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -378,7 +379,7 @@ Then taking its dual edge. </li>
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Oprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00340">340</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00378">378</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -448,7 +449,7 @@ Then taking its dual edge. </li>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00152">152</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00168">168</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -480,7 +481,7 @@ Then taking its symmetric dual edge(see <a class="el" href="class_model_1_1_edge
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the next Rnext</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00252">252</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00290">290</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -512,7 +513,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 </ul>
 <dl class="section return"><dt>Returns</dt><dd>The next <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> in the Rprev traversal</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00310">310</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00348">348</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -582,17 +583,17 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p>Using the inputs, this method moves the origin of all edges in movedEdges from oldFV to newFV. It then sets the <a class="el" href="class_model_1_1_face_vertex.html#a07f0503402fd409cccba3032a58d180f">FaceVertex.EdgeListHead</a> for the oldFV to a new edge and newFV to the new edge's symmetric edge.(see <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a>). This step is to make 100% sure the EdgeListHead has a proper value after the vertex split. Following this, the algorithm then properly links that new edge, its dual, symmetric, and dual symmetric edges to the graph. Finally, it fixes the <a class="el" href="class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9">Onext</a> relationship between the edges and returns this new edge.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">oldFV</td><td>Old vertex in the graph to be split.</td></tr>
-    <tr><td class="paramname">newFV</td><td>New unlinked vertex object in the graph to be inserted. This vertex must be between leftFV and rightFV faces.</td></tr>
-    <tr><td class="paramname">leftFV</td><td><a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a> in the graph that lies to the left of a directed edge running from oldFV to newFV</td></tr>
-    <tr><td class="paramname">rightFV</td><td><a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a> in the graph that lies to the right of said directed edge</td></tr>
-    <tr><td class="paramname">movedEdges</td><td>List of edges whose origins are centered at oldFV(either a Vertex of a face) that is to be moved to center at newFV. The list must contain only edges originally facing away from oldFV and are in CCW order. Furthermore, the last edge must be bordering leftFV and the first edge must be bordering rightFV.</td></tr>
+    <tr><td class="paramname">oldFV</td><td>Old vertex/face in the graph to be split/subdivided.</td></tr>
+    <tr><td class="paramname">newFV</td><td>New unlinked <a class="el" href="class_model_1_1_face_vertex.html" title="abstract class for Face and Vertex class. ">FaceVertex</a> object in the graph to be inserted. This <a class="el" href="class_model_1_1_face_vertex.html" title="abstract class for Face and Vertex class. ">FaceVertex</a> must be between leftFV and rightFV.</td></tr>
+    <tr><td class="paramname">leftFV</td><td><a class="el" href="class_model_1_1_face_vertex.html" title="abstract class for Face and Vertex class. ">FaceVertex</a> in the graph that lies to the left of a directed edge running from oldFV to newFV</td></tr>
+    <tr><td class="paramname">rightFV</td><td><a class="el" href="class_model_1_1_face_vertex.html" title="abstract class for Face and Vertex class. ">FaceVertex</a> in the graph that lies to the right of said directed edge</td></tr>
+    <tr><td class="paramname">movedEdges</td><td>List of edges whose origins are centered at oldFV that is to be moved to center at newFV. The list must contain only edges originally facing away from oldFV and are in CCW order. Furthermore, the last edge must be bordering leftFV and the first edge must be bordering rightFV.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>An directed <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a>, linked with its 3 other companion edges, that runs from oldFV to newFV</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00103">103</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00107">107</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -621,7 +622,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p>Destination of the edge. </p>
 <p>Gets the origin of the symmetric edge(see <a class="el" href="class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365">Sym</a>).</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00041">41</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00045">45</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -649,7 +650,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p>Gets the symmetric dual edge.</p>
 <p>The symmetric dual edge is gotten from taking the dual edge's dual edge's dual edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00065">65</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00069">69</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -677,7 +678,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p>Element to the left of the edge.</p>
 <p>Gets the origin of the symmetric dual edge(see <a class="el" href="class_model_1_1_edge.html#aead08adf500d01939981d9a2923d9a2c">InvRot</a>).</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00046">46</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00050">50</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -702,9 +703,9 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 </div><div class="memdoc">
 
 <p></p>
-<p>The origin of the directed edge.</p>
+<p>The origin of this directed edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00036">36</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00040">40</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -732,7 +733,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p>Element to the right of the edge.</p>
 <p>Gets the origin of the dual edge(see <a class="el" href="class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680">Rot</a>).</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00051">51</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00055">55</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -759,7 +760,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p></p>
 <p>Gets the dual edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00055">55</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00059">59</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>
@@ -787,7 +788,7 @@ Then taking its symmetrical dual edge (see <a class="el" href="class_model_1_1_e
 <p>Gets the symmetric edge.</p>
 <p>The symmetric edge gotten from taking the dual edge's dual edge.</p>
 
-<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00060">60</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_edge_8cs_source.html#l00064">64</a> of file <a class="el" href="_edge_8cs_source.html">Edge.cs</a>.</p>
 
 </div>
 </div>

@@ -6,22 +6,26 @@ namespace Model
 {
 	/// <summary>
 	/// Edge representation in the Quad-Edge data structure.
-	/// <para>Each Edge is a directed edge in the Quad-Edge, and has a correspinding symmetric edge, dual edge, and symmetric dual edge.</para>
+	/// <para>Each Edge is a directed edge in the Quad-Edge, and has a correspinding symmetric edge, dual edge, and symmetric dual edge. We shall call them companion edges.</para>
 	/// The following diagram shows the relation between an edge and its corresponding edges:</para>
 	/// \image html SymEdges.JPG
 	/// <para>The edge and its symmetric edge come together to form an undirected edge.
 	/// And the dual edge and the symmetric dual edge come together to form an undirected dual edge.
-	/// The public Methods in the Edge class modify both the undirected edge and the undirected dual edge, and therefore the dual graph simultaneously.
+	/// The public Methods in the Edge class modify both the undirected edge and the undirected dual edge, and therefore graph and the dual graph simultaneously.
 	/// In essense, any modification to an instance of the Edge class is modifying all four linked edges.</para>
-    /// <para>When an edge has its Orig and Dest being faces, or its Left and Right being Verticies, that means it is the edge on the dual graph.
-	/// The relationship between dual edges, dual graphs and their normal graph counterparts is illustrated in the image below:</para>
-	/// \image html dual.jpeg
 	/// <para>Each directed edge stores only its origin, and a link to its dual edge. When it and its 3 other corresponding edges are linked,
-	/// the information in the image below can be obtained from each directed edge.</para>
+	/// the information in the image below can be obtained from each directed edge. See <see cref="Orig"/>, <see cref="Dest"/>, <see cref="Left"/>, <see cref="Right"/>.</para>
 	/// \image html vertface.jpeg
 	/// <para>In addition to storing the origin and dual edge of each edge, the next edge in the CCW direction whose origin is shared with this directed edge
 	/// is also stored (see <see cref="Onext"/>). This information is used to facilitate the fast edge traversal of the graph through the following functions defined in the image below:</para>
 	/// \image html edgetraversal.jpeg
+	/// <para>Normal Edges have <see cref="Orig"/> and <see cref="Dest"/> as verticies and <see cref="Left"/> and <see cref="Right"/> as edges. 
+	/// When an edge has its Orig and Dest being faces, or its Left and Right being verticies, that means it is an edge on the dual graph.
+	/// The relationship between dual edges, dual graphs and their normal graph counterparts is illustrated in the image below.
+	/// The solid lines depict the normal graph, and the dotted lines depict the corresponding dual graph.</para>
+	/// \image html dual.jpeg
+	/// <para>Due to the large amount of bookeeping to keep the edge relations valid, only a few functions are available(public) for addition and deletion of edges.
+	/// <see cref="SplitFaceVertex"/>, <see cref="RejoinFaceVertex"/>, <see cref="ConnectTetraCell"/>.</para>
 	/// <para>images comes from <a href="https://www.cs.cmu.edu/afs/andrew/scs/cs/15-463/2001/pub/src/a2/quadedge.html">here</a>. All the credit is theirs</para>
 	/// </summary>
 	public class Edge
@@ -31,7 +35,7 @@ namespace Model
 		private Edge _onext;
 
 		/// <summary>
-		/// <para>The origin of the directed edge.</para>
+		/// <para>The origin of this directed edge.</para>
 		/// </summary>
 		public FaceVertex Orig { get { return _orig; } }
 		/// <summary>
@@ -93,11 +97,11 @@ namespace Model
 		/// has a proper value after the vertex split. Following this, the algorithm then properly links that new edge, its dual, symmetric, and dual symmetric
 		/// edges to the graph. Finally, it fixes the <see cref="Onext"/> relationship between the edges and returns this new edge.</para>
 		/// </summary>
-		/// <param name="oldFV">Old vertex in the graph to be split.</param>
-		/// <param name="newFV">New unlinked vertex object in the graph to be inserted. This vertex must be between leftFV and rightFV faces.</param>
-		/// <param name="leftFV">Face in the graph that lies to the left of a directed edge running from oldFV to newFV</param>
-		/// <param name="rightFV">Face in the graph that lies to the right of said directed edge</param>
-		/// <param name="movedEdges">List of edges whose origins are centered at oldFV(either a Vertex of a face) that is to be moved to center at newFV. The list must contain only edges originally
+		/// <param name="oldFV">Old vertex/face in the graph to be split/subdivided.</param>
+		/// <param name="newFV">New unlinked FaceVertex object in the graph to be inserted. This FaceVertex must be between leftFV and rightFV.</param>
+		/// <param name="leftFV">FaceVertex in the graph that lies to the left of a directed edge running from oldFV to newFV</param>
+		/// <param name="rightFV">FaceVertex in the graph that lies to the right of said directed edge</param>
+		/// <param name="movedEdges">List of edges whose origins are centered at oldFV that is to be moved to center at newFV. The list must contain only edges originally
 		/// facing away from oldFV and are in CCW order. Furthermore, the last edge must be bordering leftFV and the first edge must be bordering rightFV.</param>
 		/// <returns>An directed Edge, linked with its 3 other companion edges, that runs from oldFV to newFV</returns>
 		public static Edge SplitFaceVertex(FaceVertex oldFV, FaceVertex newFV, FaceVertex leftFV, FaceVertex rightFV, List<Edge> movedEdges)
@@ -191,14 +195,17 @@ namespace Model
 
 		/// <summary>
 		/// <para>Connects a list of verticies and faces to form the Quad-Edge graph of a tetrahedron.
-		/// Sets up the initial connections and <see cref="Onext"/> relationship.</para>
+		/// Sets up the initial connections and <see cref="Onext"/> relationship.
+		/// This method takes in 4 verticies and 4 faces. If this is not satisfied, an ArgumentException will be thrown.</para>
 		/// </summary>
 		/// <param name="verticies">List of verticies to be connected.</param>
 		/// <param name="faces">List of faces to be connected.</param>
-		/// <returns>Returns a list of Edges used to connect the verticies and faces into a tetrahedron. If encounters an error, will return null.</returns>
+		/// <returns>Returns a list of Edges used to connect the verticies and faces into a tetrahedron.
+		/// If an edge appears in this list, it's companion edges will not.</returns>
 		public static List<Edge> ConnectTetraCell(List<Vertex> verticies, List<Face> faces)
 		{
-			if (verticies.Count != 4 || faces.Count != 4) return null;
+			if (verticies.Count != 4 || faces.Count != 4)
+				throw new System.ArgumentException("Incorrect number of verticies and faces to create a tetrahedron");
 
 			List<Edge> edges = new List<Edge>();
 			edges.Add(NewEdge());

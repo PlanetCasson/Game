@@ -9,8 +9,13 @@ using UnityEngine;
 namespace Model
 {
 	/// <summary>
-	/// Quad-Edge data structure representing the graph iteself
-	/// <para></para>
+	/// Quad-Edge data structure representing the graph iteself.
+	/// <para>The Cell is a Quad-Edge structure that contains a list of edges, verticies, and faces.
+	/// It is capable of representing all surfaces that are locally homeomorphic to the plane.
+	/// It is encoded in such a way that it contains both the graph itself and its dual graph.
+	/// For more details on how this encoding is carried out, see Edge.</para>
+	/// <para>Benefits of this data structure is the easy and fast access of locality data and the O(1) CW and CCW traversal around points/faces.
+	/// This second point will be extremely important in our game about CCW traversal on graphs embedded in surfaces.</para>
 	/// \image html cellmodification.jpeg
 	/// </summary>
 	public class Cell
