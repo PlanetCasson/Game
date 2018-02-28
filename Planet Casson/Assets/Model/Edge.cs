@@ -128,15 +128,15 @@ namespace Model
 				movedEdges[i]._orig = newFV;
 			}
 
-			//set EdgeListHead on affected Vertex/Face to eliminate cases where the EdgeListHead is moved from oldFV to newFV
-			oldFV.EdgeListHead = e;
-			newFV.EdgeListHead = e.Sym;
-
 			//linking e with graph
 			e._orig = oldFV;
 			e.Sym._orig = newFV;
 			e.InvRot._orig = leftFV;
 			e.Rot._orig = rightFV;
+
+			//set EdgeListHead on affected Vertex/Face to eliminate cases where the EdgeListHead is moved from oldFV to newFV
+			oldFV.EdgeListHead = e;
+			newFV.EdgeListHead = e.Sym;
 
 			//adjusting onext relationship
 			botRight._onext = e;
@@ -167,7 +167,7 @@ namespace Model
 		/// they are defined in <see cref="SplitFaceVertex"/>.</param>
 		public static void RejoinFaceVertex(FaceVertex oldFV, FaceVertex delFV, FaceVertex leftFV, FaceVertex rightFV, List<Edge> movedEdges)
 		{
-			Edge delE = movedEdges[0].Oprev();
+			Edge delE = movedEdges[0].Oprev().Sym;
 			Edge botLeft = delE.Onext();
 			Edge botRight = delE.Oprev();
 
@@ -188,9 +188,6 @@ namespace Model
 
 			botRight._onext = movedEdges[0];
 			movedEdges.Last()._onext = botLeft;
-
-			movedEdges[0]._onext = botRight.Rot;
-			botLeft._onext = movedEdges.Last().InvRot;
 		}
 
 		/// <summary>

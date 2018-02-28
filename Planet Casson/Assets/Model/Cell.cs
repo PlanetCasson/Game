@@ -45,7 +45,10 @@ namespace Model
 			c.faces.Add(Face.NewFace());
 
 			c.edges = Edge.ConnectTetraCell(c.verticies, c.faces);
-			if (c.edges == null) return null;
+			c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
+			c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
+			c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
+			c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
 			return c;
 		}
 
@@ -132,7 +135,7 @@ namespace Model
 			Face newf = Face.NewFace();
 			Edge newe = Edge.SplitFaceVertex(f, newf, dest, orig, moveE);
 			faces.Add(newf);
-			edges.Add(newe);
+			edges.Add(newe.Rot);
 			return newe;
 		}
 
@@ -141,11 +144,11 @@ namespace Model
 		{
 
 			List<Edge> moveE = findMoveEdges(f.EdgeListHead, dest, orig);
+			Edge delE = moveE.Last().Onext().Sym;
+			Edge.RejoinFaceVertex(delE.Orig, f, dest, orig, moveE);
 
-			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, f, dest, orig, moveE);
-
-			if (!edges.Remove(moveE.Last().Onext().Sym))
-				edges.Remove(moveE.Last().Onext());
+			if (!edges.Remove(delE.Rot))
+				edges.Remove(delE.InvRot);
 			faces.Remove(f);
 		}
 

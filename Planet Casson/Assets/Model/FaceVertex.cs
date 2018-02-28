@@ -83,7 +83,9 @@ namespace Model
 		/// <returns>The newly created vertex</returns>
 		public static Vertex NewVertex()
 		{
-			return new Vertex();
+			Vertex v = new Vertex();
+			v.pos = Vector3.zero;
+			return v;
 		}
 	}
 }
