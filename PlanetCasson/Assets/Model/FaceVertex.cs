@@ -16,6 +16,8 @@ namespace Model
 	/// <para>When the runtime class is Vertex:</para>
 	/// <para>Stores the first Edge pointing from the center of this vertex.</para>
 	/// <para>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</para>
+	/// <para>To find all edges pointing out of the FaceVertex, you can take the edge and traversing in the <see cref="Onext"/> direction until
+	/// you encounter the starting edge.</para>
 	/// </summary>
 	public abstract class FaceVertex
 	{
