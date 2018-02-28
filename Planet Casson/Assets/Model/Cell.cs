@@ -153,11 +153,11 @@ namespace Model
 		public void killVertexEdge(Vertex v, Face left, Face right)
 		{
 			List<Edge> moveE = findMoveEdges(v.EdgeListHead, left, right);
+			Edge delE = moveE.Last().Onext().Sym;
+			Edge.RejoinFaceVertex(delE.Orig, v, left, right, moveE);
 
-			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, v, left, right, moveE);
-
-			if (!edges.Remove(moveE.Last().Onext().Sym))
-				edges.Remove(moveE.Last().Onext());
+			if (!edges.Remove(delE))
+				edges.Remove(delE.Sym);
 			verticies.Remove(v);
 		}
 
