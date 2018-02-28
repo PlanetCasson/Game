@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Model.Objects;
 
 /// <summary>
 /// Package defining the implementation of the modified Quad-Edge data structure
@@ -49,9 +50,40 @@ namespace Model
 			return c;
 		}
 
-		public void calculatePositions() {  }
+		public void calculatePositions(GameObject[] vObjs, GameObject[] eObjs, GameObject[] fObjs)
+        {
+            for (int i = 0; i < verticies.Count; i++)
+            {
+                vObjs[i].transform.position = verticies[i].pos;
+            }
+            for (int i = 0; i < edges.Count; i++)
+            {
+                LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
+                lr.positionCount = 2;
+                Vertex orig = (edges[i].Orig) as Vertex;
+                Vertex dest = (edges[i].Dest) as Vertex;
+                lr.SetPosition(0, orig.pos);
+                lr.SetPosition(1, dest.pos);
+            }
+            for (int i = 0; i < faces.Count; i++)
+            {
+                Vector3 sum = new Vector3(0, 0, 0);
+                int count = 0;
+                Edge start = faces[i].EdgeListHead.Onext();
+                Edge current = start;
+                do
+                {
+                    sum += (current.Right as Vertex).pos; //right should be the vertex that's origin of the edge's dual
+                                                          //the edge's dual edge is a CCW pointing edge bordering faces[i]
+                    current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
+                    count++;
+                } while (current != start);
+                Vector3 avg = sum / count;
+                fObjs[i].transform.position = avg;
+            }
+        }
 
-		public void instantiateGraph(MonoBehaviour obj, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
+		public GameObject[][] instantiateGraph(SphereKernel kernel, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
 		{
 			GameObject[] vObjs = new GameObject[verticies.Count];
 			GameObject[] eObjs = new GameObject[edges.Count];
@@ -59,11 +91,15 @@ namespace Model
 
 			for (int i = 0; i < verticies.Count; i++)
 			{
-				vObjs[i] = Object.Instantiate(vertexObj, verticies[i].pos, Quaternion.identity, obj.gameObject.transform);
-			}
+				vObjs[i] = Object.Instantiate(vertexObj, verticies[i].pos, Quaternion.identity, kernel.gameObject.transform);
+                vObjs[i].GetComponent<VertexObject>().graph = this;
+                vObjs[i].GetComponent<VertexObject>().vertex = verticies[i];
+                vObjs[i].GetComponent<VertexObject>().sphereKernel = kernel;
+
+            }
 			for (int i = 0; i < edges.Count; i++)
 			{
-				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, obj.gameObject.transform);
+				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
 				LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
 				lr.positionCount = 2;
 				Vertex orig = (edges[i].Orig) as Vertex;
@@ -85,8 +121,9 @@ namespace Model
                     count++;
 				} while (current != start);
                 Vector3 avg = sum / count;
-                fObjs[i] = Object.Instantiate(faceObj, avg, Quaternion.identity, obj.gameObject.transform);
+                fObjs[i] = Object.Instantiate(faceObj, avg, Quaternion.identity, kernel.gameObject.transform);
             }
+            return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}
 
 		//splits a vertex and create a new edge in between
