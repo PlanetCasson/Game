@@ -19,6 +19,7 @@ namespace Model
 	/// </summary>
 	public abstract class FaceVertex
 	{
+		private Edge _edgeListHead;
 		/// <summary>
 		/// <para>When the runtime class is Face:</para>
 		/// <para>The first dual Edge pointing from the center of the face towards an edge surrounding the face.
@@ -30,11 +31,11 @@ namespace Model
 		/// </summary>
 		public Edge EdgeListHead
 		{
-			get { return EdgeListHead; }
+			get { return _edgeListHead; }
 			set
 			{
 				if (value.Orig == this)
-					EdgeListHead = value;
+					_edgeListHead = value;
 				else
 					throw new System.ArgumentException("Edge attempting to make EdgeListHead does not satisfy the correct properties.");
 			}
