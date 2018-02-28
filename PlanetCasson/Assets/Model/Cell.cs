@@ -33,7 +33,6 @@ namespace Model
 			c.verticies.Add(Vertex.NewVertex());
 			c.verticies.Add(Vertex.NewVertex());
 			c.verticies.Add(Vertex.NewVertex());
-			c.verticies.Add(Vertex.NewVertex());
 
 			c.faces = new List<Face>();
 			c.faces.Add(Face.NewFace());
