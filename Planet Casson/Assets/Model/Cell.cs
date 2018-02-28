@@ -30,11 +30,15 @@ namespace Model
 			Cell c = new Cell();
 			c.verticies = new List<Vertex>();
 			c.verticies.Add(Vertex.NewVertex());
+            c.verticies[0].pos = new Vector3(0, 0, 40);
 			c.verticies.Add(Vertex.NewVertex());
-			c.verticies.Add(Vertex.NewVertex());
-			c.verticies.Add(Vertex.NewVertex());
+            c.verticies[1].pos = new Vector3(30, 0, 0);
+            c.verticies.Add(Vertex.NewVertex());
+            c.verticies[2].pos = new Vector3(-20, -20, 0);
+            c.verticies.Add(Vertex.NewVertex());
+            c.verticies[3].pos = new Vector3(-20, 20, 0);
 
-			c.faces = new List<Face>();
+            c.faces = new List<Face>();
 			c.faces.Add(Face.NewFace());
 			c.faces.Add(Face.NewFace());
 			c.faces.Add(Face.NewFace());
@@ -45,13 +49,7 @@ namespace Model
 			return c;
 		}
 
-		public void calculatePositions()
-		{
-			for (int i = 0; i < verticies.Count; i++)
-			{
-				verticies[i].pos = new Vector3(i % 2, i % 3, i % 5); //This is a really dumb way to visualize graphs and we need to figure out something better
-			}
-		}
+		public void calculatePositions() {  }
 
 		public void instantiateGraph(MonoBehaviour obj, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
 		{
@@ -76,6 +74,7 @@ namespace Model
 			for (int i = 0; i < faces.Count; i++)
 			{
 				Vector3 sum = new Vector3(0, 0, 0);
+                int count = 0;
 				Edge start = faces[i].EdgeListHead.Onext();
 				Edge current = start;
 				do
@@ -83,8 +82,11 @@ namespace Model
 					sum += (current.Right as Vertex).pos; //right should be the vertex that's origin of the edge's dual
 														  //the edge's dual edge is a CCW pointing edge bordering faces[i]
 					current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
+                    count++;
 				} while (current != start);
-			}
+                Vector3 avg = sum / count;
+                fObjs[i] = Object.Instantiate(faceObj, avg, Quaternion.identity, obj.gameObject.transform);
+            }
 		}
 
 		//splits a vertex and create a new edge in between
