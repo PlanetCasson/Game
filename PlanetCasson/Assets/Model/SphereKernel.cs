@@ -7,6 +7,7 @@ public class SphereKernel : MonoBehaviour
 {
     public GameObject vertexObj;
     public GameObject edgeObj;
+    public GameObject faceObj;
 
 	//public GameObject asdf;
 
@@ -17,7 +18,7 @@ public class SphereKernel : MonoBehaviour
     {
         SphereKernelCell = Cell.MakePrimitiveCell();
         SphereKernelCell.calculatePositions();
-        SphereKernelCell.instantiateGraph(this, vertexObj, edgeObj);
+        SphereKernelCell.instantiateGraph(this, vertexObj, edgeObj, faceObj);
 		/* Example for adding components
 		asdf = new GameObject();
 		asdf.name = "asdf";

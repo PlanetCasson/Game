@@ -53,10 +53,12 @@ namespace Model
 			}
 		}
 
-		public void instantiateGraph(MonoBehaviour obj, GameObject vertexObj, GameObject edgeObj)
+		public void instantiateGraph(MonoBehaviour obj, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
 		{
 			GameObject[] vObjs = new GameObject[verticies.Count];
 			GameObject[] eObjs = new GameObject[edges.Count];
+            GameObject[] fObjs = new GameObject[faces.Count];
+
 			for (int i = 0; i < verticies.Count; i++)
 			{
 				vObjs[i] = Object.Instantiate(vertexObj, verticies[i].pos, Quaternion.identity, obj.gameObject.transform);
@@ -71,6 +73,17 @@ namespace Model
 				lr.SetPosition(0, orig.pos);
 				lr.SetPosition(1, dest.pos);
 			}
+            for (int i = 0; i < faces.Count; i++)
+            {
+                Vector3 sum = new Vector3(0, 0, 0);
+                Edge start = faces[i].EdgeListHead.Onext();
+                Edge current = start;
+                do
+                {
+                    sum += (current.Orig as Vertex).pos;
+                    current = current.Lnext();
+                }while(current != start)
+            }
 		}
 
 		//splits a vertex and create a new edge in between
