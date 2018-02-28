@@ -226,7 +226,7 @@ namespace Model
 			verticies[0].EdgeListHead = edges[2];
 			verticies[1].EdgeListHead = edges[3];
 			verticies[2].EdgeListHead = edges[4];
-			verticies[0].EdgeListHead = edges[5];
+			verticies[3].EdgeListHead = edges[5];
 
 			faces[0].EdgeListHead = edges[3].InvRot;
 			faces[1].EdgeListHead = edges[0].InvRot;
