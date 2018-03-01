@@ -5,7 +5,7 @@ namespace Model
 	/// <summary>
 	/// Abstract class for objects that will traverse the graph
 	/// </summary>
-	class TraversalObject : MonoBehaviour
+	public class TraversalObject : MonoBehaviour
 	{
 		//Variables held by each traversal object
 		private Edge _current;
@@ -22,14 +22,12 @@ namespace Model
 		/// <param name="position"></param>
 		/// <param name="velocity"></param>
 		/// <returns>New traversal object with the properties given in the parameters</returns>
-		public TraversalObject NewTraversalObject(Edge currentEdge, float position, float velocity)
+		public void AssignTraversalValues(Edge currentEdge, float position, float velocity)
 		{
-			TraversalObject traversal = new TraversalObject();
-			traversal._current = currentEdge;
-			traversal._pos = position;
-			traversal._vel = velocity;
-
-			return traversal;
+			
+			_current = currentEdge;
+			_pos = position;
+			_vel = velocity;
 		}
 
 		public Edge CurrentEdge
@@ -57,6 +55,24 @@ namespace Model
 			}
 		}
 		/// <summary>
+		/// Gives position of object as a Vector3
+		/// </summary>
+		/// <returns>Vector3 position</returns>
+		public Vector3 getVectorPosition (float percentPos)
+		{
+			if (_current.Orig is Vertex && _current.Dest is Vertex)
+			{
+				Vertex OrigVertex = (Vertex)_current.Orig;
+				Vertex DestVertex = (Vertex)_current.Dest;
+				//Use Lerp method to linerally interpolate the current position of the of the object
+				return Vector3.Lerp(OrigVertex.pos, DestVertex.pos, percentPos);
+			} else
+			{
+				throw new System.ArgumentException("Traversal Object's _current variable is an edge that doesn't point to vertexes");
+			}
+			
+		}
+		/// <summary>
 		/// Called by the Unity Engine at every frame. Adjusts the position of the traversal object
 		/// </summary>
 		public void Update()
@@ -66,13 +82,11 @@ namespace Model
 			if (newPercentPos > 1.0)
 			{
 				//object has reached the end of the current edge, move to the next one
-				_current = _current.Onext();
+				_current = _current.Lnext();
 				newPercentPos = newPercentPos - 1.0F;
 			}
-			Vertex OrigVertex = (Vertex)_current.Orig;
-			Vertex DestVertex = (Vertex)_current.Dest;
-			//Use Lerp method to linerally interpolate the new position of the object
-			transform.Translate(Vector3.Lerp(OrigVertex.pos, DestVertex.pos, newPercentPos));
+			transform.position = getVectorPosition(newPercentPos);
+			_pos = newPercentPos;
 		}
 	}
 }
