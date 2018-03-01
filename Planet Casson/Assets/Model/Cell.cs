@@ -53,19 +53,10 @@ namespace Model
 
 			c.edges = Edge.ConnectTetraCell(c.verticies, c.faces);
 			//testing stuff
-<<<<<<< HEAD
-			//c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
-			//c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
-			//c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
-			//c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
-=======
-			/*
 			c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
 			c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
-			c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
-			c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
-			*/
->>>>>>> fdbf7b8212374a7506cb69260bfe6c79860d25a4
+			//c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
+			//c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
 			return c;
 		}
 
