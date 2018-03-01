@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rejoinfacevertex',['RejoinFaceVertex',['../class_model_1_1_edge.html#a5fb37cdf4de846e847ab490bb1c22c64',1,'Model::Edge']]],
-  ['rnext',['Rnext',['../class_model_1_1_edge.html#acebd4cad03a02386b9be44055de2b12a',1,'Model::Edge']]],
-  ['rprev',['Rprev',['../class_model_1_1_edge.html#afb82ff60f05a7d79f620110853c89290',1,'Model::Edge']]]
+  ['makefaceedge',['makeFaceEdge',['../class_model_1_1_cell.html#af3958d242d641b77c453f4de189ba020',1,'Model::Cell']]],
+  ['makeprimitivecell',['MakePrimitiveCell',['../class_model_1_1_cell.html#a66e38e0eaa078a4cb62bb86c71059c8f',1,'Model::Cell']]],
+  ['makevertexedge',['makeVertexEdge',['../class_model_1_1_cell.html#aa064d1d7613bf7ede0fbd5d9c55dba30',1,'Model::Cell']]]
 ];

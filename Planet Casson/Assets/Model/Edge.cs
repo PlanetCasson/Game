@@ -96,6 +96,8 @@ namespace Model
 		/// for the oldFV to a new edge and newFV to the new edge's symmetric edge.(see <see cref="Sym"/>). This step is to make 100% sure the EdgeListHead
 		/// has a proper value after the vertex split. Following this, the algorithm then properly links that new edge, its dual, symmetric, and dual symmetric
 		/// edges to the graph. Finally, it fixes the <see cref="Onext"/> relationship between the edges and returns this new edge.</para>
+		/// <para>This method checks for the validity of the parameters and whether the vertex split/face subdivide is a valid operation. If not, it will throw
+		/// and ArgumentException.</para>
 		/// </summary>
 		/// <param name="oldFV">Old vertex/face in the graph to be split/subdivided.</param>
 		/// <param name="newFV">New unlinked FaceVertex object in the graph to be inserted. This FaceVertex must be between leftFV and rightFV.</param>
@@ -158,6 +160,8 @@ namespace Model
 		/// <para>This method moves the origin of all edges in movedEdges from delFV to oldFV. It then sets the <see cref="FaceVertex.EdgeListHead"/> 
 		/// of oldFV to the first element in movedEdges. Then, it restores proper <see cref="Onext"/> relationship without the delFV and
 		/// the edge running from oldFV to delFV. This automatically delinks that edge and delFV, and they will be deleted by the garbage collector.</para>
+		/// <para>This method checks for the validity of the parameters and whether the vertex split/face subdivide is a valid operation. If not, it will throw
+		/// and ArgumentException.</para>
 		/// </summary>
 		/// <param name="oldFV">Old vertex in the graph for movedEdges to all move to after delFV is deleted</param>
 		/// <param name="delFV">Vertex to be deleted.</param>

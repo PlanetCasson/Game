@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['newface',['NewFace',['../class_model_1_1_face.html#acc8e83908df44e0237e7cf3d05cc0f07',1,'Model::Face']]],
-  ['newtraversalobject',['NewTraversalObject',['../class_model_1_1_traversal_object.html#a7d29cbe9c1dabc2f64bfbcf7c813cb22',1,'Model::TraversalObject']]],
-  ['newvertex',['NewVertex',['../class_model_1_1_vertex.html#a756e520b444aa5ea39f73f193564cf96',1,'Model::Vertex']]]
+  ['makefaceedge',['makeFaceEdge',['../class_model_1_1_cell.html#af3958d242d641b77c453f4de189ba020',1,'Model::Cell']]],
+  ['makeprimitivecell',['MakePrimitiveCell',['../class_model_1_1_cell.html#a66e38e0eaa078a4cb62bb86c71059c8f',1,'Model::Cell']]],
+  ['makevertexedge',['makeVertexEdge',['../class_model_1_1_cell.html#aa064d1d7613bf7ede0fbd5d9c55dba30',1,'Model::Cell']]],
+  ['model',['Model',['../namespace_model.html',1,'']]],
+  ['objects',['Objects',['../namespace_model_1_1_objects.html',1,'Model']]]
 ];

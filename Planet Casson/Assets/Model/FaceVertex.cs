@@ -8,27 +8,21 @@ namespace Model
 {
 	/// <summary>
 	/// abstract class for Face and Vertex class. 
-	/// <para>It is used to express the morphability between Faces and Verticies in a graph and its dual graph.</para>
-	/// 
-	/// <para>When the runtime class is Face:</para>
-	/// <para>Stores the first dual Edge pointing from the center of the face towards an edge surrounding the face.
-	/// The dual of this edge is an edge facing CCW direction bordering this face.</para>
-	/// <para>When the runtime class is Vertex:</para>
-	/// <para>Stores the first Edge pointing from the center of this vertex.</para>
-	/// <para>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</para>
-	/// <para>To find all edges pointing out of the FaceVertex, you can take the edge and traversing in the <see cref="Onext"/> direction until
-	/// you encounter the starting edge.</para>
+	/// <para>It is used to express the morphability between Faces and Verticies in a graph and its dual graph.
+	/// A vertex in the graph is simultaneously a face in the dual graph. The same is true for the face where it is a vertex in the dual graph.</para>
 	/// </summary>
 	public abstract class FaceVertex
 	{
 		private Edge _edgeListHead;
 		/// <summary>
 		/// <para>When the runtime class is Face:</para>
-		/// <para>The first dual Edge pointing from the center of the face towards an edge surrounding the face.
-		/// The dual of this edge is an edge facing CCW direction bordering this face. In other words, this stores
-		/// the first edge pointing out from the vertex of the dual graph that corresponds to this face.</para>
+		/// <para>Stores the first dual Edge pointing from the center of the face towards an edge surrounding the face.
+		/// The dual of this edge is an edge facing CCW direction bordering this face.</para>
 		/// <para>When the runtime class is Vertex:</para>
-		/// <para>The first Edge pointing out from this vertex.</para>
+		/// <para>Stores the first Edge pointing from the center of this vertex.</para>
+		/// <para>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</para>
+		/// <para>To find all edges pointing out of the FaceVertex, you can take the edge and traversing in the <see cref="Onext"/> direction until
+		/// you encounter the starting edge.</para>
 		/// <para>Note, this will throw an ArgumentException when the value set for EdgeListHead is not a valid value</para>
 		/// </summary>
 		public Edge EdgeListHead

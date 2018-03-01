@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PlanetCasson: Model.FaceVertex Class Reference</title>
+<title>Planet Casson: Model.FaceVertex Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">PlanetCasson
+   <div id="projectname">Planet Casson
    </div>
   </td>
  </tr>
@@ -93,15 +93,9 @@ Properties</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>abstract class for <a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a> and <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a> class. </p>
-<p>It is used to express the morphability between Faces and Verticies in a graph and its dual graph.</p>
-<p>When the runtime class is <a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a>:</p>
-<p>Stores the first dual <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> pointing from the center of the face towards an edge surrounding the face. The dual of this edge is an edge facing CCW direction bordering this face.</p>
-<p>When the runtime class is <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a>:</p>
-<p>Stores the first <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> pointing from the center of this vertex.</p>
-<p>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</p>
-<p>To find all edges pointing out of the <a class="el" href="class_model_1_1_face_vertex.html" title="abstract class for Face and Vertex class. ">FaceVertex</a>, you can take the edge and traversing in the Onext direction until you encounter the starting edge.</p>
+<p>It is used to express the morphability between Faces and Verticies in a graph and its dual graph. A vertex in the graph is simultaneously a face in the dual graph. The same is true for the face where it is a vertex in the dual graph.</p>
 
-<p class="definition">Definition at line <a class="el" href="_face_vertex_8cs_source.html#l00022">22</a> of file <a class="el" href="_face_vertex_8cs_source.html">FaceVertex.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_face_vertex_8cs_source.html#l00014">14</a> of file <a class="el" href="_face_vertex_8cs_source.html">FaceVertex.cs</a>.</p>
 </div><h2 class="groupheader">Property Documentation</h2>
 <a id="a07f0503402fd409cccba3032a58d180f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a07f0503402fd409cccba3032a58d180f">&#9670;&nbsp;</a></span>EdgeListHead</h2>
@@ -125,17 +119,19 @@ Properties</h2></td></tr>
 
 <p></p>
 <p>When the runtime class is <a class="el" href="class_model_1_1_face.html" title="Face representation in the Quad-Edge data structure. ">Face</a>:</p>
-<p>The first dual <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> pointing from the center of the face towards an edge surrounding the face. The dual of this edge is an edge facing CCW direction bordering this face. In other words, this stores the first edge pointing out from the vertex of the dual graph that corresponds to this face.</p>
+<p>Stores the first dual <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> pointing from the center of the face towards an edge surrounding the face. The dual of this edge is an edge facing CCW direction bordering this face.</p>
 <p>When the runtime class is <a class="el" href="class_model_1_1_vertex.html" title="Vertex representation in the modified Quad-Edge data structure. ">Vertex</a>:</p>
-<p>The first <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> pointing out from this vertex.</p>
+<p>Stores the first <a class="el" href="class_model_1_1_edge.html" title="Edge representation in the Quad-Edge data structure. ">Edge</a> pointing from the center of this vertex.</p>
+<p>will throw an ArgumentException when the value set for EdgeListHead is not a valid value</p>
+<p>To find all edges pointing out of the <a class="el" href="class_model_1_1_face_vertex.html" title="abstract class for Face and Vertex class. ">FaceVertex</a>, you can take the edge and traversing in the Onext direction until you encounter the starting edge.</p>
 <p>Note, this will throw an ArgumentException when the value set for EdgeListHead is not a valid value</p>
 
-<p class="definition">Definition at line <a class="el" href="_face_vertex_8cs_source.html#l00035">35</a> of file <a class="el" href="_face_vertex_8cs_source.html">FaceVertex.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_face_vertex_8cs_source.html#l00029">29</a> of file <a class="el" href="_face_vertex_8cs_source.html">FaceVertex.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>PlanetCasson/Assets/Model/<a class="el" href="_face_vertex_8cs_source.html">FaceVertex.cs</a></li>
+<li>Planet Casson/Assets/Model/<a class="el" href="_face_vertex_8cs_source.html">FaceVertex.cs</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
