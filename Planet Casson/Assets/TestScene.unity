@@ -143,7 +143,11 @@ MonoBehaviour:
   vertexObj: {fileID: 1389932504333770, guid: fd22fe11f26d4584680578ccafef0558, type: 2}
   edgeObj: {fileID: 1151535536574396, guid: d31433139e7893f4cac936ed8bec65b1, type: 2}
   faceObj: {fileID: 1543363465444718, guid: 6f278ba0ed832e94aad9ab5084dad9fd, type: 2}
+<<<<<<< HEAD
   traverserObj: {fileID: 1633538656188156, guid: 8336e5bc877267c438d2a5a22f66216c,
+=======
+  traverserObj: {fileID: 1633538656188156, guid: aba0e064e1c1c654caf04d1e510fe9d4,
+>>>>>>> fdbf7b8212374a7506cb69260bfe6c79860d25a4
     type: 2}
 --- !u!4 &1343204277
 Transform:
