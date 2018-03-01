@@ -53,10 +53,10 @@ namespace Model
 
 			c.edges = Edge.ConnectTetraCell(c.verticies, c.faces);
 			//testing stuff
-			c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
-			c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
-			c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
-			c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
+			//c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
+			//c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
+			//c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
+			//c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
 			return c;
 		}
 
@@ -83,20 +83,49 @@ namespace Model
             }
             for (int i = 0; i < faces.Count; i++)
             {
-                Vector3 sum = new Vector3(0, 0, 0);
-                int count = 0;
-                Edge start = faces[i].EdgeListHead.Onext();
-                Edge current = start;
-                do
-                {
-                    sum += (current.Right as Vertex).pos; //right should be the vertex that's origin of the edge's dual
-                                                          //the edge's dual edge is a CCW pointing edge bordering faces[i]
-                    current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
-                    count++;
-                } while (current != start);
-                Vector3 avg = sum / count;
-                fObjs[i].transform.position = avg;
-            }
+				//computing center of face
+				LinkedList<Vector3> Vpos = new LinkedList<Vector3>();
+				Vector3 sum = new Vector3(0, 0, 0);
+				Edge start = faces[i].EdgeListHead.Onext();
+				Edge current = start;
+				Vertex prev = faces[i].EdgeListHead.Right as Vertex;
+				do
+				{
+					Vpos.AddLast((current.Right as Vertex).pos); //right should be the vertex that's origin of the edge's dual
+																 //the edge's dual edge is a CCW pointing edge bordering faces[i]
+					sum += Vpos.Last();
+					current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
+				} while (current != start);
+				Vector3 avg = sum / Vpos.Count;
+				Vpos.AddFirst(avg);
+
+				//construct mesh
+				int j;
+				Vector2[] UVs = new Vector2[Vpos.Count];
+				int[] trigs = new int[3 * (Vpos.Count - 1)]; //-1 to get number of verticies surrounding face = #of trigs
+				float UVstep = 2 * Mathf.PI / Vpos.Count;
+				UVs[0] = new Vector2(0.5f, 0.5f);
+				UVs[1] = new Vector2((Mathf.Cos(UVstep) + 1) / 2, (Mathf.Sin(UVstep) + 1) / 2);
+				trigs[0] = 0;
+				trigs[1] = 1;
+				trigs[2] = 2;
+				for (j = 2; j < Vpos.Count; j++)
+				{
+					UVs[j] = new Vector2((Mathf.Cos(j * UVstep) + 1) / 2, (Mathf.Sin(j * UVstep) + 1) / 2);
+					trigs[3 * (j - 2)] = 0;
+					trigs[3 * (j - 2) + 1] = j - 1;
+					trigs[3 * (j - 2) + 2] = j;
+				}
+				trigs[3 * (j - 2)] = 0;
+				trigs[3 * (j - 2) + 1] = j - 1;
+				trigs[3 * (j - 2) + 2] = 1;
+
+				Mesh mesh = fObjs[i].GetComponent<MeshFilter>().mesh;
+				mesh.Clear();
+				mesh.vertices = Vpos.ToArray<Vector3>();
+				mesh.uv = UVs;
+				mesh.triangles = trigs;
+			}
         }
 
 		/// <summary>
@@ -133,19 +162,49 @@ namespace Model
 			}
 			for (int i = 0; i < faces.Count; i++)
 			{
+				//computing center of face
+				LinkedList<Vector3> Vpos = new LinkedList<Vector3>();
 				Vector3 sum = new Vector3(0, 0, 0);
-                int count = 0;
 				Edge start = faces[i].EdgeListHead.Onext();
 				Edge current = start;
+				Vertex prev = faces[i].EdgeListHead.Right as Vertex;
 				do
 				{
-					sum += (current.Right as Vertex).pos; //right should be the vertex that's origin of the edge's dual
-														  //the edge's dual edge is a CCW pointing edge bordering faces[i]
+					Vpos.AddLast((current.Right as Vertex).pos); //right should be the vertex that's origin of the edge's dual
+															 //the edge's dual edge is a CCW pointing edge bordering faces[i]
+					sum += Vpos.Last();
 					current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
-                    count++;
 				} while (current != start);
-                Vector3 avg = sum / count;
-                fObjs[i] = Object.Instantiate(faceObj, avg, Quaternion.identity, kernel.gameObject.transform);
+                Vector3 avg = sum / Vpos.Count;
+				Vpos.AddFirst(avg);
+
+				//construct mesh
+				int j;
+				Vector2[] UVs = new Vector2[Vpos.Count];
+				int[] trigs = new int[3*(Vpos.Count - 1)]; //-1 to get number of verticies surrounding face = #of trigs
+				float UVstep = 2 * Mathf.PI / Vpos.Count;
+				UVs[0] = new Vector2(0.5f, 0.5f);
+				UVs[1] = new Vector2((Mathf.Cos(UVstep) + 1) / 2, (Mathf.Sin(UVstep) + 1) / 2);
+				trigs[0] = 0;
+				trigs[1] = 1;
+				trigs[2] = 2;
+				for(j = 2; j < Vpos.Count; j++)
+				{
+					UVs[j] = new Vector2((Mathf.Cos(j*UVstep)+1)/2, (Mathf.Sin(j*UVstep)+1)/2);
+					trigs[3 * (j - 2)] = 0;
+					trigs[3 * (j - 2) + 1] = j - 1;
+					trigs[3 * (j - 2) + 2] = j;
+				}
+				trigs[3 * (j - 2)] = 0;
+				trigs[3 * (j - 2) + 1] = j - 1;
+				trigs[3 * (j - 2) + 2] = 1;
+
+				fObjs[i] = Object.Instantiate(faceObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
+				Mesh mesh = fObjs[i].GetComponent<MeshFilter>().mesh;
+				mesh.Clear();
+				mesh.vertices = Vpos.ToArray<Vector3>();
+				mesh.uv = UVs;
+				mesh.triangles = trigs;
             }
             return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}

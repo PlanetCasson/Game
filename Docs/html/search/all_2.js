@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['edge',['Edge',['../class_model_1_1_edge.html',1,'Model']]],
-  ['edgelisthead',['EdgeListHead',['../class_model_1_1_face_vertex.html#a07f0503402fd409cccba3032a58d180f',1,'Model::FaceVertex']]]
+  ['dest',['Dest',['../class_model_1_1_edge.html#ab8c3a6238e4459ba47c158c9a7d5b76b',1,'Model::Edge']]],
+  ['dnext',['Dnext',['../class_model_1_1_edge.html#ae7e98804da618ed70720a7304e813d7d',1,'Model::Edge']]],
+  ['dprev',['Dprev',['../class_model_1_1_edge.html#ad7c5a66e86f4a96ad16181fd2c6f735b',1,'Model::Edge']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['dest',['Dest',['../class_model_1_1_edge.html#ab8c3a6238e4459ba47c158c9a7d5b76b',1,'Model::Edge']]],
-  ['dnext',['Dnext',['../class_model_1_1_edge.html#ae7e98804da618ed70720a7304e813d7d',1,'Model::Edge']]],
-  ['dprev',['Dprev',['../class_model_1_1_edge.html#ad7c5a66e86f4a96ad16181fd2c6f735b',1,'Model::Edge']]]
+  ['calculatepositions',['calculatePositions',['../class_model_1_1_cell.html#afdff6f600dd3f859be9a5b88aba7ab82',1,'Model::Cell']]],
+  ['cell',['Cell',['../class_model_1_1_cell.html',1,'Model']]],
+  ['connecttetracell',['ConnectTetraCell',['../class_model_1_1_edge.html#a80159a241c1c6a510c1cbd1522e59509',1,'Model::Edge']]]
 ];

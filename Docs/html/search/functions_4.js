@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['lnext',['Lnext',['../class_model_1_1_edge.html#a0f9dd306c2412ec019ea529156f207b0',1,'Model::Edge']]],
-  ['lprev',['Lprev',['../class_model_1_1_edge.html#ac08616823e3e0c58deda403ca3dc77b8',1,'Model::Edge']]]
+  ['instantiategraph',['instantiateGraph',['../class_model_1_1_cell.html#a8ea2fb59a9aef5d6f4eb22889ae1e3ae',1,'Model::Cell']]],
+  ['instantiatetraversals',['instantiateTraversals',['../class_model_1_1_cell.html#ae66e399d484e0f8211e479adb8c95561',1,'Model::Cell']]]
 ];

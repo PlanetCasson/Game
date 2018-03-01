@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['spherekernel',['SphereKernel',['../class_sphere_kernel.html',1,'']]],
-  ['splitfacevertex',['SplitFaceVertex',['../class_model_1_1_edge.html#a474ad91ca5b3f0a120522c6970be0c34',1,'Model::Edge']]],
-  ['sym',['Sym',['../class_model_1_1_edge.html#a6370e7f7bc1684929cdea71baef36365',1,'Model::Edge']]]
+  ['pos',['pos',['../class_model_1_1_vertex.html#adb523d6ca3e860ac400c05a9a654e155',1,'Model::Vertex']]]
 ];

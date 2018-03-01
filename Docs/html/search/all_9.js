@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['onext',['Onext',['../class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9',1,'Model::Edge']]],
-  ['oprev',['Oprev',['../class_model_1_1_edge.html#aca6f200525d96c60f2dd24efa62390c7',1,'Model::Edge']]],
-  ['orig',['Orig',['../class_model_1_1_edge.html#a6b00c9b63678c143f8b99bd9b8cb9f8b',1,'Model::Edge']]]
+  ['makefaceedge',['makeFaceEdge',['../class_model_1_1_cell.html#af3958d242d641b77c453f4de189ba020',1,'Model::Cell']]],
+  ['makeprimitivecell',['MakePrimitiveCell',['../class_model_1_1_cell.html#a66e38e0eaa078a4cb62bb86c71059c8f',1,'Model::Cell']]],
+  ['makevertexedge',['makeVertexEdge',['../class_model_1_1_cell.html#aa064d1d7613bf7ede0fbd5d9c55dba30',1,'Model::Cell']]],
+  ['model',['Model',['../namespace_model.html',1,'']]],
+  ['objects',['Objects',['../namespace_model_1_1_objects.html',1,'Model']]]
 ];

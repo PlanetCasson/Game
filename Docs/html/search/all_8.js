@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['newface',['NewFace',['../class_model_1_1_face.html#acc8e83908df44e0237e7cf3d05cc0f07',1,'Model::Face']]],
-  ['newtraversalobject',['NewTraversalObject',['../class_model_1_1_traversal_object.html#a7d29cbe9c1dabc2f64bfbcf7c813cb22',1,'Model::TraversalObject']]],
-  ['newvertex',['NewVertex',['../class_model_1_1_vertex.html#a756e520b444aa5ea39f73f193564cf96',1,'Model::Vertex']]]
+  ['left',['Left',['../class_model_1_1_edge.html#a9c11f4202348cca575de310670e1b8e3',1,'Model::Edge']]],
+  ['lnext',['Lnext',['../class_model_1_1_edge.html#a0f9dd306c2412ec019ea529156f207b0',1,'Model::Edge']]],
+  ['lprev',['Lprev',['../class_model_1_1_edge.html#ac08616823e3e0c58deda403ca3dc77b8',1,'Model::Edge']]]
 ];

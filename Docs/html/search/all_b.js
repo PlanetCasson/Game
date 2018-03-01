@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['rejoinfacevertex',['RejoinFaceVertex',['../class_model_1_1_edge.html#a5fb37cdf4de846e847ab490bb1c22c64',1,'Model::Edge']]],
-  ['right',['Right',['../class_model_1_1_edge.html#af9cedd74d3b26b60e66f302b77870b4a',1,'Model::Edge']]],
-  ['rnext',['Rnext',['../class_model_1_1_edge.html#acebd4cad03a02386b9be44055de2b12a',1,'Model::Edge']]],
-  ['rot',['Rot',['../class_model_1_1_edge.html#aa1dcc4ca7b5bbfb94dfe38d4d8dbc680',1,'Model::Edge']]],
-  ['rprev',['Rprev',['../class_model_1_1_edge.html#afb82ff60f05a7d79f620110853c89290',1,'Model::Edge']]]
+  ['onext',['Onext',['../class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9',1,'Model::Edge']]],
+  ['oprev',['Oprev',['../class_model_1_1_edge.html#aca6f200525d96c60f2dd24efa62390c7',1,'Model::Edge']]],
+  ['orig',['Orig',['../class_model_1_1_edge.html#a6b00c9b63678c143f8b99bd9b8cb9f8b',1,'Model::Edge']]]
 ];

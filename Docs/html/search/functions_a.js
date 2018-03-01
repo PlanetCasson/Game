@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['update',['Update',['../class_model_1_1_traversal_object.html#aa4d95fe987aae7830486d5170349d666',1,'Model::TraversalObject']]]
+  ['rejoinfacevertex',['RejoinFaceVertex',['../class_model_1_1_edge.html#a5fb37cdf4de846e847ab490bb1c22c64',1,'Model::Edge']]],
+  ['rnext',['Rnext',['../class_model_1_1_edge.html#acebd4cad03a02386b9be44055de2b12a',1,'Model::Edge']]],
+  ['rprev',['Rprev',['../class_model_1_1_edge.html#afb82ff60f05a7d79f620110853c89290',1,'Model::Edge']]]
 ];

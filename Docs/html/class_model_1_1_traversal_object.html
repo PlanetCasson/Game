@@ -87,9 +87,12 @@ Inheritance diagram for Model.TraversalObject:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7d29cbe9c1dabc2f64bfbcf7c813cb22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_model_1_1_traversal_object.html">TraversalObject</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_traversal_object.html#a7d29cbe9c1dabc2f64bfbcf7c813cb22">NewTraversalObject</a> (<a class="el" href="class_model_1_1_edge.html">Edge</a> currentEdge, float position, float velocity)</td></tr>
-<tr class="memdesc:a7d29cbe9c1dabc2f64bfbcf7c813cb22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to construct a new traversal object  <a href="#a7d29cbe9c1dabc2f64bfbcf7c813cb22">More...</a><br /></td></tr>
-<tr class="separator:a7d29cbe9c1dabc2f64bfbcf7c813cb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9932f18f42519f18440a192830da5e17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_traversal_object.html#a9932f18f42519f18440a192830da5e17">AssignTraversalValues</a> (<a class="el" href="class_model_1_1_edge.html">Edge</a> currentEdge, float position, float velocity)</td></tr>
+<tr class="memdesc:a9932f18f42519f18440a192830da5e17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method used to construct a new traversal object  <a href="#a9932f18f42519f18440a192830da5e17">More...</a><br /></td></tr>
+<tr class="separator:a9932f18f42519f18440a192830da5e17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0c48eb908b2f6bab5389edef0209b9b"><td class="memItemLeft" align="right" valign="top">Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_traversal_object.html#ab0c48eb908b2f6bab5389edef0209b9b">getVectorPosition</a> (float percentPos)</td></tr>
+<tr class="memdesc:ab0c48eb908b2f6bab5389edef0209b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives position of object as a Vector3  <a href="#ab0c48eb908b2f6bab5389edef0209b9b">More...</a><br /></td></tr>
+<tr class="separator:ab0c48eb908b2f6bab5389edef0209b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4d95fe987aae7830486d5170349d666"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model_1_1_traversal_object.html#aa4d95fe987aae7830486d5170349d666">Update</a> ()</td></tr>
 <tr class="memdesc:aa4d95fe987aae7830486d5170349d666"><td class="mdescLeft">&#160;</td><td class="mdescRight">Called by the Unity Engine at every frame. Adjusts the position of the traversal object  <a href="#aa4d95fe987aae7830486d5170349d666">More...</a><br /></td></tr>
 <tr class="separator:aa4d95fe987aae7830486d5170349d666"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,14 +114,14 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>Velocity</b><code> [
 
 <p class="definition">Definition at line <a class="el" href="_traversal_object_8cs_source.html#l00008">8</a> of file <a class="el" href="_traversal_object_8cs_source.html">TraversalObject.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a7d29cbe9c1dabc2f64bfbcf7c813cb22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d29cbe9c1dabc2f64bfbcf7c813cb22">&#9670;&nbsp;</a></span>NewTraversalObject()</h2>
+<a id="a9932f18f42519f18440a192830da5e17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9932f18f42519f18440a192830da5e17">&#9670;&nbsp;</a></span>AssignTraversalValues()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_model_1_1_traversal_object.html">TraversalObject</a> Model.TraversalObject.NewTraversalObject </td>
+          <td class="memname">void Model.TraversalObject.AssignTraversalValues </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_model_1_1_edge.html">Edge</a>&#160;</td>
           <td class="paramname"><em>currentEdge</em>, </td>
@@ -159,6 +162,29 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>Velocity</b><code> [
 
 </div>
 </div>
+<a id="ab0c48eb908b2f6bab5389edef0209b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0c48eb908b2f6bab5389edef0209b9b">&#9670;&nbsp;</a></span>getVectorPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Vector3 Model.TraversalObject.getVectorPosition </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>percentPos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gives position of object as a Vector3 </p>
+<dl class="section return"><dt>Returns</dt><dd>Vector3 position</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_traversal_object_8cs_source.html#l00061">61</a> of file <a class="el" href="_traversal_object_8cs_source.html">TraversalObject.cs</a>.</p>
+
+</div>
+</div>
 <a id="aa4d95fe987aae7830486d5170349d666"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa4d95fe987aae7830486d5170349d666">&#9670;&nbsp;</a></span>Update()</h2>
 
@@ -176,7 +202,7 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>Velocity</b><code> [
 
 <p>Called by the Unity Engine at every frame. Adjusts the position of the traversal object </p>
 
-<p class="definition">Definition at line <a class="el" href="_traversal_object_8cs_source.html#l00062">62</a> of file <a class="el" href="_traversal_object_8cs_source.html">TraversalObject.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_traversal_object_8cs_source.html#l00078">78</a> of file <a class="el" href="_traversal_object_8cs_source.html">TraversalObject.cs</a>.</p>
 
 </div>
 </div>
