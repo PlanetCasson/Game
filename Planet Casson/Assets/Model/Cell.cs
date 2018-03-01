@@ -149,6 +149,28 @@ namespace Model
             }
             return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}
+		/// <summary>
+		/// Iterate through faces of Cell and create a traversal object for each face
+		/// </summary>
+		/// <returns>list of traversal objects</returns>
+		public void instantiateTraversals(MonoBehaviour obj, GameObject traverserObj)
+		{
+			GameObject[] tObjs = new GameObject[faces.Count];
+
+			for (int i = 0; i < faces.Count; i++)
+			{
+				//Instantiate new game object
+				tObjs[i] = Object.Instantiate(traverserObj, obj.gameObject.transform);
+				//Obtain the first available edge
+				Edge oneOfTheEdges = faces[i].EdgeListHead.Rot;
+				//create a new traversal object on first availiable edge
+				tObjs[i].AddComponent<TraversalObject>();
+				tObjs[i].GetComponent<TraversalObject>().AssignTraversalValues(oneOfTheEdges, 0.5F, 0.005F);
+				Vector3 position = tObjs[i].GetComponent<TraversalObject>().getVectorPosition(0.5F);
+				//Translate object with to new position
+				tObjs[i].transform.position = position;
+			}
+		}
 
 		/// <summary>
 		/// <para>The method of expanding from the primitive quad-edge structure. makeVertexEdge splits the vertex "v" into two
