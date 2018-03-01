@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['onext',['Onext',['../class_model_1_1_edge.html#a8941b72992159cebad8a252b7db4e5f9',1,'Model::Edge']]],
-  ['oprev',['Oprev',['../class_model_1_1_edge.html#aca6f200525d96c60f2dd24efa62390c7',1,'Model::Edge']]],
-  ['orig',['Orig',['../class_model_1_1_edge.html#a6b00c9b63678c143f8b99bd9b8cb9f8b',1,'Model::Edge']]]
+  ['newface',['NewFace',['../class_model_1_1_face.html#acc8e83908df44e0237e7cf3d05cc0f07',1,'Model::Face']]],
+  ['newtraversalobject',['NewTraversalObject',['../class_model_1_1_traversal_object.html#a7d29cbe9c1dabc2f64bfbcf7c813cb22',1,'Model::TraversalObject']]],
+  ['newvertex',['NewVertex',['../class_model_1_1_vertex.html#a756e520b444aa5ea39f73f193564cf96',1,'Model::Vertex']]]
 ];

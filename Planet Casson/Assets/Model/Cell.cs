@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Model.Objects;
 
 /// <summary>
 /// Package defining the implementation of the modified Quad-Edge data structure
@@ -16,15 +17,21 @@ namespace Model
 	/// For more details on how this encoding is carried out, see Edge.</para>
 	/// <para>Benefits of this data structure is the easy and fast access of locality data and the O(1) CW and CCW traversal around points/faces.
 	/// This second point will be extremely important in our game about CCW traversal on graphs embedded in surfaces.</para>
-	/// \image html cellmodification.jpeg
 	/// </summary>
 	public class Cell
 	{
+		//lists to store verticies, edges, and faces in this cell
+		//if an edge is in the list, then it's companion edges are guaranteed not to be in here
 		List<Vertex> verticies;
 		List<Edge> edges;
 		List<Face> faces;
 
-		//make a tetrahedron quad edge graph
+		/// <summary>
+		/// <para>Factory for making the most basic Quad-Edge graph embedded in the sphere, the tetrahedron.
+		/// This creates the verticies and faces of the tetrahedron and links them together with the <see cref="Edge.ConnectTetraCell"/> function in Edge.</para>
+		/// <para>Note that the positions of all the verticies are initialized to zero. after MakePrimitiveCell.</para>
+		/// </summary>
+		/// <returns>A tetrahedron graph embedded on a sphere. The positions of the verticies are initialized to 0.</returns>
 		public static Cell MakePrimitiveCell()
 		{
 			Cell c = new Cell();
@@ -45,13 +52,62 @@ namespace Model
 			c.faces.Add(Face.NewFace());
 
 			c.edges = Edge.ConnectTetraCell(c.verticies, c.faces);
-			if (c.edges == null) return null;
+			//testing stuff
+			c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
+			c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
+			c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
+			c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
 			return c;
 		}
 
-		public void calculatePositions() {  }
+		/// <summary>
+		/// <para>ben's function, please comment it.</para>
+		/// </summary>
+		/// <param name="vObjs"></param>
+		/// <param name="eObjs"></param>
+		/// <param name="fObjs"></param>
+		public void calculatePositions(GameObject[] vObjs, GameObject[] eObjs, GameObject[] fObjs)
+        {
+            for (int i = 0; i < verticies.Count; i++)
+            {
+                vObjs[i].transform.position = verticies[i].pos;
+            }
+            for (int i = 0; i < edges.Count; i++)
+            {
+                LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
+                lr.positionCount = 2;
+                Vertex orig = (edges[i].Orig) as Vertex;
+                Vertex dest = (edges[i].Dest) as Vertex;
+                lr.SetPosition(0, orig.pos);
+                lr.SetPosition(1, dest.pos);
+            }
+            for (int i = 0; i < faces.Count; i++)
+            {
+                Vector3 sum = new Vector3(0, 0, 0);
+                int count = 0;
+                Edge start = faces[i].EdgeListHead.Onext();
+                Edge current = start;
+                do
+                {
+                    sum += (current.Right as Vertex).pos; //right should be the vertex that's origin of the edge's dual
+                                                          //the edge's dual edge is a CCW pointing edge bordering faces[i]
+                    current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
+                    count++;
+                } while (current != start);
+                Vector3 avg = sum / count;
+                fObjs[i].transform.position = avg;
+            }
+        }
 
-		public void instantiateGraph(MonoBehaviour obj, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
+		/// <summary>
+		/// <para>ben's function, please comment it</para>
+		/// </summary>
+		/// <param name="kernel"></param>
+		/// <param name="vertexObj"></param>
+		/// <param name="edgeObj"></param>
+		/// <param name="faceObj"></param>
+		/// <returns></returns>
+		public GameObject[][] instantiateGraph(SphereKernel kernel, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
 		{
 			GameObject[] vObjs = new GameObject[verticies.Count];
 			GameObject[] eObjs = new GameObject[edges.Count];
@@ -59,11 +115,15 @@ namespace Model
 
 			for (int i = 0; i < verticies.Count; i++)
 			{
-				vObjs[i] = Object.Instantiate(vertexObj, verticies[i].pos, Quaternion.identity, obj.gameObject.transform);
-			}
+				vObjs[i] = Object.Instantiate(vertexObj, verticies[i].pos, Quaternion.identity, kernel.gameObject.transform);
+                vObjs[i].GetComponent<VertexObject>().graph = this;
+                vObjs[i].GetComponent<VertexObject>().vertex = verticies[i];
+                vObjs[i].GetComponent<VertexObject>().sphereKernel = kernel;
+
+            }
 			for (int i = 0; i < edges.Count; i++)
 			{
-				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, obj.gameObject.transform);
+				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
 				LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
 				lr.positionCount = 2;
 				Vertex orig = (edges[i].Orig) as Vertex;
@@ -85,8 +145,9 @@ namespace Model
                     count++;
 				} while (current != start);
                 Vector3 avg = sum / count;
-                fObjs[i] = Object.Instantiate(faceObj, avg, Quaternion.identity, obj.gameObject.transform);
+                fObjs[i] = Object.Instantiate(faceObj, avg, Quaternion.identity, kernel.gameObject.transform);
             }
+            return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}
 		/// <summary>
 		/// Iterate through faces of Cell and create a traversal object for each face
@@ -111,13 +172,21 @@ namespace Model
 			}
 		}
 
-		//splits a vertex and create a new edge in between
-		//preserves euler characteristics
-		//use this to change graph
+		/// <summary>
+		/// <para>The method of expanding from the primitive quad-edge structure. makeVertexEdge splits the vertex "v" into two
+		/// and connect it with an edge whose left face is "left" and right face is "right".</para>
+		/// <para>This first finds a list of edges that needs to be moved to the new vertex, creates a new, unlinked vertex, and calls
+		/// <see cref="Edge.SplitFaceVertex"/> with the appropriate parameters.</para>
+		/// <para>If the specified left and right face does not share a vertex, an ArgumentException error will be thrown.(uncatched from SplitFaceVertex).</para>
+		/// </summary>
+		/// <param name="v">The vertex to be split.</param>
+		/// <param name="left">The face to the left of the vertex.</param>
+		/// <param name="right">The face to the right of the vertex.</param>
+		/// <returns>An Edge that runs from the old vertex to the new vertex.</returns>
 		public Edge makeVertexEdge(Vertex v, Face left, Face right)
 		{
 			//finds all edges that needs to be moved
-			List<Edge> moveE = findMoveEdges(v.EdgeListHead, left, right);
+			List<Edge> moveE = findMoveEdges(v, left, right);
 
 			if (moveE == null) return null;
 
@@ -128,59 +197,89 @@ namespace Model
 			return newe;
 		}
 
-		//"unsplits" a vertex
-		//preserves euler characteristics
-		//use this to change graph
-		//can create digons(use carefully)
+		/// <summary>
+		/// <para>The method of reducing the quad-edge structure. killVertexEdge does the opposite of makeVertexEdge and "unsplits" a vertex
+		/// by deleting the vertex v and transfers its edges to the other vertex shared between the left and right faces.</para>
+		/// <para>This first finds a list of edges that needs to be moved to the other vertex, and calls <see cref="Edge.RejoinFaceVertex"/>
+		/// with the appropriate parameters.</para>
+		/// <para>If the specified left and right faces does not share 2 verticies where one of them is the vertex v, then an ArgumentException error
+		/// will be thrown.</para>
+		/// <para>Note, this might create digons.</para>
+		/// </summary>
+		/// <param name="v">The vertex to be deleted.</param>
+		/// <param name="left">The face to the left of the vertex.</param>
+		/// <param name="right">The face to the right of the vertex.</param>
 		public void killVertexEdge(Vertex v, Face left, Face right)
 		{
-			List<Edge> moveE = findMoveEdges(v.EdgeListHead, left, right);
+			List<Edge> moveE = findMoveEdges(v, left, right);
+			Edge delE = moveE.Last().Onext().Sym;
+			Edge.RejoinFaceVertex(delE.Orig, v, left, right, moveE);
 
-			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, v, left, right, moveE);
-
-			if (!edges.Remove(moveE.Last().Onext().Sym))
-				edges.Remove(moveE.Last().Onext());
+			if (!edges.Remove(delE))
+				edges.Remove(delE.Sym);
 			verticies.Remove(v);
 		}
 
-		//subdivide a face
-		//preserves euler characteristics
-		//use this to change graph
+		/// <summary>
+		/// <para>The method of expanding from the primitive quad-edge structure. makeFaceEdge subdivides the face "f" into two
+		/// along an edge that points from orig to dest.</para>
+		/// <para>This first finds a list of edges that needs to be moved to surround the new face, creates a new, unlinked face, and calls
+		/// <see cref="Edge.SplitFaceVertex"/> with the appropriate parameters.</para>
+		/// <para>To utilize SplitFaceVertex, we pass in arguments to indicate splitting a vertex corresponding to the face f in the dual graph.</para>
+		/// <para>If the specified face does not contain the verticies orig and dest, an ArgumentException error will be thrown.(uncatched from SplitFaceVertex).</para>
+		/// </summary>
+		/// <param name="f">The face to be subdivided.</param>
+		/// <param name="orig">The origin of the edge to subdivide f.</param>
+		/// <param name="dest">The dest of the edge to subdivide f.</param>
+		/// <returns></returns>
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 			//finds all edges that needs to be moved
-			List<Edge> moveE = findMoveEdges(f.EdgeListHead, dest, orig);
+			List<Edge> moveE = findMoveEdges(f, dest, orig);
 
 			Face newf = Face.NewFace();
 			Edge newe = Edge.SplitFaceVertex(f, newf, dest, orig, moveE);
 			faces.Add(newf);
-			edges.Add(newe);
+			edges.Add(newe.Rot);
 			return newe;
 		}
 
-		//undos makeFaceEdge
+		/// <summary>
+		/// <para>The method of reducing the quad-edge structure. killFaceEdge does the opposite of makeFaceEdge and "rejoins" a subdivided face
+		/// by deleting the face f and transfers its edges to the face to the left of the edge running from orig to dest.</para>
+		/// <para>This first finds a list of edges that needs to be moved to the other face, and calls <see cref="Edge.RejoinFaceVertex"/>
+		/// with the appropriate parameters.</para>
+		/// <para>TO utilize RejoinFaceVertex, we pass in arguments to indicate rejoining a vertex corresponding to the face f in the dual graph.</para>
+		/// <para>If the specified face does not contain an edge running from the orig to dest that also has another face to its right, then an ArgumentException error
+		/// will be thrown.</para>
+		/// <para>Note, this might create digons.</para>
+		/// </summary>
+		/// <param name="f">The face to be deleted.</param>
+		/// <param name="orig">The orig of the edge that currently divides the face.</param>
+		/// <param name="dest">The dest of the edge that currently divides the face.</param>
 		public void killFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 
-			List<Edge> moveE = findMoveEdges(f.EdgeListHead, dest, orig);
+			List<Edge> moveE = findMoveEdges(f, dest, orig);
+			Edge delE = moveE.Last().Onext().Sym;
+			Edge.RejoinFaceVertex(delE.Orig, f, dest, orig, moveE);
 
-			Edge.RejoinFaceVertex(moveE.Last().Onext().Dest, f, dest, orig, moveE);
-
-			if (!edges.Remove(moveE.Last().Onext().Sym))
-				edges.Remove(moveE.Last().Onext());
+			if (!edges.Remove(delE.Rot))
+				edges.Remove(delE.InvRot);
 			faces.Remove(f);
 		}
 
-		//find all edges pointing away from orig of start
-		//that is also between left and right
-		//that is also on "top"
-		private List<Edge> findMoveEdges(Edge start, FaceVertex left, FaceVertex right)
+		//find all edges pointing away from fv
+		//that satisfies:
+		//start at an edge bordering right, find an edge pointing out of fv in a CCW rotation step
+		//repeat until accumulated all edges until the edge bordering left
+		private List<Edge> findMoveEdges(FaceVertex fv, FaceVertex left, FaceVertex right)
 		{
-			Edge temp = start;
+			Edge temp = fv.EdgeListHead;
 			while (temp.Right != right)
 			{
 				temp = temp.Onext();
-				if (temp == start) //made a loop
+				if (temp == fv.EdgeListHead) //made a loop
 				{
 					return null;
 				}

@@ -290,6 +290,7 @@
     <Compile Include="Assets\Model\FaceVertex.cs" />
     <Compile Include="Assets\Model\SphereKernel.cs" />
     <Compile Include="Assets\Model\TraversalObject.cs" />
+    <Compile Include="Assets\Prefab\VertexObject.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
