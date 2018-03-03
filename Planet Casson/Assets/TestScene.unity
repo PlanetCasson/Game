@@ -122,6 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 927602181}
   - component: {fileID: 927602180}
+  - component: {fileID: 927602182}
   - component: {fileID: 927602179}
   - component: {fileID: 927602178}
   m_Layer: 0
@@ -194,6 +195,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &927602182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 927602177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca992325408c6964ea36ba897e39f4ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnSpeed: 4
+  panSpeed: 4
+  zoomSpeed: 4
 --- !u!1 &1756208845
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,11 +298,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2076371987}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc79cf06f89f612499b6b891173c0ead, type: 3}
+  m_Script: {fileID: 11500000, guid: 706c2d65458375e47bcb75de7cdd2dba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vertexObj: {fileID: 1389932504333770, guid: 3f3dabe862b164b4382db690e23877ec, type: 2}
-  edgeObj: {fileID: 1151535536574396, guid: 4bb6219cbf2c2e745ab06f5f9c1533e1, type: 2}
+  vertexObj: {fileID: 1389932504333770, guid: fd22fe11f26d4584680578ccafef0558, type: 2}
+  edgeObj: {fileID: 1151535536574396, guid: d31433139e7893f4cac936ed8bec65b1, type: 2}
   faceObj: {fileID: 1543363465444718, guid: c5bef19d040856246b20e009f8b9a5c9, type: 2}
   traverserObj: {fileID: 1633538656188156, guid: 10053f56f03489d418fe5514f6da08b5,
     type: 2}
