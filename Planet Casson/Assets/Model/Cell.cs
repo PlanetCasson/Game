@@ -55,6 +55,7 @@ namespace Model
 			//testing stuff
 			c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
 			c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
+			c.verticies.Last().pos = new Vector3(10, 2, 20);
 			//c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
 			//c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
 			return c;
@@ -88,7 +89,7 @@ namespace Model
 				Vector3 sum = new Vector3(0, 0, 0);
 				Edge start = faces[i].EdgeListHead.Onext();
 				Edge current = start;
-				Vertex prev = faces[i].EdgeListHead.Right as Vertex;
+//				Vertex prev = faces[i].EdgeListHead.Right as Vertex;
 				do
 				{
 					Vpos.AddLast((current.Right as Vertex).pos); //right should be the vertex that's origin of the edge's dual
@@ -220,6 +221,7 @@ namespace Model
 			{
 				//Instantiate new game object
 				tObjs[i] = Object.Instantiate(traverserObj, obj.gameObject.transform);
+				tObjs[i].GetComponent<MeshRenderer>().material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f), 150);
 				//Obtain the first available edge
 				Edge oneOfTheEdges = faces[i].EdgeListHead.Rot;
 				//create a new traversal object on first availiable edge
