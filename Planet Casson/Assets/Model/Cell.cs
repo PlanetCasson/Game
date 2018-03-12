@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using UnityEngine;
 using Model.Objects;
 
@@ -58,6 +59,57 @@ namespace Model
 			c.verticies.Last().pos = new Vector3(10, 2, 20);
 			//c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
 			//c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
+			return c;
+		}
+
+		/// <summary>
+		/// <para>Loads a Cell from a simple .obj file in the /Prefab/Graphs folder. It does not import normals, or textures, only the connection and vertex position data.</para>
+		/// </summary>
+		/// <param name="fileName"></param>
+		/// <returns>a graph(cell) representing the object stored as the .obj file</returns>
+		public static Cell LoadCell(string fileName)
+		{
+			string path = Application.dataPath + "/Prefab/Graphs/" + fileName;
+			Cell c = new Cell();
+			using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+			{
+				using (StreamReader sr = new StreamReader(fs))
+				{
+					List<Vertex> verticies = new List<Vertex>();
+					List<Face> faces = new List<Face>();
+					List<List<int>> connections = new List<List<int>>();
+					Dictionary<Vertex, Edge> partialEdges = new Dictionary<Vertex, Edge>();
+					while (!sr.EndOfStream)
+					{
+						string line = sr.ReadLine();
+						string[] tokens = line.Split(' ');
+						if (tokens.Length > 1 && tokens.Last() == string.Empty) System.Array.Resize(ref tokens, tokens.Length - 1);
+						switch (tokens[0])
+						{
+							case "v":
+								Vertex v = Vertex.NewVertex(new Vector3(System.Convert.ToSingle(tokens[1]), System.Convert.ToSingle(tokens[2]), System.Convert.ToSingle(tokens[3])));
+								verticies.Add(v);
+								break;
+							case "f":
+								Face f = Face.NewFace();
+								faces.Add(f);
+								connections.Add(new List<int>());
+								for (int i = 1; i < tokens.Length; i++)
+								{
+									string[] toklets = tokens[i].Split('/');
+									connections.Last().Add(System.Convert.ToInt32(toklets[0]) - 1);
+								}
+								break;
+							default:
+								break;
+						}
+					}
+					List<Edge> edges = Edge.ConnectCell(verticies, faces, connections);
+					c.verticies = verticies;
+					c.edges = edges;
+					c.faces = faces;
+				}
+			}
 			return c;
 		}
 

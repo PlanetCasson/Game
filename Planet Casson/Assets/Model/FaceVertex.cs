@@ -77,8 +77,13 @@ namespace Model
 		/// <returns>The newly created vertex</returns>
 		public static Vertex NewVertex()
 		{
+			return Vertex.NewVertex(Vector3.zero);
+		}
+
+		public static Vertex NewVertex(Vector3 pos)
+		{
 			Vertex v = new Vertex();
-			v.pos = Vector3.zero;
+			v.pos = pos;
 			return v;
 		}
 	}

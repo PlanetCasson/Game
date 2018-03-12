@@ -195,6 +195,75 @@ namespace Model
 		}
 
 		/// <summary>
+		/// <para>provided a list of verticies, faces, this method connects the verticies and faces together according to the connections list</para>
+		/// </summary>
+		/// <param name="verticies"></param>
+		/// <param name="faces"></param>
+		/// <param name="connections"></param>
+		/// <returns>list of edges used to connect the verticies and faces</returns>
+		public static List<Edge> ConnectCell(List<Vertex> verticies, List<Face> faces, List<List<int>> connections)
+		{
+			Dictionary<EdgeCompareContainer, Edge> edgeCatalog = new Dictionary<EdgeCompareContainer, Edge>(); //catalog of edges by their orig verticies
+			for (int i = 0; i < faces.Count; i++)
+			{
+				List<int> loop = connections[i];
+
+				Vertex orig = verticies[loop.Last()];
+				Vertex dest = verticies[loop[0]];
+				Face left = faces[i];
+				EdgeCompareContainer ekey = new EdgeCompareContainer(orig, dest);
+				EdgeCompareContainer rekey = new EdgeCompareContainer(dest, orig);
+				Edge e;
+				if (edgeCatalog.TryGetValue(rekey, out e))
+					e = e.Sym;
+				else
+				{
+					e = Edge.NewEdge();
+					edgeCatalog.Add(ekey, e);
+				}
+
+				for (int j = 1; j <= loop.Count; j++)
+				{
+					orig = verticies[loop[j-1]];
+					dest = verticies[loop[j % loop.Count]];
+					EdgeCompareContainer prevEkey = ekey;
+					Edge preve = e;
+					ekey = new EdgeCompareContainer(orig, dest);
+					rekey = new EdgeCompareContainer(dest, orig);
+					if (!edgeCatalog.TryGetValue(rekey, out e))
+					{
+						if (!edgeCatalog.TryGetValue(ekey, out e))
+						{
+							e = Edge.NewEdge();
+							edgeCatalog.Add(ekey, e);
+						}
+						e._orig = orig;
+						e.InvRot._orig = left;
+						orig.EdgeListHead = e;
+						left.EdgeListHead = e.InvRot;
+					}
+					else
+					{
+						e = e.Sym;
+						e._orig = orig;
+						e.InvRot._orig = left;
+						orig.EdgeListHead = e;
+						left.EdgeListHead = e.InvRot;
+					}
+					e._onext = preve.Sym;
+					preve.InvRot._onext = e.InvRot;
+				}
+			}
+
+			List<Edge> edges = new List<Edge>();
+			foreach (KeyValuePair<EdgeCompareContainer, Edge> kvp in edgeCatalog)
+			{
+				edges.Add(kvp.Value);
+			}
+			return edges;
+		}
+
+		/// <summary>
 		/// <para>Connects a list of verticies and faces to form the Quad-Edge graph of a tetrahedron.
 		/// Sets up the initial connections and <see cref="Onext"/> relationship.
 		/// This method takes in 4 verticies and 4 faces. If this is not satisfied, an ArgumentException will be thrown.</para>
@@ -394,6 +463,34 @@ namespace Model
 		public Edge Dprev()
 		{
 			return InvRot.Onext().InvRot;
+		}
+	}
+
+	struct EdgeCompareContainer
+	{
+		public Vertex orig;
+		public Vertex dest;
+
+		public EdgeCompareContainer(Vertex orig, Vertex dest)
+		{
+			this.orig = orig;
+			this.dest = dest;
+		}
+	}
+
+	class DirectedEdgeComparer : IEqualityComparer<EdgeCompareContainer>
+	{
+		public bool Equals(EdgeCompareContainer x, EdgeCompareContainer y)
+		{
+			if (x.orig == y.orig && x.dest == y.dest)
+				return true;
+			else
+				return false;
+		}
+
+		public int GetHashCode(EdgeCompareContainer obj)
+		{
+			return ((obj.orig.GetHashCode() | 0x0000FFFF) + (obj.dest.GetHashCode() << 16)).GetHashCode();
 		}
 	}
 }
