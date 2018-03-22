@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Model
 {
@@ -13,6 +14,8 @@ namespace Model
 		private float _pos;
 		//velocity is measured in percentOfEdge/frame
 		private float _vel;
+		//audio source for collision sounds
+		AudioSource _collideSound;
 
 		/// <summary>
 		/// Method used to construct a new traversal object
@@ -24,7 +27,6 @@ namespace Model
 		/// <returns>New traversal object with the properties given in the parameters</returns>
 		public void AssignTraversalValues(Edge currentEdge, float position, float velocity)
 		{
-			
 			_current = currentEdge;
 			_pos = position;
 			_vel = velocity;
@@ -71,6 +73,32 @@ namespace Model
 				throw new System.ArgumentException("Traversal Object's _current variable is an edge that doesn't point to vertexes");
 			}
 			
+		}
+		/// <summary>
+		/// If Traversal Object collides with another, check that the collision is valid
+		/// and play a sound
+		/// </summary>
+		/// <param name="collision"></param>
+		public void OnCollisionEnter(Collision collision)
+		{
+			//check for valid collision
+			try
+			{
+				_collideSound.Play();
+			} catch (NullReferenceException e)
+			{
+				print("potential audio reference error");
+			}
+			//TODO: Check collision is valid i.e. same edge or vertex
+
+		}
+		/// <summary>
+		/// Called by the Unity Engine at the start of the game. Instantiates the collision sound
+		/// </summary>
+		public void Start()
+		{
+			//Fetch audio source from the GameObject
+			_collideSound = GetComponent<AudioSource>();
 		}
 		/// <summary>
 		/// Called by the Unity Engine at every frame. Adjusts the position of the traversal object
