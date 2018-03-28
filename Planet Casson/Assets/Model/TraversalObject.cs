@@ -8,6 +8,8 @@ namespace Model
 	/// </summary>
 	public class TraversalObject : MonoBehaviour
 	{
+        public static Boolean playing = true;
+
 		//Variables held by each traversal object
 		private Edge _current;
 		//position is a measurement of the percentage of the current edge that the object has travelled
@@ -105,16 +107,19 @@ namespace Model
 		/// </summary>
 		public void Update()
 		{
-			//calculate the new percentage of the edge the object will be at
-			float newPercentPos = _pos + _vel;
-			if (newPercentPos > 1.0)
-			{
-				//object has reached the end of the current edge, move to the next one
-				_current = _current.Lnext();
-				newPercentPos = newPercentPos - 1.0F;
-			}
-			transform.position = getVectorPosition(newPercentPos);
-			_pos = newPercentPos;
+            if (TraversalObject.playing)
+            {
+                //calculate the new percentage of the edge the object will be at
+                float newPercentPos = _pos + _vel;
+                if (newPercentPos > 1.0)
+                {
+                    //object has reached the end of the current edge, move to the next one
+                    _current = _current.Lnext();
+                    newPercentPos = newPercentPos - 1.0F;
+                }
+                transform.position = getVectorPosition(newPercentPos);
+                _pos = newPercentPos;
+            }
 		}
 	}
 }
