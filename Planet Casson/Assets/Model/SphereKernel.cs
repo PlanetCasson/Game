@@ -21,7 +21,7 @@ public class SphereKernel : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		SphereKernelCell = Cell.LoadCell("../test.obj");
+		SphereKernelCell = Cell.LoadCell("test.obj");
     GameObject[][] tmp = SphereKernelCell.instantiateGraph(this, vertexObj, edgeObj, faceObj);
     VertexObjects = tmp[0]; EdgeObjects = tmp[1]; FaceObjects = tmp[2];
     foreach(GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
