@@ -119,7 +119,10 @@ namespace Model
                 }
                 transform.position = getVectorPosition(newPercentPos);
                 _pos = newPercentPos;
-            }
+            } else {
+				transform.position = getVectorPosition(_pos);
+
+			}
 		}
 	}
 }
