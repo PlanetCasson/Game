@@ -195,11 +195,18 @@ namespace Model
 		}
 
 		/// <summary>
-		/// <para>provided a list of verticies, faces, this method connects the verticies and faces together according to the connections list</para>
+		/// <para>Provided a list of verticies, faces, this method connects the verticies and faces together according to the connections list.</para>
+		/// <para>This method loops through the faces list. For each face, it loops through the corresponding list in connections in order to construct the graph.</para>
+		/// <para>Upon iterating through each 2 elements in each inner list of connections, a partially initalized edge is created that contains the directed edge from the first vertex to the second vertex and its dual edge.
+		/// This partially initiallized edge is then put into a hashset. Upon continuing iteration of subsequent element pairs in each inner list of connections, if 2 verticies that form the same undirected edge is found
+		/// in the hashset, then the originally initialized Edge's symmetric and dual symmetric edges are initialized.</para>
 		/// </summary>
-		/// <param name="verticies"></param>
-		/// <param name="faces"></param>
-		/// <param name="connections"></param>
+		/// <param name="verticies">list of verticies in the graph.</param>
+		/// <param name="faces">list of faces in the graph.</param>
+		/// <param name="connections"><para>A list of lists of ints that stores the connection information between the edges and verticies to form a graph.</para>
+		/// <para>Each inner list corresponds to a face in the faces list with the same index and represents the connections of that face. 
+		/// Integer elements of the inner list are indicies into the verticies list and points to verticies on the face. 
+		/// They are ordered in the inner list such that the subsequent element points to the next counterclockwise vertex on the face.</para></param>
 		/// <returns>list of edges used to connect the verticies and faces</returns>
 		public static List<Edge> ConnectCell(List<Vertex> verticies, List<Face> faces, List<List<int>> connections)
 		{

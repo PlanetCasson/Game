@@ -18,5 +18,6 @@ public class PauseButton : MonoBehaviour
     void TaskOnClick()
     {
         TraversalObject.playing = !TraversalObject.playing;
+        pause_btn.GetComponentInChildren<Text>().text = TraversalObject.playing ? "Pause" : "Play";
     }
 }

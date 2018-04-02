@@ -63,9 +63,13 @@ namespace Model
 		}
 
 		/// <summary>
-		/// <para>Loads a Cell from a simple .obj file in the /Prefab/Graphs folder. It does not import normals, or textures, only the connection and vertex position data.</para>
+		/// <para>Loads a Cell from a simple .obj file in the Assets/StreamingAssets folder. It does not import normal offsets, or textures, only the connection and vertex position data.</para>
+		/// <para>This function only parses lines beginning with v and f in the obj file, therefore multiple objects are non supported as well.</para>
+		/// <para>This simply parses through the .obj file, and for each line beginning with v, it creates a new vertex, and for each line beginning with f,
+		/// it creates a face, and loads its associated face index into the corresponding connections list. These lists are then used to call <see cref="Edge.ConnectCell"/> which
+		/// returns a list of the edges used to connect the verticies and faces into a graph. These lists are then stored in a cell, and that cell which contains a graph is returned.</para>
 		/// </summary>
-		/// <param name="fileName"></param>
+		/// <param name="fileName">name of the file containing the graph to load.</param>
 		/// <returns>a graph(cell) representing the object stored as the .obj file</returns>
 		public static Cell LoadCell(string fileName)
 		{

@@ -22,16 +22,26 @@ public class SphereKernel : MonoBehaviour
 	void Start()
 	{
 		SphereKernelCell = Cell.LoadCell("cube.obj");
-    GameObject[][] tmp = SphereKernelCell.instantiateGraph(this, vertexObj, edgeObj, faceObj);
-    VertexObjects = tmp[0]; EdgeObjects = tmp[1]; FaceObjects = tmp[2];
-    foreach(GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
-    SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
-    SphereKernelCell.instantiateTraversals(this, traverserObj);
-    /* Example for adding components
-		asdf = new GameObject();
-		asdf.name = "asdf";
-		asdf.AddComponent<LineRenderer>();
-		*/
+        GameObject[][] tmp = SphereKernelCell.instantiateGraph(this, vertexObj, edgeObj, faceObj);
+        VertexObjects = tmp[0]; EdgeObjects = tmp[1]; FaceObjects = tmp[2];
+        foreach(GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
+        SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
+        SphereKernelCell.instantiateTraversals(this, traverserObj);
+        /* Example for adding components
+		    asdf = new GameObject();
+		    asdf.name = "asdf";
+		    asdf.AddComponent<LineRenderer>();
+		    */
+    }
+
+    public void changeModel(string url)
+    {
+        SphereKernelCell = Cell.LoadCell(url);
+        GameObject[][] tmp = SphereKernelCell.instantiateGraph(this, vertexObj, edgeObj, faceObj);
+        VertexObjects = tmp[0]; EdgeObjects = tmp[1]; FaceObjects = tmp[2];
+        foreach (GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
+        SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
+        SphereKernelCell.instantiateTraversals(this, traverserObj);
     }
 
     public void recalc()
