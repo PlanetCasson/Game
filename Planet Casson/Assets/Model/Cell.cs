@@ -69,7 +69,7 @@ namespace Model
 		/// <returns>a graph(cell) representing the object stored as the .obj file</returns>
 		public static Cell LoadCell(string fileName)
 		{
-			string path = Application.dataPath + "/Prefab/Graphs/" + fileName;
+			string path = Application.dataPath + "/StreamingAssets/" + fileName;
 			Cell c = new Cell();
 			using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
 			{

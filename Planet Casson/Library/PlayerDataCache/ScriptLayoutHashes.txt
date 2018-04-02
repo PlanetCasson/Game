@@ -7,6 +7,8 @@ SceneListEnd?
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 a40330c4eb8bca5c73e00ea35678efd2 Assembly-CSharp.dll:.CameraControls
 0c587f2f69189cb7ca2070c1c4f8afb4 Assembly-CSharp.dll:.SphereKernel
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PhaseShift
+8f9c217f50d262d33d803d00075d3397 Assembly-CSharp.dll:.KeyboardCamera
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Model.TraversalObject
@@ -145,5 +147,4 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 463516d5b5fe8e67a0a24c48f2095b04 UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PhaseShift
-8f9c217f50d262d33d803d00075d3397 Assembly-CSharp.dll:.KeyboardCamera
+a40330c4eb8bca5c73e00ea35678efd2 Assembly-CSharp.dll:.MoveCamera

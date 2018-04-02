@@ -306,10 +306,13 @@
     <Compile Include="Assets\Model\Cell.cs" />
     <Compile Include="Assets\Model\Edge.cs" />
     <Compile Include="Assets\Model\FaceVertex.cs" />
+    <Compile Include="Assets\Model\PhaseShift.cs" />
     <Compile Include="Assets\Model\SphereKernel.cs" />
     <Compile Include="Assets\Model\TraversalObject.cs" />
     <Compile Include="Assets\Prefab\VertexObject.cs" />
     <Compile Include="Assets\UserInterface\CameraControls.cs" />
+    <Compile Include="Assets\UserInterface\KeyboardCamera.cs" />
+    <Compile Include="Assets\UserInterface\MoveCamera.cs" />
     <Compile Include="Assets\UserInterface\PauseButton.cs" />
     <Compile Include="Assets\UserInterface\PlayButton.cs" />
   </ItemGroup>
