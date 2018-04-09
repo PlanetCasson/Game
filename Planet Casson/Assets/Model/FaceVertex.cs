@@ -55,6 +55,31 @@ namespace Model
 		{
 			return new Face();
 		}
+
+		public List<Edge> getBoundEdges()
+		{
+			List<Edge> boundary = new List<Edge>();
+			boundary.Add(EdgeListHead.Rot.Lnext());
+			do
+			{
+				boundary.Add(boundary.Last().Lnext());
+			} while (boundary.Last() != EdgeListHead.Rot);
+			return boundary;
+		}
+
+		public Vector3 getFaceCenter()
+		{
+			Edge current = EdgeListHead.Onext();
+			Vector3 avg = (current.Right as Vertex).pos;
+			int count = 1;
+			do
+			{
+				current = current.Onext();
+				avg += (current.Right as Vertex).pos;
+				count++;
+			} while (current != EdgeListHead);
+			return avg / count;
+		}
 	}
 
 	/// <summary>

@@ -28,41 +28,6 @@ namespace Model
 		List<Face> faces;
 
 		/// <summary>
-		/// <para>Factory for making the most basic Quad-Edge graph embedded in the sphere, the tetrahedron.
-		/// This creates the verticies and faces of the tetrahedron and links them together with the <see cref="Edge.ConnectTetraCell"/> function in Edge.</para>
-		/// <para>Note that the positions of all the verticies are initialized to zero. after MakePrimitiveCell.</para>
-		/// </summary>
-		/// <returns>A tetrahedron graph embedded on a sphere. The positions of the verticies are initialized to 0.</returns>
-		public static Cell MakePrimitiveCell()
-		{
-			Cell c = new Cell();
-			c.verticies = new List<Vertex>();
-			c.verticies.Add(Vertex.NewVertex());
-            c.verticies[0].pos = new Vector3(0, 0, 40);
-			c.verticies.Add(Vertex.NewVertex());
-            c.verticies[1].pos = new Vector3(30, 0, 0);
-            c.verticies.Add(Vertex.NewVertex());
-            c.verticies[2].pos = new Vector3(-20, -20, 0);
-            c.verticies.Add(Vertex.NewVertex());
-            c.verticies[3].pos = new Vector3(-20, 20, 0);
-
-            c.faces = new List<Face>();
-			c.faces.Add(Face.NewFace());
-			c.faces.Add(Face.NewFace());
-			c.faces.Add(Face.NewFace());
-			c.faces.Add(Face.NewFace());
-
-			c.edges = Edge.ConnectTetraCell(c.verticies, c.faces);
-			//testing stuff
-			c.makeVertexEdge(c.verticies[0], c.faces[1], c.faces[2]);
-			c.makeFaceEdge(c.faces[2], c.verticies.Last(), c.verticies[2]);
-			c.verticies.Last().pos = new Vector3(10, 2, 20);
-			//c.killFaceEdge(c.faces.Last(), c.verticies.Last(), c.verticies[2]);
-			//c.killVertexEdge(c.verticies.Last(), c.faces[1], c.faces[2]);
-			return c;
-		}
-
-		/// <summary>
 		/// <para>Loads a Cell from a simple .obj file in the Assets/StreamingAssets folder. It does not import normal offsets, or textures, only the connection and vertex position data.</para>
 		/// <para>This function only parses lines beginning with v and f in the obj file, therefore multiple objects are non supported as well.</para>
 		/// <para>This simply parses through the .obj file, and for each line beginning with v, it creates a new vertex, and for each line beginning with f,
@@ -283,9 +248,6 @@ namespace Model
 				//create a new traversal object on first availiable edge
 				tObjs[i].AddComponent<TraversalObject>();
 				tObjs[i].GetComponent<TraversalObject>().AssignTraversalValues(oneOfTheEdges, 0.5F, 0.005F);
-				Vector3 position = tObjs[i].GetComponent<TraversalObject>().getVectorPosition(0.5F);
-				//Translate object with to new position
-				tObjs[i].transform.position = position;
 			}
 		}
 
