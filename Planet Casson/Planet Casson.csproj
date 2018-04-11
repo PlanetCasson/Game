@@ -313,6 +313,8 @@
     <Compile Include="Assets\UserInterface\CameraControls.cs" />
     <Compile Include="Assets\UserInterface\ChangeModelButton.cs" />
     <Compile Include="Assets\UserInterface\KeyboardCamera.cs" />
+    <Compile Include="Assets\UserInterface\MainMenu\QuitGameButton.cs" />
+    <Compile Include="Assets\UserInterface\MainMenu\StartGameButton.cs" />
     <Compile Include="Assets\UserInterface\ModelSelector.cs" />
     <Compile Include="Assets\UserInterface\MoveCamera.cs" />
     <Compile Include="Assets\UserInterface\PauseButton.cs" />
