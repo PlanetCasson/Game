@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 135998002490133758}
   - component: {fileID: 54075097531230810}
   - component: {fileID: 82407856356759386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Traverser
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -145,7 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbda9816b70defe4e85a13fbe588b9e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropdown_select: {fileID: 390821127}
+  dropdown_select: {fileID: 114731627540005550, guid: cf828e9e085ad1f4b82179be03de4697,
+    type: 2}
   models: []
 --- !u!1001 &503233772
 Prefab:

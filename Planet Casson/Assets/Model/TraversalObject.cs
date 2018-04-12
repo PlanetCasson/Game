@@ -24,10 +24,6 @@ namespace Model
 		public Edge CurrentEdge
 		{
 			get { return _current; }
-			set
-			{
-				_current = value;
-			}
 		}
 		public float Phase
 		{
@@ -36,10 +32,7 @@ namespace Model
 			{
 				_phase = value - Mathf.Floor(value);
 				int edgei;
-				if (value < 0)
-					//TODO implement stuff
-				else
-					edgei = (int)Mathf.Floor(_phase * _boundaryE.Count);
+				edgei = (int)Mathf.Floor(_phase * _boundaryE.Count);
 				_current = _boundaryE[edgei];
 				if (_current.Orig is Vertex && _current.Dest is Vertex)
 				{

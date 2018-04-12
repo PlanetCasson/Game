@@ -4,7 +4,6 @@ using UnityEngine;
 using Model;
 using Model.Objects;
 
-
 /// <summary>
 /// Script to allow player to shift the phase of the traversal object
 /// along each face of the graph. 
@@ -17,10 +16,11 @@ public class PhaseShift : MonoBehaviour {
 	private Vector3 mouseOrig;
 	private Ray ray;
 	private RaycastHit hit;
-	private GameObject traversal;
+	private TraversalObject traversal;
 	private Vector3 center;
 	private float initPhase;
 	private float initAngle;
+	private int dir;
 
 	// Use this for initialization
 	void Start () {
@@ -32,17 +32,14 @@ public class PhaseShift : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) {
 			Debug.Log("Here");
 			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			if (Physics.Raycast(ray, out hit)) {
-				traversal = hit.transform.gameObject;
-				center = Camera.main.WorldToViewportPoint((traversal.GetComponent<TraversalObject>().CurrentEdge.Left as Face).getFaceCenter());
-				initPhase = traversal.GetComponent<TraversalObject>().Phase;
-				Vector3 initVector = Camera.main.ScreenToViewportPoint(Input.mousePosition) - center;
-				initVector.z = 0;
-				initVector = Vector3.Normalize(initVector);
-				if (initVector.y > 0)
-					initAngle = Mathf.Acos(Vector3.Dot(initVector, Vector3.right));
-				else
-					initAngle = Mathf.Acos(Vector3.Dot(initVector, Vector3.left)) + Mathf.PI;
+			//note please put all traversers in "Traverser" layer
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8)) {
+				Debug.Log("Hit");
+				traversal = hit.transform.gameObject.GetComponent<TraversalObject>();
+				center = Camera.main.WorldToViewportPoint((traversal.CurrentEdge.Left as Face).getFaceCenter());
+				initPhase = traversal.Phase;
+				initAngle = angleToHorizontal(Camera.main.ScreenToViewportPoint(Input.mousePosition) - center);
+				dir = findDir(traversal.CurrentEdge);
 				isDragging = true;
 			}
 		}
@@ -52,17 +49,37 @@ public class PhaseShift : MonoBehaviour {
 
 		if (isDragging)
 		{
-			Vector3 newVector = Camera.main.ScreenToViewportPoint(Input.mousePosition) - center;
-			newVector.z = 0;
-			newVector = Vector3.Normalize(newVector);
-			float newAngle;
-			if (newVector.y > 0)
-				newAngle = Mathf.Acos(Vector3.Dot(newVector, Vector3.right));
-			else
-				newAngle = Mathf.Acos(Vector3.Dot(newVector, Vector3.left)) + Mathf.PI;
-			Debug.Log((newAngle) / (2 * Mathf.PI));
-			traversal.GetComponent<TraversalObject>().Phase = (newAngle) /(2*Mathf.PI) + initPhase;
+			float newAngle = angleToHorizontal(Camera.main.ScreenToViewportPoint(Input.mousePosition) - center);
+			float p = (dir * (newAngle - initAngle) / (2 * Mathf.PI) + initPhase);
+			traversal.Phase = p - Mathf.Floor(p);
 		}
 	}
-}
 
+	private float angleToHorizontal(Vector3 dir)
+	{
+		float angle;
+		dir.z = 0;
+		if (dir.y > 0)
+			angle = Mathf.Acos(Vector3.Dot(dir.normalized, Vector3.right));
+		else
+			angle = Mathf.Acos(Vector3.Dot(dir.normalized, Vector3.left)) + Mathf.PI;
+		return angle;
+	}
+
+	private int findDir(Edge edge)
+	{
+		int dir = 0;
+		int rev = 0;
+		float a1 = angleToHorizontal(Camera.main.WorldToViewportPoint((edge.Orig as Vertex).pos) - center);
+		float a2 = angleToHorizontal(Camera.main.WorldToViewportPoint((edge.Lnext().Orig as Vertex).pos) - center);
+		float a3 = angleToHorizontal(Camera.main.WorldToViewportPoint((edge.Lnext().Lnext().Orig as Vertex).pos) - center);
+		float a4 = angleToHorizontal(Camera.main.WorldToViewportPoint((edge.Lnext().Lnext().Lnext().Orig as Vertex).pos) - center);
+		if (a2 > a1) dir++;
+		else rev++;
+		if (a3 > a2) dir++;
+		else rev++;
+		if (a4 > a3) dir++;
+		else rev++;
+		return (dir > rev) ? 1 : -1;
+	}
+}
