@@ -1,4 +1,5 @@
-﻿using System;
+﻿﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Model
@@ -10,44 +11,38 @@ namespace Model
 	{
         public static Boolean playing = true;
 
-		//Variables held by each traversal object
 		private Edge _current;
-		//position is a measurement of the percentage of the current edge that the object has travelled
-		private float _pos;
+		//position is a measurement of the percentage of the face the object has traveled
+		private float _phase;
 		//velocity is measured in percentOfEdge/frame
 		private float _vel;
+		//number of edges on associated face
+		private List<Edge> _boundaryE;
 		//audio source for collision sounds
 		AudioSource _collideSound;
-
-		/// <summary>
-		/// Method used to construct a new traversal object
-		/// </summary>
-		/// <param name="faceTravelled"></param>
-		/// <param name="currentEdge"></param>
-		/// <param name="position"></param>
-		/// <param name="velocity"></param>
-		/// <returns>New traversal object with the properties given in the parameters</returns>
-		public void AssignTraversalValues(Edge currentEdge, float position, float velocity)
-		{
-			_current = currentEdge;
-			_pos = position;
-			_vel = velocity;
-		}
 
 		public Edge CurrentEdge
 		{
 			get { return _current; }
-			set
-			{
-				_current = value;
-			}
 		}
-		public float Position
+		public float Phase
 		{
-			get { return _pos; }
+			get { return _phase; }
 			set
 			{
-				_pos = value;
+				_phase = value - Mathf.Floor(value);
+				int edgei;
+				edgei = (int)Mathf.Floor(_phase * _boundaryE.Count);
+				_current = _boundaryE[edgei];
+				if (_current.Orig is Vertex && _current.Dest is Vertex)
+				{
+					Vertex OrigVertex = (Vertex)_current.Orig;
+					Vertex DestVertex = (Vertex)_current.Dest;
+					//Use Lerp method to linerally interpolate the current position of the of the object
+					gameObject.transform.position = Vector3.Lerp(OrigVertex.pos, DestVertex.pos, _phase * _boundaryE.Count - edgei);
+				}
+				else
+					throw new System.ArgumentException("Traversal Object's _current variable is an edge that doesn't point to vertexes");
 			}
 		}
 		public float Velocity
@@ -58,24 +53,22 @@ namespace Model
 				_vel = value;
 			}
 		}
+
 		/// <summary>
-		/// Gives position of object as a Vector3
+		/// Method used to construct a new traversal object
 		/// </summary>
-		/// <returns>Vector3 position</returns>
-		public Vector3 getVectorPosition (float percentPos)
+		/// <param name="faceTravelled"></param>
+		/// <param name="currentEdge"></param>
+		/// <param name="position"></param>
+		/// <param name="velocity"></param>
+		/// <returns>New traversal object with the properties given in the parameters</returns>
+		public void AssignTraversalValues(Edge currentEdge, float phase, float velocity)
 		{
-			if (_current.Orig is Vertex && _current.Dest is Vertex)
-			{
-				Vertex OrigVertex = (Vertex)_current.Orig;
-				Vertex DestVertex = (Vertex)_current.Dest;
-				//Use Lerp method to linerally interpolate the current position of the of the object
-				return Vector3.Lerp(OrigVertex.pos, DestVertex.pos, percentPos);
-			} else
-			{
-				throw new System.ArgumentException("Traversal Object's _current variable is an edge that doesn't point to vertexes");
-			}
-			
+			_boundaryE = (currentEdge.Left as Face).getBoundEdges();
+			_phase = phase;
+			_vel = velocity;
 		}
+
 		/// <summary>
 		/// If Traversal Object collides with another, check that the collision is valid
 		/// and play a sound
@@ -107,7 +100,8 @@ namespace Model
 		/// </summary>
 		public void Update()
 		{
-            if (TraversalObject.playing)
+			/*
+			if (TraversalObject.playing)
             {
                 //calculate the new percentage of the edge the object will be at
                 float newPercentPos = _pos + _vel;
@@ -122,6 +116,15 @@ namespace Model
             } else {
 				transform.position = getVectorPosition(_pos);
 
+			}
+			*/
+			if (TraversalObject.playing)
+			{
+				Phase += _vel / _boundaryE.Count;
+			}
+			else
+			{
+				Phase = Phase;
 			}
 		}
 	}
