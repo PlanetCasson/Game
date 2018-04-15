@@ -1,4 +1,4 @@
-﻿﻿﻿﻿using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Model;
@@ -9,31 +9,28 @@ using Model.Objects;
 /// along each face of the graph. 
 /// </summary>
 
-public class PhaseShift : MonoBehaviour {
+public class TraversalDrag
+{
 
 	// Hit Detection
-	private bool isDragging; 
-	private Vector3 mouseOrig;
-	private Ray ray;
-	private RaycastHit hit;
+	private bool isDragging;
 	private TraversalObject traversal;
 	private Vector3 center;
 	private float initPhase;
 	private float initAngle;
 	private int dir;
 
-	// Use this for initialization
-	void Start () {
-		Debug.Log("In");
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetMouseButtonDown(0)) {
+	//not called by Unity game loop
+	public bool Update()
+	{
+		if (Input.GetMouseButtonDown(0))
+		{
 			Debug.Log("Here");
-			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			//note please put all traversers in "Traverser" layer
-			if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8)) {
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			RaycastHit hit;
+			//note please put all traversers in "Traverser" layer or layer 8
+			if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
+			{
 				Debug.Log("Hit");
 				traversal = hit.transform.gameObject.GetComponent<TraversalObject>();
 				center = Camera.main.WorldToViewportPoint((traversal.CurrentEdge.Left as Face).getFaceCenter());
@@ -41,18 +38,19 @@ public class PhaseShift : MonoBehaviour {
 				initAngle = angleToHorizontal(Camera.main.ScreenToViewportPoint(Input.mousePosition) - center);
 				dir = findDir(traversal.CurrentEdge);
 				isDragging = true;
+				return true;
 			}
 		}
-
-		if (Input.GetMouseButtonUp(0))
-			isDragging = false;
-
 		if (isDragging)
 		{
+			if (Input.GetMouseButtonUp(0))
+				isDragging = false;
 			float newAngle = angleToHorizontal(Camera.main.ScreenToViewportPoint(Input.mousePosition) - center);
 			float p = (dir * (newAngle - initAngle) / (2 * Mathf.PI) + initPhase);
 			traversal.Phase = p - Mathf.Floor(p);
+			return true;
 		}
+		return false;
 	}
 
 	private float angleToHorizontal(Vector3 dir)

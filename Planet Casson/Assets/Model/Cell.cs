@@ -96,57 +96,13 @@ namespace Model
             }
             for (int i = 0; i < edges.Count; i++)
             {
-                LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
-                lr.positionCount = 2;
-                Vertex orig = (edges[i].Orig) as Vertex;
-                Vertex dest = (edges[i].Dest) as Vertex;
-                lr.SetPosition(0, orig.pos);
-                lr.SetPosition(1, dest.pos);
-            }
+				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
+				ei.SetEdgeView(edges[i]);
+				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
+			}
             for (int i = 0; i < faces.Count; i++)
             {
-				//computing center of face
-				LinkedList<Vector3> Vpos = new LinkedList<Vector3>();
-				Vector3 sum = new Vector3(0, 0, 0);
-				Edge start = faces[i].EdgeListHead.Onext();
-				Edge current = start;
-//				Vertex prev = faces[i].EdgeListHead.Right as Vertex;
-				do
-				{
-					Vpos.AddLast((current.Right as Vertex).pos); //right should be the vertex that's origin of the edge's dual
-																 //the edge's dual edge is a CCW pointing edge bordering faces[i]
-					sum += Vpos.Last();
-					current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
-				} while (current != start);
-				Vector3 avg = sum / Vpos.Count;
-				Vpos.AddFirst(avg);
-
-				//construct mesh
-				int j;
-				Vector2[] UVs = new Vector2[Vpos.Count];
-				int[] trigs = new int[3 * (Vpos.Count - 1)]; //-1 to get number of verticies surrounding face = #of trigs
-				float UVstep = 2 * Mathf.PI / Vpos.Count;
-				UVs[0] = new Vector2(0.5f, 0.5f);
-				UVs[1] = new Vector2((Mathf.Cos(UVstep) + 1) / 2, (Mathf.Sin(UVstep) + 1) / 2);
-				trigs[0] = 0;
-				trigs[1] = 1;
-				trigs[2] = 2;
-				for (j = 2; j < Vpos.Count; j++)
-				{
-					UVs[j] = new Vector2((Mathf.Cos(j * UVstep) + 1) / 2, (Mathf.Sin(j * UVstep) + 1) / 2);
-					trigs[3 * (j - 2)] = 0;
-					trigs[3 * (j - 2) + 1] = j - 1;
-					trigs[3 * (j - 2) + 2] = j;
-				}
-				trigs[3 * (j - 2)] = 0;
-				trigs[3 * (j - 2) + 1] = j - 1;
-				trigs[3 * (j - 2) + 2] = 1;
-
-				Mesh mesh = fObjs[i].GetComponent<MeshFilter>().mesh;
-				mesh.Clear();
-				mesh.vertices = Vpos.ToArray<Vector3>();
-				mesh.uv = UVs;
-				mesh.triangles = trigs;
+				fObjs[i].GetComponent<FaceInterface>().SetFaceView(faces[i]);
 			}
         }
 
@@ -175,58 +131,14 @@ namespace Model
 			for (int i = 0; i < edges.Count; i++)
 			{
 				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
-				LineRenderer lr = eObjs[i].GetComponent<LineRenderer>();
-				lr.positionCount = 2;
-				Vertex orig = (edges[i].Orig) as Vertex;
-				Vertex dest = (edges[i].Dest) as Vertex;
-				lr.SetPosition(0, orig.pos);
-				lr.SetPosition(1, dest.pos);
+				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
+				ei.SetEdgeView(edges[i]);
+				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
 			}
 			for (int i = 0; i < faces.Count; i++)
 			{
-				//computing center of face
-				LinkedList<Vector3> Vpos = new LinkedList<Vector3>();
-				Vector3 sum = new Vector3(0, 0, 0);
-				Edge start = faces[i].EdgeListHead.Onext();
-				Edge current = start;
-				Vertex prev = faces[i].EdgeListHead.Right as Vertex;
-				do
-				{
-					Vpos.AddLast((current.Right as Vertex).pos); //right should be the vertex that's origin of the edge's dual
-															 //the edge's dual edge is a CCW pointing edge bordering faces[i]
-					sum += Vpos.Last();
-					current = current.Onext(); //Onext traversal finds the next edge in CCW dir that points out of face
-				} while (current != start);
-                Vector3 avg = sum / Vpos.Count;
-				Vpos.AddFirst(avg);
-
-				//construct mesh
-				int j;
-				Vector2[] UVs = new Vector2[Vpos.Count];
-				int[] trigs = new int[3*(Vpos.Count - 1)]; //-1 to get number of verticies surrounding face = #of trigs
-				float UVstep = 2 * Mathf.PI / Vpos.Count;
-				UVs[0] = new Vector2(0.5f, 0.5f);
-				UVs[1] = new Vector2((Mathf.Cos(UVstep) + 1) / 2, (Mathf.Sin(UVstep) + 1) / 2);
-				trigs[0] = 0;
-				trigs[1] = 1;
-				trigs[2] = 2;
-				for(j = 2; j < Vpos.Count; j++)
-				{
-					UVs[j] = new Vector2((Mathf.Cos(j*UVstep)+1)/2, (Mathf.Sin(j*UVstep)+1)/2);
-					trigs[3 * (j - 2)] = 0;
-					trigs[3 * (j - 2) + 1] = j - 1;
-					trigs[3 * (j - 2) + 2] = j;
-				}
-				trigs[3 * (j - 2)] = 0;
-				trigs[3 * (j - 2) + 1] = j - 1;
-				trigs[3 * (j - 2) + 2] = 1;
-
 				fObjs[i] = Object.Instantiate(faceObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
-				Mesh mesh = fObjs[i].GetComponent<MeshFilter>().mesh;
-				mesh.Clear();
-				mesh.vertices = Vpos.ToArray<Vector3>();
-				mesh.uv = UVs;
-				mesh.triangles = trigs;
+				fObjs[i].GetComponent<FaceInterface>().SetFaceView(faces[i]);
             }
             return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}
@@ -283,6 +195,7 @@ namespace Model
 		/// with the appropriate parameters.</para>
 		/// <para>If the specified left and right faces does not share 2 verticies where one of them is the vertex v, then an ArgumentException error
 		/// will be thrown.</para>
+		/// <para>May contain Errors.</para>
 		/// <para>Note, this might create digons.</para>
 		/// </summary>
 		/// <param name="v">The vertex to be deleted.</param>
@@ -331,6 +244,7 @@ namespace Model
 		/// <para>TO utilize RejoinFaceVertex, we pass in arguments to indicate rejoining a vertex corresponding to the face f in the dual graph.</para>
 		/// <para>If the specified face does not contain an edge running from the orig to dest that also has another face to its right, then an ArgumentException error
 		/// will be thrown.</para>
+		/// <para>May contain errors.</para>
 		/// <para>Note, this might create digons.</para>
 		/// </summary>
 		/// <param name="f">The face to be deleted.</param>
@@ -338,7 +252,6 @@ namespace Model
 		/// <param name="dest">The dest of the edge that currently divides the face.</param>
 		public void killFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
-
 			List<Edge> moveE = findMoveEdges(f, dest, orig);
 			Edge delE = moveE.Last().Onext().Sym;
 			Edge.RejoinFaceVertex(delE.Orig, f, dest, orig, moveE);
