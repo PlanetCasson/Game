@@ -20,6 +20,9 @@ namespace Model
 		private List<Edge> _boundaryE;
 		//audio source for collision sounds
 		AudioSource _collideSound;
+		//Locations of collisions
+		private Queue<float> _collisionLocations = new Queue<float>();
+
 
 		public Edge CurrentEdge
 		{
@@ -74,32 +77,80 @@ namespace Model
 		/// and play a sound
 		/// </summary>
 		/// <param name="collision"></param>
-		public void OnCollisionEnter(Collision collision)
+		public void OnTriggerEnter(Collider collider)
 		{
-			//check for valid collision
-			try
+			print(collider.isTrigger);
+			if (collider.isTrigger)
 			{
-				_collideSound.Play();
-			} catch (NullReferenceException e)
-			{
-				print("potential audio reference error");
-			}
-			//TODO: Check collision is valid i.e. same edge or vertex
+				if (collider.gameObject.GetComponent<TraversalObject>() && TraversalObject.playing)
+				{
+					TraversalObject otherTraverser = collider.gameObject.GetComponent<TraversalObject>();
 
+					if (this._current != null && checkValidCollision(otherTraverser))
+					{
+						try
+						{
+							//Fetch audio source from the GameObject
+							if (_collideSound == null) _collideSound = GetComponent<AudioSource>();
+							_collideSound.Play();
+
+							this._current.Collision = true;
+							this._collisionLocations.Enqueue(this._phase - 0.001f);
+							otherTraverser._collisionLocations.Enqueue(otherTraverser._phase - 0.001f);
+						}
+						catch (NullReferenceException e)
+						{
+							print("potential audio reference error");
+						}
+					}
+				}
+			}
+		}
+		/// <summary>
+		/// Check that the collision that just occured warrants a collision update
+		/// </summary>
+		/// <param name="otherTrav"></param>
+		/// <returns></returns>
+		private bool checkValidCollision(TraversalObject otherTrav)
+		{
+			bool result = false;
+			//make sure there hasn't been a collision on that edge yet
+			if (this._current.Collision == false && this._current.isTwoWay == false)
+			{
+				//check if on same edge
+				if (this._current.Sym == otherTrav._current) result = true;
+				//check if on same vertex
+				if (this._current.Dest == otherTrav._current.Dest || this._current.Orig == otherTrav._current.Orig
+					|| this._current.Dest == otherTrav._current.Orig || this._current.Orig == otherTrav._current.Dest)
+				{
+					result = true;
+				}
+			}
+			return result;
 		}
 		/// <summary>
 		/// Called by the Unity Engine at the start of the game. Instantiates the collision sound
 		/// </summary>
 		public void Start()
 		{
-			//Fetch audio source from the GameObject
-			_collideSound = GetComponent<AudioSource>();
+			
 		}
 		/// <summary>
 		/// Called by the Unity Engine at every frame. Adjusts the position of the traversal object
 		/// </summary>
 		public void Update()
 		{
+			if (this._current != null && this._current.Collision && TraversalObject.playing)
+			{
+				if (this._collisionLocations != null && this._collisionLocations.Count != 0)
+				{
+					if (this._phase >= this._collisionLocations.Peek() - (_vel / _boundaryE.Count) / 2 && this._phase < this._collisionLocations.Peek() + (_vel / _boundaryE.Count) / 2)
+					{
+						this._collisionLocations.Dequeue();
+						this._current.Collision = false;
+					}
+				}
+			}
 			/*
 			if (TraversalObject.playing)
             {

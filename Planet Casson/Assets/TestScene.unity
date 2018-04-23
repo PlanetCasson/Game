@@ -297,7 +297,7 @@ Prefab:
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 119.5
+      value: 101.375
       objectReference: {fileID: 0}
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
@@ -668,7 +668,7 @@ Prefab:
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 358.5
+      value: 304.125
       objectReference: {fileID: 0}
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
@@ -848,7 +848,7 @@ Prefab:
     - target: {fileID: 224025186513196014, guid: 08b69842e8fae464e874881069eda6a3,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 597.5
+      value: 506.875
       objectReference: {fileID: 0}
     - target: {fileID: 224025186513196014, guid: 08b69842e8fae464e874881069eda6a3,
         type: 2}
@@ -958,7 +958,7 @@ Prefab:
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 836.5
+      value: 709.625
       objectReference: {fileID: 0}
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
@@ -1066,13 +1066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b97c169924cba43b8b1f247441ce22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDragging: 0
-  mouseOrig: {x: 0, y: 0, z: 0}
-  traversal: {fileID: 0}
-  center: {x: 0, y: 0, z: 0}
-  initPhase: 0
-  initAngle: 0
-  dir: 0
 --- !u!114 &2076371991
 MonoBehaviour:
   m_ObjectHideFlags: 0

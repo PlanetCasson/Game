@@ -29,6 +29,21 @@ public class EdgeInterface : MonoBehaviour {
 		CapsuleCollider cc = gameObject.GetComponent<CapsuleCollider>();
 		lr.startWidth = w;
 		lr.endWidth = w;
-		cc.radius = w / 2;
+		cc.radius = 10*w / 2;
+	}
+
+	public void Update()
+	{
+		LineRenderer lr = gameObject.GetComponent<LineRenderer>();
+		if (_ModelEdge.Collision)
+		{
+			lr.startColor = new Color(1, 0, 0);
+			lr.endColor = new Color(1, 0, 0);
+		}
+		if (!_ModelEdge.Collision || _ModelEdge.isTwoWay)
+		{
+			lr.startColor = new Color(0, 1, 0);
+			lr.endColor = new Color(0, 1, 0);
+		}
 	}
 }

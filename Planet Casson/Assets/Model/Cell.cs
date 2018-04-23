@@ -134,6 +134,7 @@ namespace Model
 				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
 				ei.SetEdgeView(edges[i]);
 				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
+				ei.ModelEdge.Collision = false;
 			}
 			for (int i = 0; i < faces.Count; i++)
 			{
@@ -150,7 +151,7 @@ namespace Model
 		{
 			GameObject[] tObjs = new GameObject[faces.Count];
 
-			for (int i = 0; i < faces.Count; i++)
+			for (int i = 0; i < faces.Count; i+=2)
 			{
 				//Instantiate new game object
 				tObjs[i] = Object.Instantiate(traverserObj, obj.gameObject.transform);

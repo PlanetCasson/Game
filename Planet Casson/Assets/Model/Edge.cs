@@ -34,9 +34,10 @@ namespace Model
 		private Edge _rot;
 		private Edge _onext;
 		private bool _isTwoWay;
+		private bool _collision;
 
 		/// <summary>
-		/// <para>Boolean value that determins whether this Edge allow two way simultaneous travel by the Traverser Object.
+		/// <para>Boolean value that determines whether this Edge allow two way simultaneous travel by the Traverser Object.
 		/// Setting this value also sets the isTwoWay value of the Symmetric, Dual, and Dual Symmetric Edges.</para>
 		/// </summary>
 		public bool isTwoWay
@@ -48,6 +49,22 @@ namespace Model
 				Rot._isTwoWay = value;
 				InvRot._isTwoWay = value;
 				_isTwoWay = value;
+			}
+		}
+
+		/// <summary>
+		/// <para>Boolean value that determines whether there has been a collision on the edge during the current cycle</para>
+		/// </summary>
+		public bool Collision
+		{
+			get { return _collision; }
+			set
+			{
+				Sym._collision = value;
+				Rot._collision = value;
+				InvRot._collision = value;
+				_collision = value;
+				//TODO: add function to indicate collision on edge to user
 			}
 		}
 
