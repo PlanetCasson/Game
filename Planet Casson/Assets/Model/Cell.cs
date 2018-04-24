@@ -151,7 +151,7 @@ namespace Model
 		{
 			GameObject[] tObjs = new GameObject[faces.Count];
 
-			for (int i = 0; i < faces.Count; i+=2)
+			for (int i = 0; i < faces.Count; i++)
 			{
 				//Instantiate new game object
 				tObjs[i] = Object.Instantiate(traverserObj, obj.gameObject.transform);
