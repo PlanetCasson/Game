@@ -102,7 +102,8 @@ namespace Model
 			}
             for (int i = 0; i < faces.Count; i++)
             {
-				fObjs[i].GetComponent<FaceInterface>().SetFaceView(faces[i]);
+                float h = (float)i / (float)faces.Count;
+                fObjs[i].GetComponent<FaceInterface>().SetFaceView(faces[i], Color.HSVToRGB(h, 0.95f, 0.8f));
 			}
         }
 
@@ -139,7 +140,8 @@ namespace Model
 			for (int i = 0; i < faces.Count; i++)
 			{
 				fObjs[i] = Object.Instantiate(faceObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
-				fObjs[i].GetComponent<FaceInterface>().SetFaceView(faces[i]);
+                float h = (float)i / (float)faces.Count;
+                fObjs[i].GetComponent<FaceInterface>().SetFaceView(faces[i], Color.HSVToRGB(h, 0.95f, 0.8f));
             }
             return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}
@@ -155,7 +157,8 @@ namespace Model
 			{
 				//Instantiate new game object
 				tObjs[i] = Object.Instantiate(traverserObj, obj.gameObject.transform);
-				tObjs[i].GetComponent<MeshRenderer>().material.color = new Color (Random.Range (0f, 1f), Random.Range (0f, 1f), Random.Range (0f, 1f), 150);
+                float h = (float)i / (float)faces.Count;
+				tObjs[i].GetComponent<MeshRenderer>().material.color = Color.HSVToRGB(h, 0.95f, 0.8f);
 				//Obtain the first available edge
 				Edge oneOfTheEdges = faces[i].EdgeListHead.Rot;
 				//create a new traversal object on first availiable edge
@@ -164,18 +167,18 @@ namespace Model
 			}
 		}
 
-		/// <summary>
-		/// <para>The method of expanding from the primitive quad-edge structure. makeVertexEdge splits the vertex "v" into two
-		/// and connect it with an edge whose left face is "left" and right face is "right".</para>
-		/// <para>This first finds a list of edges that needs to be moved to the new vertex, creates a new, unlinked vertex, and calls
-		/// <see cref="Edge.SplitFaceVertex"/> with the appropriate parameters.</para>
-		/// <para>If the specified left and right face does not share a vertex, an ArgumentException error will be thrown.(uncatched from SplitFaceVertex).</para>
-		/// </summary>
-		/// <param name="v">The vertex to be split.</param>
-		/// <param name="left">The face to the left of the vertex.</param>
-		/// <param name="right">The face to the right of the vertex.</param>
-		/// <returns>An Edge that runs from the old vertex to the new vertex.</returns>
-		public Edge makeVertexEdge(Vertex v, Face left, Face right)
+        /// <summary>
+        /// <para>The method of expanding from the primitive quad-edge structure. makeVertexEdge splits the vertex "v" into two
+        /// and connect it with an edge whose left face is "left" and right face is "right".</para>
+        /// <para>This first finds a list of edges that needs to be moved to the new vertex, creates a new, unlinked vertex, and calls
+        /// <see cref="Edge.SplitFaceVertex"/> with the appropriate parameters.</para>
+        /// <para>If the specified left and right face does not share a vertex, an ArgumentException error will be thrown.(uncatched from SplitFaceVertex).</para>
+        /// </summary>
+        /// <param name="v">The vertex to be split.</param>
+        /// <param name="left">The face to the left of the vertex.</param>
+        /// <param name="right">The face to the right of the vertex.</param>
+        /// <returns>An Edge that runs from the old vertex to the new vertex.</returns>
+        public Edge makeVertexEdge(Vertex v, Face left, Face right)
 		{
 			//finds all edges that needs to be moved
 			List<Edge> moveE = findMoveEdges(v, left, right);

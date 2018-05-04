@@ -9,7 +9,7 @@ public class FaceInterface : MonoBehaviour {
 	private Face _ModelFace;
 	public Face ModelFace { get { return _ModelFace; } }
 
-	public void SetFaceView(Face f)
+	public void SetFaceView(Face f, Color color)
 	{
 		//computing center of face
 		LinkedList<Vector3> Vpos = new LinkedList<Vector3>();
@@ -53,6 +53,9 @@ public class FaceInterface : MonoBehaviour {
 		mesh.vertices = Vpos.ToArray<Vector3>();
 		mesh.uv = UVs;
 		mesh.triangles = trigs;
-		_ModelFace = f;
+        color.a = 0.6f;
+        GetComponent<MeshRenderer>().material.color = color;
+
+        _ModelFace = f;
 	}
 }
