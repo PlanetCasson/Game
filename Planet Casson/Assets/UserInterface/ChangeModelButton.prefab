@@ -147,7 +147,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Change Model
+  m_Text: 'Reset
+
+'
 --- !u!114 &114824625858170802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   changeModel_btn: {fileID: 114333246160093604}
   master: {fileID: 0}
+  model_select: {fileID: 0}
 --- !u!222 &222837930076126492
 CanvasRenderer:
   m_ObjectHideFlags: 1

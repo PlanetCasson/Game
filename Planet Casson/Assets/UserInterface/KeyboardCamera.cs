@@ -12,13 +12,12 @@ public class KeyboardCamera : MonoBehaviour
     //
 
     public float turnSpeed = 4.0f;      // Speed of camera turning when mouse moves in along an axis
-    public float zoomSpeed = 2.0f;
+    public float zoomSpeed = 800.0f;
     public float moveSpeed = 2.0f;
     private Vector3 mouseOrigin;    // Position of cursor when mouse dragging starts
     private bool isPanning;     // Is the camera being panned?
     private bool isMoving;    // Is the camera being moved?
-    private bool isZoomingIn;     // Is the camera zooming?
-    private bool isZoomingOut;     // Is the camera zooming?
+    private bool isZooming;     // Is the camera zooming?
 
 
     //
@@ -34,7 +33,7 @@ public class KeyboardCamera : MonoBehaviour
         }
 
         // Get the right mouse button
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !Input.GetKey(KeyCode.LeftShift))
         {
             // Get mouse origin
             mouseOrigin = Input.mousePosition;
@@ -42,23 +41,17 @@ public class KeyboardCamera : MonoBehaviour
         }
 
         // LShift
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && Input.GetMouseButtonDown(1))
         {
-            isZoomingIn = true;
-        }
-        // LCtrl
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            isZoomingOut = true;
+            isZooming = true;
         }
 
 
         // Disable movements on button release
         if (!Input.GetKey (KeyCode.W) && !Input.GetKey (KeyCode.A) 
             && !Input.GetKey (KeyCode.S) && !Input.GetKey (KeyCode.D)) isMoving = false;
-        if (!Input.GetMouseButton(1)) isPanning = false;
-        if (!Input.GetKey (KeyCode.LeftShift)) isZoomingIn = false;
-        if (!Input.GetKey (KeyCode.LeftControl)) isZoomingOut = false;
+        if (!Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftShift)) isPanning = false;
+        if (!Input.GetKey (KeyCode.LeftShift)) isZooming = false;
 
 
         // Move the camera on it's XY plane
@@ -90,22 +83,13 @@ public class KeyboardCamera : MonoBehaviour
         }
 
         // Move the camera linearly along Z axis
-        if (isZoomingIn)
+        if (isZooming)
         {
-            // Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - mouseOrigin);
+            Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - mouseOrigin);
 
-            // Vector3 move = pos.y * zoomSpeed * transform.forward;
-            Vector3 zin = new Vector3(0,0,zoomSpeed);
-            transform.Translate(zin, Space.World);
-        }
-
-        if (isZoomingOut)
-        {
-            // Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - mouseOrigin);
-
-            // Vector3 move = pos.y * zoomSpeed * transform.forward;
-            Vector3 zout = new Vector3(0,0,zoomSpeed*-1);
-            transform.Translate(zout, Space.World);
+            Vector3 move = pos.y * zoomSpeed * transform.forward;
+            //Vector3 zin = new Vector3(0,0,zoomSpeed);
+            transform.Translate(move, Space.World);
         }
     }
 }

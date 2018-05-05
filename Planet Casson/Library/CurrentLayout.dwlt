@@ -90,8 +90,8 @@ MonoBehaviour:
     y: 0
     width: 364
     height: 460
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -253,8 +253,8 @@ MonoBehaviour:
     y: 0
     width: 850
     height: 460
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
@@ -360,20 +360,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefab
+    - Assets/UserInterface
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefab
+  - Assets/UserInterface
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\Darkar\Root\School\Comp585\ThirdFuckingGame\Game\Planet
     Casson
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4c290000
-    m_LastClickedID: 10572
-    m_ExpandedIDs: 00000000142900004c290000ac2900006c2b000000ca9a3bffffff7f
+    m_SelectedIDs: dc270000
+    m_LastClickedID: 10204
+    m_ExpandedIDs: 00000000a2270000da2700003e2800003c2a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -401,7 +401,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000142900004c2900004e290000ac2900006c2b0000
+    m_ExpandedIDs: 00000000a2270000da2700003e2800003c2a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -429,7 +429,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 00000000a0290000
+    m_ExpandedInstanceIDs: 00000000a0290000cc270000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -483,7 +483,7 @@ MonoBehaviour:
     width: 320
     height: 710
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 0}
+  m_ScrollPosition: {x: 0, y: 96.95508}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 160
@@ -519,9 +519,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: ce270000
     m_LastClickedID: 0
-    m_ExpandedIDs: 86faffff00000000622a00008e2a0000a42a0000
+    m_ExpandedIDs: 9efbffff000000001829000044290000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
