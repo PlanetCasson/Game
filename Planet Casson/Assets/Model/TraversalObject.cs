@@ -79,29 +79,26 @@ namespace Model
 		/// <param name="collision"></param>
 		public void OnTriggerEnter(Collider collider)
 		{
-			print(collider.isTrigger);
-			if (collider.isTrigger)
+			if (collider.isTrigger && collider.gameObject.GetComponent<TraversalObject>() && TraversalObject.playing)
 			{
-				if (collider.gameObject.GetComponent<TraversalObject>() && TraversalObject.playing)
+				TraversalObject otherTraverser = collider.gameObject.GetComponent<TraversalObject>();
+
+				if (this._current != null && checkValidCollision(otherTraverser))
 				{
-					TraversalObject otherTraverser = collider.gameObject.GetComponent<TraversalObject>();
-
-					if (this._current != null && checkValidCollision(otherTraverser))
+					try
 					{
-						try
-						{
-							//Fetch audio source from the GameObject
-							if (_collideSound == null) _collideSound = GetComponent<AudioSource>();
-							_collideSound.Play();
+						//Fetch audio source from the GameObject
+						if (_collideSound == null) _collideSound = GetComponent<AudioSource>();
+						_collideSound.Play();
 
-							this._current.Collision = true;
-							this._collisionLocations.Enqueue(this._phase - 0.001f);
-							otherTraverser._collisionLocations.Enqueue(otherTraverser._phase - 0.001f);
-						}
-						catch (NullReferenceException e)
-						{
-							print("potential audio reference error");
-						}
+						//tell edge there is a collision
+						this._current.CollisionCall(_vel);
+						//reset spherekernel's frameCount
+						GameObject.Find("GameObject").GetComponent<SphereKernel>().frameCount = 0;
+					}
+					catch (NullReferenceException e)
+					{
+						print("potential audio reference error");
 					}
 				}
 			}
@@ -115,7 +112,7 @@ namespace Model
 		{
 			bool result = false;
 			//make sure there hasn't been a collision on that edge yet
-			if (this._current.Collision == false && this._current.isTwoWay == false)
+			if (this._current.isTwoWay == false)
 			{
 				//check if on same edge
 				if (this._current.Sym == otherTrav._current) result = true;
@@ -140,17 +137,6 @@ namespace Model
 		/// </summary>
 		public void Update()
 		{
-			if (this._current != null && this._current.Collision && TraversalObject.playing)
-			{
-				if (this._collisionLocations != null && this._collisionLocations.Count != 0)
-				{
-					if (this._phase >= this._collisionLocations.Peek() - (_vel / _boundaryE.Count) / 2 && this._phase < this._collisionLocations.Peek() + (_vel / _boundaryE.Count) / 2)
-					{
-						this._collisionLocations.Dequeue();
-						this._current.Collision = false;
-					}
-				}
-			}
 			/*
 			if (TraversalObject.playing)
             {
@@ -171,7 +157,7 @@ namespace Model
 			*/
 			if (TraversalObject.playing)
 			{
-				Phase += _vel / _boundaryE.Count;
+				Phase += _vel;
 			}
 			else
 			{

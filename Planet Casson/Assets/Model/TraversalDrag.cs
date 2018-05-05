@@ -24,14 +24,12 @@ public class TraversalDrag
 	public bool Update()
 	{
 		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log("Here");
+		{ 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			//note please put all traversers in "Traverser" layer or layer 8
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
 			{
-				Debug.Log("Hit");
 				traversal = hit.transform.gameObject.GetComponent<TraversalObject>();
 				center = Camera.main.WorldToViewportPoint((traversal.CurrentEdge.Left as Face).getFaceCenter());
 				initPhase = traversal.Phase;

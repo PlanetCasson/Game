@@ -55,7 +55,10 @@ namespace Model
 		{
 			return new Face();
 		}
-
+		/// <summary>
+		/// <para>Gets all edges that surround this face. All edges are facing the counter-clockwise direction in counter-clockwise order.</para>
+		/// </summary>
+		/// <returns>List of Edges that borders this face</returns>
 		public List<Edge> getBoundEdges()
 		{
 			List<Edge> boundary = new List<Edge>();
@@ -66,7 +69,10 @@ namespace Model
 			} while (boundary.Last() != EdgeListHead.Rot);
 			return boundary;
 		}
-
+		/// <summary>
+		/// Gets the Vector3 representation of the exact center of the face.
+		/// </summary>
+		/// <returns>Vector3 center position</returns>
 		public Vector3 getFaceCenter()
 		{
 			Edge current = EdgeListHead.Onext();

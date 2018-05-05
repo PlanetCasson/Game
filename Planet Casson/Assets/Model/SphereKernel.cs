@@ -10,6 +10,7 @@ public class SphereKernel : MonoBehaviour
 	public GameObject edgeObj;
 	public GameObject faceObj;
 	public GameObject traverserObj;
+	public int frameCount;
 
 	//public GameObject asdf;
 
@@ -52,6 +53,10 @@ public class SphereKernel : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+		if (++frameCount > (1 / SphereKernelCell.velocity))
+		{
+			//Trigger level complete stuff
+			Debug.Log("You did it!");
+		}
 	}
 }
