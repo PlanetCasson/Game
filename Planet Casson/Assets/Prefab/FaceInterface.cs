@@ -4,11 +4,21 @@ using System.Linq;
 using UnityEngine;
 using Model;
 
+/// <summary>
+/// <para>Responsible for updating properties within the face game objects.</para>
+/// </summary>
 public class FaceInterface : MonoBehaviour {
 
 	private Face _ModelFace;
+	/// <summary>
+	/// <para>Face object that the game object emcompasses.</para>
+	/// </summary>
 	public Face ModelFace { get { return _ModelFace; } }
-
+	/// <summary>
+	/// <para>Initializes the edge visuals and start and end positions.</para>
+	/// </summary>
+	/// <param name="f">Face to be drawn.</param>
+	/// <param name="color">Color of the face.</param>
 	public void SetFaceView(Face f, Color color)
 	{
 		//computing center of face

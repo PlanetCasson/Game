@@ -24,8 +24,10 @@ namespace Model
 		//lists to store verticies, edges, and faces in this cell
 		//if an edge is in the list, then it's companion edges are guaranteed not to be in here
 		List<Vertex> verticies;
-		List<Edge> edges;
+		public List<Edge> edges;
 		List<Face> faces;
+		//speed of traversers in terms of phases per frame
+		public float velocity = 0.001F;
 
 		/// <summary>
 		/// <para>Loads a Cell from a simple .obj file in the Assets/StreamingAssets folder. It does not import normal offsets, or textures, only the connection and vertex position data.</para>
@@ -98,7 +100,6 @@ namespace Model
             {
 				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
 				ei.SetEdgeView(edges[i]);
-				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
 			}
             for (int i = 0; i < faces.Count; i++)
             {
@@ -134,8 +135,8 @@ namespace Model
 				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
 				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
 				ei.SetEdgeView(edges[i]);
-				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
-				ei.ModelEdge.Collision = false;
+				ei.ModelEdge.CollisionPhase = -1;
+				ei.ModelEdge.CollisionVel = 0;
 			}
 			for (int i = 0; i < faces.Count; i++)
 			{
@@ -146,9 +147,8 @@ namespace Model
             return new GameObject[3][] { vObjs, eObjs, fObjs };
 		}
 		/// <summary>
-		/// Iterate through faces of Cell and create a traversal object for each face
+		/// <para>Iterate through faces of the Cell and create a traversal object for each face.</para>
 		/// </summary>
-		/// <returns>list of traversal objects</returns>
 		public void instantiateTraversals(MonoBehaviour obj, GameObject traverserObj)
 		{
 			GameObject[] tObjs = new GameObject[faces.Count];
@@ -163,7 +163,7 @@ namespace Model
 				Edge oneOfTheEdges = faces[i].EdgeListHead.Rot;
 				//create a new traversal object on first availiable edge
 				tObjs[i].AddComponent<TraversalObject>();
-				tObjs[i].GetComponent<TraversalObject>().AssignTraversalValues(oneOfTheEdges, 0.5F, 0.005F);
+				tObjs[i].GetComponent<TraversalObject>().AssignTraversalValues(oneOfTheEdges, 0.5F, velocity);
 			}
 		}
 
@@ -227,7 +227,7 @@ namespace Model
 		/// <param name="f">The face to be subdivided.</param>
 		/// <param name="orig">The origin of the edge to subdivide f.</param>
 		/// <param name="dest">The dest of the edge to subdivide f.</param>
-		/// <returns></returns>
+		/// <returns>New edge that was created by the face division.</returns>
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 			//finds all edges that needs to be moved

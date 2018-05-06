@@ -34,7 +34,8 @@ namespace Model
 		private Edge _rot;
 		private Edge _onext;
 		private bool _isTwoWay;
-		private bool _collision;
+		private float _collisionPhase;
+		private float _collisionVel;
 
 		/// <summary>
 		/// <para>Boolean value that determines whether this Edge allow two way simultaneous travel by the Traverser Object.
@@ -51,23 +52,37 @@ namespace Model
 				_isTwoWay = value;
 			}
 		}
-
 		/// <summary>
-		/// <para>Boolean value that determines whether there has been a collision on the edge during the current cycle</para>
+		/// <para>Float value that keeps track of the phase of an edge fading in between red and green (after a collision).
+		/// Used in EdgeInterface. Default value (for no current collision) is -1. Value for transitions (after a collision
+		/// occurs) are between 0 and 1.</para>
 		/// </summary>
-		public bool Collision
+		public float CollisionPhase
 		{
-			get { return _collision; }
+			get { return _collisionPhase;  }
 			set
 			{
-				Sym._collision = value;
-				Rot._collision = value;
-				InvRot._collision = value;
-				_collision = value;
-				//TODO: add function to indicate collision on edge to user
+				Sym._collisionPhase = value;
+				Rot._collisionPhase = value;
+				InvRot._collisionPhase = value;
+				_collisionPhase = value;
 			}
 		}
-
+		/// <summary>
+		/// <para>Float value that matches the velocity of the traversal objects. Determines rate that Edge color changes
+		/// from red to green after a collision.</para>
+		/// </summary>
+		public float CollisionVel
+		{
+			get { return _collisionVel; }
+			set
+			{
+				Sym._collisionVel = value;
+				Rot._collisionVel = value;
+				InvRot._collisionVel = value;
+				_collisionVel = value;
+			}
+		}
 		/// <summary>
 		/// <para>The origin of this directed edge.</para>
 		/// </summary>
@@ -113,7 +128,18 @@ namespace Model
 			e2._rot = e4;
 			e3._rot = e2;
 			e4._rot = e1;
+			e1.CollisionPhase = -1;
+			e1.CollisionVel = 0;
 			return e1;
+		}
+
+		/// <summary>
+		/// Sets color of edge to red, and fades the color back to green based on given velocity
+		/// </summary>
+		public void CollisionCall(float vel)
+		{
+			this.CollisionPhase = 0;
+			this.CollisionVel = vel;
 		}
 
 		/// <summary>
@@ -432,6 +458,9 @@ namespace Model
 		}
 	}
 
+	/// <summary>
+	/// <para>Helper struct used to help comparisons used in the obj import algorithm. See <see cref="DirectorEdgeComparer"/></para>
+	/// </summary>
 	struct EdgeCompareContainer
 	{
 		public Vertex orig;
@@ -443,7 +472,9 @@ namespace Model
 			this.dest = dest;
 		}
 	}
-
+	/// <summary>
+	/// <para>Comparer used to compare EdgeCompareContainer. It evaluates edges for equality by their orig and dest values.</para>
+	/// </summary>
 	class DirectedEdgeComparer : IEqualityComparer<EdgeCompareContainer>
 	{
 		public bool Equals(EdgeCompareContainer x, EdgeCompareContainer y)

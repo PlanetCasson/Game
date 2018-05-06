@@ -5,10 +5,9 @@ using Model;
 using Model.Objects;
 
 /// <summary>
-/// Script to allow player to shift the phase of the traversal object
-/// along each face of the graph. 
+/// <para>Script to allow player to shift the phase of the traversal object
+/// along each face of the graph.</para>
 /// </summary>
-
 public class TraversalDrag
 {
 
@@ -20,18 +19,21 @@ public class TraversalDrag
 	private float initAngle;
 	private int dir;
 
-	//not called by Unity game loop
+	/// <summary>
+	/// <para>Not called by Unity game loop. Selects traversal objects via 
+	/// ray casting. Moves the traversal objects along their corresponding faces 
+	/// by circular dragging about the center of the face.</para>
+	/// </summary>
+	/// <returns>Boolean indicating whether the object has been selected or not</returns>
 	public bool Update()
 	{
 		if (Input.GetMouseButtonDown(0))
-		{
-			Debug.Log("Here");
+		{ 
 			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 			//note please put all traversers in "Traverser" layer or layer 8
 			if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << 8))
 			{
-				Debug.Log("Hit");
 				traversal = hit.transform.gameObject.GetComponent<TraversalObject>();
 				center = Camera.main.WorldToViewportPoint((traversal.CurrentEdge.Left as Face).getFaceCenter());
 				initPhase = traversal.Phase;
@@ -52,7 +54,11 @@ public class TraversalDrag
 		}
 		return false;
 	}
-
+	/// <summary>
+	/// <para>Finds the angle of the vector with respect to the horizontal</para>
+	/// </summary>
+	/// <param name="dir">Directional Vector</param>
+	/// <returns>The angle of the vector with respect to the horizontal</returns>
 	private float angleToHorizontal(Vector3 dir)
 	{
 		float angle;
@@ -63,7 +69,16 @@ public class TraversalDrag
 			angle = Mathf.Acos(Vector3.Dot(dir.normalized, Vector3.left)) + Mathf.PI;
 		return angle;
 	}
-
+	/// <summary>
+	/// <para>Finds the direction of CCW rotation from the perspective of the camera.</para>
+	/// <para>Walks along 4 boundary edges. For each boundary edge it takes the vector from the 
+	/// center of the face to the origin of the edge and projects the vector into screen 
+	/// coordinates. Finds the difference between the angle of the consecutive edges. If 
+	/// a majority of them are increasing, then the CCW traversal direction is positive, 
+	/// otherwise it is negative.</para>
+	/// </summary>
+	/// <param name="edge">Boundary edge along a face</param>
+	/// <returns>The CCW traversal direction.</returns>
 	private int findDir(Edge edge)
 	{
 		int dir = 0;

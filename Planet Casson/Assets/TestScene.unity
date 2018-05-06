@@ -293,12 +293,16 @@ Prefab:
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< HEAD
       value: 105.75
+=======
+      value: 151.16666
+>>>>>>> 73efe4d79ef8b735c7b50abefda3795a717063a4
       objectReference: {fileID: 0}
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
@@ -664,12 +668,16 @@ Prefab:
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< HEAD
       value: 317.25
+=======
+      value: 453.49997
+>>>>>>> 73efe4d79ef8b735c7b50abefda3795a717063a4
       objectReference: {fileID: 0}
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
@@ -844,12 +852,16 @@ Prefab:
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
       propertyPath: m_AnchoredPosition.x
+<<<<<<< HEAD
       value: 740.25
+=======
+      value: 755.83325
+>>>>>>> 73efe4d79ef8b735c7b50abefda3795a717063a4
       objectReference: {fileID: 0}
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
@@ -1047,6 +1059,7 @@ MonoBehaviour:
   faceObj: {fileID: 1543363465444718, guid: c5bef19d040856246b20e009f8b9a5c9, type: 2}
   traverserObj: {fileID: 1633538656188156, guid: 10053f56f03489d418fe5514f6da08b5,
     type: 2}
+  frameCount: 0
 --- !u!4 &2076371989
 Transform:
   m_ObjectHideFlags: 0
