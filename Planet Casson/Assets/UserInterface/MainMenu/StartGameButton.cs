@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Model;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Starts the game with the first model in the StreamingAssets folder
+/// </summary>
 public class StartGameButton : MonoBehaviour
 {
 

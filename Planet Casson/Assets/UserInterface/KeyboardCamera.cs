@@ -5,6 +5,9 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Controls the camera: right click to rotate, shift-right click to zoom, WASD to pan
+/// </summary>
 public class KeyboardCamera : MonoBehaviour
 {
     //

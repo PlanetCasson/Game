@@ -85,11 +85,11 @@ namespace Model
 		}
 
 		/// <summary>
-		/// <para>ben's function, please comment it.</para>
+		/// <para>Helper function to generate the positions of all the objects that construct the graph</para>
 		/// </summary>
-		/// <param name="vObjs"></param>
-		/// <param name="eObjs"></param>
-		/// <param name="fObjs"></param>
+		/// <param name="vObjs">Verticies</param>
+		/// <param name="eObjs">Edges</param>
+		/// <param name="fObjs">Faces</param>
 		public void calculatePositions(GameObject[] vObjs, GameObject[] eObjs, GameObject[] fObjs)
         {
             for (int i = 0; i < verticies.Count; i++)
@@ -109,12 +109,12 @@ namespace Model
         }
 
 		/// <summary>
-		/// <para>ben's function, please comment it</para>
+		/// <para>Generates a graph game object from the model</para>
 		/// </summary>
-		/// <param name="kernel"></param>
-		/// <param name="vertexObj"></param>
-		/// <param name="edgeObj"></param>
-		/// <param name="faceObj"></param>
+		/// <param name="kernel">Core model for thr graph</param>
+		/// <param name="vertexObj">Prefab vertex</param>
+		/// <param name="edgeObj">Prefab edge</param>
+		/// <param name="faceObj">Prefab face</param>
 		/// <returns></returns>
 		public GameObject[][] instantiateGraph(SphereKernel kernel, GameObject vertexObj, GameObject edgeObj, GameObject faceObj)
 		{

@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class TwoWayEdgeToggle : MonoBehaviour {
 
-	public int twoWayCount = 0;
+	public static int twoWayCount = 0;
 	/// <summary>
 	/// Called once per frame by Unity. Checks if the player is clicking on an edge.
 	/// Toggles between a normal edge and a double edge and updates values accordingly.

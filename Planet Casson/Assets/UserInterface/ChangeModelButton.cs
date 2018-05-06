@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using Model;
 
+/// <summary>
+/// <para>The script that changes or resets the current model; 
+/// specifically, this will set every traverser at the start of its phase in whaterver graph is selected.</para>
+/// </summary>
 public class ChangeModelButton : MonoBehaviour
 {
 

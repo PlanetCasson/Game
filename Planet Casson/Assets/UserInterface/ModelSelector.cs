@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 
+/// <summary>
+/// A dropdown UI to change the current model
+/// </summary>
 public class ModelSelector : MonoBehaviour
 {
     public Dropdown dropdown_select;

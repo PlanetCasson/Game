@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Model;
 
+/// <summary>
+/// Pauses traversers for easier dragging
+/// </summary>
 public class PauseButton : MonoBehaviour
 {
 

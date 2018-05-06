@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using Model;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Quits the game immediately
+/// </summary>
 public class QuitGameButton : MonoBehaviour
 {
 
