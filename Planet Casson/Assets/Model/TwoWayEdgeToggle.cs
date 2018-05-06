@@ -2,10 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// <para>Responsible for managing property changes between normal edge and double edge.</para>
+/// </summary>
 public class TwoWayEdgeToggle : MonoBehaviour {
 
 	public int twoWayCount = 0;
-
+	/// <summary>
+	/// Called once per frame by Unity. Checks if the player is clicking on an edge.
+	/// Toggles between a normal edge and a double edge and updates values accordingly.
+	/// </summary>
+	/// <returns>True if a mouse click was detected.</returns>
 	public bool Update()
 	{
 		if (Input.GetMouseButtonDown(0))

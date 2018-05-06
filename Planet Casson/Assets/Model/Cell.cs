@@ -100,7 +100,6 @@ namespace Model
             {
 				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
 				ei.SetEdgeView(edges[i]);
-				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
 			}
             for (int i = 0; i < faces.Count; i++)
             {
@@ -136,7 +135,6 @@ namespace Model
 				eObjs[i] = Object.Instantiate(edgeObj, Vector3.zero, Quaternion.identity, kernel.gameObject.transform);
 				EdgeInterface ei = eObjs[i].GetComponent<EdgeInterface>();
 				ei.SetEdgeView(edges[i]);
-				ei.SetEdgeWidth(eObjs[i].GetComponent<LineRenderer>().startWidth);
 				ei.ModelEdge.CollisionPhase = -1;
 				ei.ModelEdge.CollisionVel = 0;
 			}
@@ -151,7 +149,6 @@ namespace Model
 		/// <summary>
 		/// <para>Iterate through faces of the Cell and create a traversal object for each face.</para>
 		/// </summary>
-		/// <returns>list of traversal objects</returns>
 		public void instantiateTraversals(MonoBehaviour obj, GameObject traverserObj)
 		{
 			GameObject[] tObjs = new GameObject[faces.Count];
@@ -230,7 +227,7 @@ namespace Model
 		/// <param name="f">The face to be subdivided.</param>
 		/// <param name="orig">The origin of the edge to subdivide f.</param>
 		/// <param name="dest">The dest of the edge to subdivide f.</param>
-		/// <returns></returns>
+		/// <returns>New edge that was created by the face division.</returns>
 		public Edge makeFaceEdge(Face f, Vertex orig, Vertex dest)
 		{
 			//finds all edges that needs to be moved

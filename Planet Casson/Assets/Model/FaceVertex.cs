@@ -70,7 +70,7 @@ namespace Model
 			return boundary;
 		}
 		/// <summary>
-		/// Gets the Vector3 representation of the exact center of the face.
+		/// <para>Gets the Vector3 representation of the exact center of the face.</para>
 		/// </summary>
 		/// <returns>Vector3 center position</returns>
 		public Vector3 getFaceCenter()

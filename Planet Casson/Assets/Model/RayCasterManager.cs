@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// <para>Determines the order of ray casts.</para>
+/// </summary>
 public class RayCasterManager : MonoBehaviour {
 
 	private TraversalDrag tdRaycast;

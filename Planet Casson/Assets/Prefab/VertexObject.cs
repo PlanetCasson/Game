@@ -6,6 +6,9 @@ using Model;
 
 namespace Model.Objects
 {
+	/// <summary>
+	/// Ben explain this class
+	/// </summary>
     public class VertexObject : MonoBehaviour
     {
         public Cell graph;
@@ -13,20 +16,19 @@ namespace Model.Objects
         public bool live = false;
         public bool selected = false;
         internal SphereKernel sphereKernel;
-
-        // Use this for initialization
-        void Start()
-        {
-
-        }
-
+		/// <summary>
+		/// Ben document this
+		/// </summary>
         void OnSelectionChange()
         {
             selected = !selected;
             print("Selected a vertex!");
         }
 
-        // Update is called once per frame
+        /// <summary>
+		/// Ben Document this
+		/// Called by Unity once per frame.
+		/// </summary>
         void Update()
         {
             if (live && transform.hasChanged)

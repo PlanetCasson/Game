@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Model
 {
 	/// <summary>
-	/// Abstract class for objects that will traverse the graph
+	/// Abstract class for objects that traverse the graph
 	/// </summary>
 	public class TraversalObject : MonoBehaviour
 	{
         public static Boolean playing = true;
-
+		//the current edge the traversal object is on
 		private Edge _current;
 		//position is a measurement of the percentage of the face the object has traveled
 		private float _phase;
@@ -20,14 +20,17 @@ namespace Model
 		private List<Edge> _boundaryE;
 		//audio source for collision sounds
 		AudioSource _collideSound;
-		//Locations of collisions
-		private Queue<float> _collisionLocations = new Queue<float>();
 
-
+		/// <summary>
+		/// <para>The current edge the traversal object is on</para>
+		/// </summary>
 		public Edge CurrentEdge
 		{
 			get { return _current; }
 		}
+		/// <summary>
+		/// <para>A measurement of the percentage of the face the object has traveled. Value from 0 to 1</para>
+		/// </summary>
 		public float Phase
 		{
 			get { return _phase; }
@@ -48,6 +51,9 @@ namespace Model
 					throw new System.ArgumentException("Traversal Object's _current variable is an edge that doesn't point to vertexes");
 			}
 		}
+		/// <summary>
+		/// <para>Rate at which the traversal object's phase changes.</para>
+		/// </summary>
 		public float Velocity
 		{
 			get { return _vel; }
@@ -58,12 +64,11 @@ namespace Model
 		}
 
 		/// <summary>
-		/// Method used to construct a new traversal object
+		/// <para>Assigns value to a new traversal object.</para>
 		/// </summary>
-		/// <param name="faceTravelled"></param>
-		/// <param name="currentEdge"></param>
-		/// <param name="position"></param>
-		/// <param name="velocity"></param>
+		/// <param name="currentEdge">The edge the traversal object will be on.</param>
+		/// <param name="phase">The phase of the traversal object.</param>
+		/// <param name="velocity">The velocity of the traversal object.</param>
 		/// <returns>New traversal object with the properties given in the parameters</returns>
 		public void AssignTraversalValues(Edge currentEdge, float phase, float velocity)
 		{
@@ -73,10 +78,11 @@ namespace Model
 		}
 
 		/// <summary>
-		/// If Traversal Object collides with another, check that the collision is valid
-		/// and play a sound
+		/// <para>Checks if the traversal object collides with another traversal object.
+		/// Check that the collision is valid, then play the collision sound, then 
+		/// notify the current edge a collision has taken place and reset the SphereKernel's frameCount.</para>
 		/// </summary>
-		/// <param name="collision"></param>
+		/// <param name="collider">The collider that this traversal object collided with</param>
 		public void OnTriggerEnter(Collider collider)
 		{
 			if (collider.isTrigger && collider.gameObject.GetComponent<TraversalObject>() && TraversalObject.playing)
@@ -104,14 +110,17 @@ namespace Model
 			}
 		}
 		/// <summary>
-		/// Check that the collision that just occured warrants a collision update
+		/// <para>Helper function to check the collision between two traversal objects 
+		/// is valid. Checks that the edge is not a double edge (allows collisions), 
+		/// and ensures that the colliding objects are on the same edge or are on the same 
+		/// vertex.</para>
 		/// </summary>
-		/// <param name="otherTrav"></param>
-		/// <returns></returns>
+		/// <param name="otherTrav">The other traversal object that this traversal object collided with</param>
+		/// <returns>True if a valid collision, false otherwise.</returns>
 		private bool checkValidCollision(TraversalObject otherTrav)
 		{
 			bool result = false;
-			//make sure there hasn't been a collision on that edge yet
+			//check that edge is not a double edge
 			if (this._current.isTwoWay == false)
 			{
 				//check if on same edge
@@ -126,35 +135,18 @@ namespace Model
 			return result;
 		}
 		/// <summary>
-		/// Called by the Unity Engine at the start of the game. Instantiates the collision sound
+		/// <para>Called by the Unity Engine at the start of the game. Instantiates the collision sound</para>
 		/// </summary>
 		public void Start()
 		{
 			
 		}
 		/// <summary>
-		/// Called by the Unity Engine at every frame. Adjusts the position of the traversal object
+		/// <para>Called by the Unity Engine at every frame. Adjusts the position of the traversal object if the game
+		/// is in the playing state.</para>
 		/// </summary>
 		public void Update()
 		{
-			/*
-			if (TraversalObject.playing)
-            {
-                //calculate the new percentage of the edge the object will be at
-                float newPercentPos = _pos + _vel;
-                if (newPercentPos > 1.0)
-                {
-                    //object has reached the end of the current edge, move to the next one
-                    _current = _current.Lnext();
-                    newPercentPos = newPercentPos - 1.0F;
-                }
-                transform.position = getVectorPosition(newPercentPos);
-                _pos = newPercentPos;
-            } else {
-				transform.position = getVectorPosition(_pos);
-
-			}
-			*/
 			if (TraversalObject.playing)
 			{
 				Phase += _vel;
