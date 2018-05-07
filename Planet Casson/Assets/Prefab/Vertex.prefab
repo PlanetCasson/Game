@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33308844171143738}
   - component: {fileID: 23119308482142450}
   - component: {fileID: 114122166427840298}
+  - component: {fileID: 114657172669294848}
   m_Layer: 0
   m_Name: Vertex
   m_TagString: Untagged
@@ -96,3 +97,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   live: 0
   selected: 0
+--- !u!114 &114657172669294848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1389932504333770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3e9ecd45586da428de0f295f195a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  live: 0

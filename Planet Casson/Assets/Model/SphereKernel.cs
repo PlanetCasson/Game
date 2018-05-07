@@ -19,6 +19,7 @@ public class SphereKernel : MonoBehaviour
 	/// 0 if a collision occurs. Incremented in SphereKernel's Update method.</para>
 	/// </summary>
 	public int frameCount;
+	public GameObject victory;
 
 	/// <summary>
 	/// <para>Main cell used to build the graph and its traversals. Major key.</para>
@@ -44,6 +45,8 @@ public class SphereKernel : MonoBehaviour
         foreach(GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
         SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
         SphereKernelCell.instantiateTraversals(this, traverserObj);
+		victory = GameObject.Find("VictoryText");
+
     }
 	/// <summary>
 	/// <para>Called when the player chooses to change the graph/model. A new obj file is imported and
@@ -73,10 +76,11 @@ public class SphereKernel : MonoBehaviour
 	/// </summary>
 	void Update()
 	{
-		if (++frameCount > (1 / SphereKernelCell.velocity))
-		{
+		if (++frameCount > (1 / SphereKernelCell.velocity)) {
 			//Trigger level complete stuff
-			Debug.Log("You did it!");
+			victory.SetActive(true);
+		} else {
+			victory.SetActive(false);
 		}
 	}
 }

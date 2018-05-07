@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3868404, g: 0.6014554, b: 0.6370042, a: 1}
+  m_IndirectSpecularColor: {r: 0.3868402, g: 0.6014553, b: 0.6370045, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -209,6 +209,96 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 213823319}
+--- !u!1 &277819037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 277819038}
+  - component: {fileID: 277819040}
+  - component: {fileID: 277819039}
+  m_Layer: 5
+  m_Name: VictoryText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &277819038
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277819037}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1170611150}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -390}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!102 &277819039
+TextMesh:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277819037}
+  m_Text: Congratulations, You Won!
+  m_OffsetZ: 10
+  m_CharacterSize: 4
+  m_LineSpacing: 1
+  m_Anchor: 4
+  m_Alignment: 1
+  m_TabSize: 4
+  m_FontSize: 100
+  m_FontStyle: 1
+  m_RichText: 1
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color:
+    serializedVersion: 2
+    rgba: 4278247935
+--- !u!23 &277819040
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277819037}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!1 &390821125 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1474823051731988, guid: cf828e9e085ad1f4b82179be03de4697,
@@ -294,12 +384,12 @@ Prefab:
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 91.8
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224856882135256926, guid: e2fcaf3cc78177f47ad48fe1bf032d5b,
         type: 2}
@@ -452,7 +542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 4
-  zoomSpeed: 2
+  zoomSpeed: 6
   moveSpeed: 2
 --- !u!1001 &940813862
 Prefab:
@@ -504,12 +594,12 @@ Prefab:
     - target: {fileID: 224811504015601422, guid: cb4765171666c1142a780a54739798b7,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 459
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 224811504015601422, guid: cb4765171666c1142a780a54739798b7,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224811504015601422, guid: cb4765171666c1142a780a54739798b7,
         type: 2}
@@ -717,6 +807,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 213823320}
+  - {fileID: 277819038}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -775,7 +866,7 @@ Prefab:
     - target: {fileID: 224412067785957948, guid: d2b51f8f3d1fab8428cb0eabcf4e3777,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 826.2
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 224412067785957948, guid: d2b51f8f3d1fab8428cb0eabcf4e3777,
         type: 2}
@@ -880,12 +971,12 @@ Prefab:
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 275.40002
+      value: 240
       objectReference: {fileID: 0}
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224609141350772724, guid: cf828e9e085ad1f4b82179be03de4697,
         type: 2}
@@ -1060,12 +1151,12 @@ Prefab:
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 642.60004
+      value: 560
       objectReference: {fileID: 0}
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224319272056846362, guid: 7ad0faf1e6d2d7b4ca3b88ea1a13b088,
         type: 2}
@@ -1150,6 +1241,7 @@ MonoBehaviour:
   traverserObj: {fileID: 1633538656188156, guid: 10053f56f03489d418fe5514f6da08b5,
     type: 2}
   frameCount: 0
+  victory: {fileID: 0}
 --- !u!4 &2076371989
 Transform:
   m_ObjectHideFlags: 0
