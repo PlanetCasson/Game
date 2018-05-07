@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Planet Casson", "Planet Casson.csproj", "{38240960-9365-7B9D-B7EB-A25D143F32A1}"
 EndProject
 Global

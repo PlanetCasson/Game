@@ -47,10 +47,10 @@ public class SphereKernel : MonoBehaviour
         foreach(GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
         SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
         SphereKernelCell.instantiateTraversals(this, traverserObj);
-		
-        //victory = GameObject.Find("VictoryText");
-
-    }
+		TwoWayEdgeToggle.twoWayCount = 0;
+		victoryText.text = "";
+		frameCount = 0;
+	}
 	/// <summary>
 	/// <para>Called when the player chooses to change the graph/model. A new obj file is imported and
 	/// its graph is created along with all necessary parts and game objects.</para>
@@ -64,7 +64,10 @@ public class SphereKernel : MonoBehaviour
         foreach (GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
         SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
         SphereKernelCell.instantiateTraversals(this, traverserObj);
-    }
+		TwoWayEdgeToggle.twoWayCount = 0;
+		victoryText.text = "";
+		frameCount = 0;
+	}
 	/// <summary>
 	/// <para>Helper function to recalculate positions of the vertices, edges, and faces in the graph</para>
 	/// </summary>
@@ -79,12 +82,20 @@ public class SphereKernel : MonoBehaviour
 	/// </summary>
 	void Update()
 	{
-		if (++frameCount > (1 / SphereKernelCell.velocity)) {
-            //Trigger level complete stuff
-            victoryText.text = "Congradulations, you win!\nYou used " + TwoWayEdgeToggle.twoWayCount + " two way edges. Can you do it with fewer?";
+		if (++frameCount > (1.2 / SphereKernelCell.velocity)) {
+            //Trigger level complete
+            victoryText.text = "Congratulations, you win!\nYou used " + TwoWayEdgeToggle.twoWayCount + " two way edges. Can you do it with fewer?";
 
         } else {
             victoryText.text = "";
 		}
+	}
+	/// <summary>
+	/// <para>Called on start by Unity. Locks the frame rate to 30fps</para>
+	/// </summary>
+	void Awake()
+	{
+		QualitySettings.vSyncCount = 0; // VSync must be disabled
+		Application.targetFrameRate = 60;
 	}
 }

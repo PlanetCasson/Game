@@ -135,13 +135,6 @@ namespace Model
 			return result;
 		}
 		/// <summary>
-		/// <para>Called by the Unity Engine at the start of the game. Instantiates the collision sound</para>
-		/// </summary>
-		public void Start()
-		{
-			
-		}
-		/// <summary>
 		/// <para>Called by the Unity Engine at every frame. Adjusts the position of the traversal object if the game
 		/// is in the playing state.</para>
 		/// </summary>
@@ -154,6 +147,7 @@ namespace Model
 			else
 			{
 				Phase = Phase;
+				GameObject.Find("GameObject").GetComponent<SphereKernel>().frameCount = 0;
 			}
 		}
 	}

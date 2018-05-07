@@ -28,6 +28,7 @@ public class TwoWayEdgeToggle : MonoBehaviour {
 				//if (ei.ModelEdge.isTwoWay) ei.SetEdgeWidth(curWidth / 2);
 				//else ei.SetEdgeWidth(curWidth * 2);
 				ei.ModelEdge.isTwoWay = !ei.ModelEdge.isTwoWay;
+				GameObject.Find("GameObject").GetComponent<SphereKernel>().frameCount = 0;
 				if (ei.ModelEdge.isTwoWay)
 				{
 					ei.ModelEdge.CollisionPhase = -1;

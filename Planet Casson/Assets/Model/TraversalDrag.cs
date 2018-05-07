@@ -40,6 +40,7 @@ public class TraversalDrag
 				initAngle = angleToHorizontal(Camera.main.ScreenToViewportPoint(Input.mousePosition) - center);
 				dir = findDir(traversal.CurrentEdge);
 				isDragging = true;
+				GameObject.Find("GameObject").GetComponent<SphereKernel>().frameCount = 0;
 				return true;
 			}
 		}
@@ -50,6 +51,7 @@ public class TraversalDrag
 			float newAngle = angleToHorizontal(Camera.main.ScreenToViewportPoint(Input.mousePosition) - center);
 			float p = (dir * (newAngle - initAngle) / (2 * Mathf.PI) + initPhase);
 			traversal.Phase = p - Mathf.Floor(p);
+			GameObject.Find("GameObject").GetComponent<SphereKernel>().frameCount = 0;
 			return true;
 		}
 		return false;
