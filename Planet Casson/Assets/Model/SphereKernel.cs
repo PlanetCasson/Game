@@ -81,7 +81,7 @@ public class SphereKernel : MonoBehaviour
 	{
 		if (++frameCount > (1 / SphereKernelCell.velocity)) {
             //Trigger level complete stuff
-            victoryText.text = "Congradulations, you win!\nYou used " + TwoWayEdgeToggle.twoWayCount + " two way edges. Can you do it with fewer?";
+            victoryText.text = "Congratulations, You Win!\nYou used " + TwoWayEdgeToggle.twoWayCount + " two way edges. Can you do it with fewer?";
 
         } else {
             victoryText.text = "";
