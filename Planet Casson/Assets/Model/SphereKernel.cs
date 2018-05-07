@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Model;
 using Model.Objects;
+using UnityEngine.UI;
 
 /// <summary>
 /// <para>Main class responsible for managing the game's cell object and using it to build the graph.</para>
@@ -14,12 +15,13 @@ public class SphereKernel : MonoBehaviour
 	public GameObject edgeObj;
 	public GameObject faceObj;
 	public GameObject traverserObj;
+    public Text victoryText;
 	/// <summary>
 	/// <para>Counter used to indicate a full cycle (without collisions) has been reached. It is reset to
 	/// 0 if a collision occurs. Incremented in SphereKernel's Update method.</para>
 	/// </summary>
 	public int frameCount;
-	public GameObject victory;
+	//public GameObject victory;
 
 	/// <summary>
 	/// <para>Main cell used to build the graph and its traversals. Major key.</para>
@@ -45,7 +47,8 @@ public class SphereKernel : MonoBehaviour
         foreach(GameObject vert in VertexObjects) { vert.GetComponent<VertexObject>().live = true; }
         SphereKernelCell.calculatePositions(VertexObjects, EdgeObjects, FaceObjects);
         SphereKernelCell.instantiateTraversals(this, traverserObj);
-		victory = GameObject.Find("VictoryText");
+		
+        //victory = GameObject.Find("VictoryText");
 
     }
 	/// <summary>
@@ -77,10 +80,11 @@ public class SphereKernel : MonoBehaviour
 	void Update()
 	{
 		if (++frameCount > (1 / SphereKernelCell.velocity)) {
-			//Trigger level complete stuff
-			victory.SetActive(true);
-		} else {
-			victory.SetActive(false);
+            //Trigger level complete stuff
+            victoryText.text = "Congradulations, you win!\nYou used " + TwoWayEdgeToggle.twoWayCount + " two way edges. Can you do it with fewer?";
+
+        } else {
+            victoryText.text = "";
 		}
 	}
 }

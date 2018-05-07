@@ -12,6 +12,7 @@ public class ModelSelector : MonoBehaviour
     public Dropdown dropdown_select;
     public GameObject master;
     public List<string> models;
+    public Text victoryText;
     private SphereKernel kernel;
 
     // Use this for initialization
@@ -34,6 +35,7 @@ public class ModelSelector : MonoBehaviour
 
     void DropdownValueChanged(Dropdown change)
     {
+        victoryText.text = "";
         foreach (Transform child in master.transform)
         {
             GameObject.Destroy(child.gameObject);

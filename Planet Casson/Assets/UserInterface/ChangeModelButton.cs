@@ -14,6 +14,7 @@ public class ChangeModelButton : MonoBehaviour
     public Button changeModel_btn;
     public GameObject master;
     public Dropdown model_select;
+    public Text victoryText;
     private ModelSelector ms;
     private SphereKernel kernel;
 
@@ -27,6 +28,7 @@ public class ChangeModelButton : MonoBehaviour
 
     void TaskOnClick()
     {
+        victoryText.text = "";
         foreach (Transform child in master.transform)
         {
             GameObject.Destroy(child.gameObject);
